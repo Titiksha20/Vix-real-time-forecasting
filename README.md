@@ -1,4 +1,4 @@
-# VIX Forecasting System – Technical Documentation
+# VIX Forecasting System 
 
 ## Overview
 
