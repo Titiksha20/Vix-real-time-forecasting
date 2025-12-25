@@ -187,6 +187,19 @@ Columns:
 - Direction_1d_prob, Direction_3d_prob, Direction_5d_prob
 - HAR_expected
 - Best_model_1d, Best_model_3d, Best_model_5d
+
+### Visualizations
+
+Location: `results/plots/`
+
+Generated plots:
+- task1_baselines_*.png: Level prediction comparison
+- task2_regime_detailed_*.png: VIX timeline with regime predictions
+- task2_regime_comparison_*.png: XGBoost vs Random Forest metrics
+- task3_direction_detailed_*.png: Direction prediction timeline
+- task3_direction_comparison_*.png: Model performance comparison
+- task4_innovation_*.png: HAR fit and innovation analysis
+- summary_*.png: System-wide performance
 ---
 
 ## Key Findings
