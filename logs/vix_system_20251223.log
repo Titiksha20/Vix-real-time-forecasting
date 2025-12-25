@@ -1,0 +1,195 @@
+2025-12-23 06:19:52 | INFO | main | ================================================================================
+2025-12-23 06:19:52 | INFO | main | VIX FORECASTING SYSTEM - STARTING
+2025-12-23 06:19:52 | INFO | main | ================================================================================
+2025-12-23 06:19:52 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2007-01-01 00:00:00
+2025-12-23 06:19:52 | INFO | feature_engineering | No existing processed features found
+2025-12-23 06:19:52 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-23 06:19:52 | INFO | predictor | No historical predictions found
+2025-12-23 06:19:52 | INFO | predictor | DailyPredictor initialized
+2025-12-23 06:19:52 | INFO | main | VIX Forecasting Pipeline initialized
+2025-12-23 06:19:52 | INFO | main | Step 1/5: Fetching market data
+2025-12-23 06:19:52 | WARNING | data_fetcher | No existing data found. Performing initial fetch.
+2025-12-23 06:19:52 | INFO | data_fetcher | Fetching initial historical data from 2007-01-01
+2025-12-23 06:20:09 | WARNING | data_fetcher | Failed to fetch VVIX: "None of [Index(['CLOSE'], dtype='object')] are in the [columns]". Using NaN.
+2025-12-23 06:20:10 | WARNING | data_fetcher | Failed to fetch SKEW: "None of [Index(['CLOSE'], dtype='object')] are in the [columns]". Using NaN.
+2025-12-23 06:20:10 | INFO | data_fetcher | Initial data fetched: 4774 records from 2007-01-03 00:00:00 to 2025-12-22 00:00:00
+2025-12-23 06:20:10 | ERROR | main | Pipeline failed: Data validation failed: VVIX has 100.0% missing data; SKEW has 100.0% missing data
+Traceback (most recent call last):
+  File "C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\main.py", line 75, in run
+    df_raw, data_updated = self._fetch_data()
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\main.py", line 130, in _fetch_data
+    raise ValueError(f"Data validation failed: {message}")
+ValueError: Data validation failed: VVIX has 100.0% missing data; SKEW has 100.0% missing data
+2025-12-23 06:20:10 | INFO | main | Pipeline execution completed
+2025-12-23 06:31:53 | INFO | main | ================================================================================
+2025-12-23 06:31:53 | INFO | main | VIX FORECASTING SYSTEM - STARTING
+2025-12-23 06:31:53 | INFO | main | ================================================================================
+2025-12-23 06:31:53 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2025-12-23 00:00:00
+2025-12-23 06:31:53 | INFO | feature_engineering | No existing processed features found
+2025-12-23 06:31:53 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-23 06:31:53 | INFO | predictor | No historical predictions found
+2025-12-23 06:31:53 | INFO | predictor | DailyPredictor initialized
+2025-12-23 06:31:53 | INFO | main | VIX Forecasting Pipeline initialized
+2025-12-23 06:31:53 | INFO | main | Step 1/5: Fetching market data
+2025-12-23 06:31:53 | INFO | data_fetcher | Fetching incremental data from 2025-12-23 to 2025-12-23
+2025-12-23 06:31:55 | WARNING | data_fetcher | Failed to fetch VVIX: "None of [Index(['CLOSE'], dtype='object')] are in the [columns]". Using NaN.
+2025-12-23 06:31:56 | WARNING | data_fetcher | Failed to fetch SKEW: "None of [Index(['CLOSE'], dtype='object')] are in the [columns]". Using NaN.
+2025-12-23 06:31:56 | INFO | data_fetcher | Added 1 new records. Total records: 4774
+2025-12-23 06:31:56 | ERROR | main | Pipeline failed: Data validation failed: VVIX has 100.0% missing data; SKEW has 100.0% missing data
+Traceback (most recent call last):
+  File "C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\main.py", line 75, in run
+    df_raw, data_updated = self._fetch_data()
+                           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\main.py", line 130, in _fetch_data
+    raise ValueError(f"Data validation failed: {message}")
+ValueError: Data validation failed: VVIX has 100.0% missing data; SKEW has 100.0% missing data
+2025-12-23 06:31:56 | INFO | main | Pipeline execution completed
+2025-12-23 06:57:05 | INFO | main | ================================================================================
+2025-12-23 06:57:05 | INFO | main | VIX FORECASTING SYSTEM - STARTING
+2025-12-23 06:57:05 | INFO | main | ================================================================================
+2025-12-23 06:57:05 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2025-12-23 00:00:00
+2025-12-23 06:57:05 | INFO | feature_engineering | No existing processed features found
+2025-12-23 06:57:05 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-23 06:57:05 | INFO | predictor | No historical predictions found
+2025-12-23 06:57:05 | INFO | predictor | DailyPredictor initialized
+2025-12-23 06:57:05 | INFO | main | VIX Forecasting Pipeline initialized
+2025-12-23 06:57:05 | INFO | main | Step 1/5: Fetching market data
+2025-12-23 06:57:05 | INFO | data_fetcher | Last date in data: 2025-12-22 00:00:00, Last complete: 2025-12-22 00:00:00
+2025-12-23 06:57:05 | INFO | data_fetcher | Data is already up to date. No fetch required.
+2025-12-23 06:57:05 | INFO | main | Data fetched: 4774 records, Updated: False
+2025-12-23 06:57:05 | INFO | main | Latest complete data: 2025-12-22
+2025-12-23 06:57:05 | WARNING | main | Latest complete data is 1 days old
+2025-12-23 06:57:05 | INFO | main | Step 2/5: Engineering features
+2025-12-23 06:57:05 | INFO | feature_engineering | No existing features. Processing full dataset.
+2025-12-23 06:57:05 | INFO | feature_engineering | Processing full dataset: 4774 records
+2025-12-23 06:57:05 | INFO | feature_engineering | 4774 rows have complete critical features
+2025-12-23 06:57:05 | INFO | feature_engineering | Dropped 0 rows with missing critical features. Final: 4774 records
+2025-12-23 06:57:05 | INFO | main | Feature validation: Feature validation passed (some optional features may be missing)
+2025-12-23 06:57:05 | INFO | main | Features engineered: 4774 new records, 4774 total
+2025-12-23 06:57:05 | INFO | main | Step 3/5: Training/loading models
+2025-12-23 06:57:05 | INFO | models | No saved model found for xgboost_regressor
+2025-12-23 06:57:05 | INFO | main | Training XGBoost Regressor
+2025-12-23 06:57:05 | INFO | models | Training xgboost_regressor
+2025-12-23 06:57:05 | ERROR | main | Regressor training/loading failed: Insufficient training data: 0 < 1000
+2025-12-23 06:57:05 | INFO | models | No saved model found for direction_classifier
+2025-12-23 06:57:05 | INFO | main | Training Direction Classifier
+2025-12-23 06:57:05 | INFO | models | Training direction_classifier
+2025-12-23 06:57:05 | INFO | models | Training samples: 0, Validation: 0, Test: 0
+2025-12-23 06:57:05 | INFO | models | Using 16 features
+2025-12-23 06:57:05 | ERROR | main | Classifier training/loading failed: [06:57:05] C:\actions-runner\_work\xgboost\xgboost\src\objective\regression_obj.cu:119: Check failed: is_valid: base_score must be in (0,1) for the logistic loss.
+2025-12-23 06:57:05 | INFO | main | Step 4/5: Generating prediction
+2025-12-23 06:57:05 | INFO | models | No saved model found for xgboost_regressor
+2025-12-23 06:57:05 | ERROR | main | Prediction generation failed: Regressor model not trained. Train model first.
+2025-12-23 06:57:05 | INFO | main | Step 5/5: Evaluating and reporting
+2025-12-23 06:57:05 | INFO | predictor | No predictions to evaluate
+2025-12-23 06:57:05 | WARNING | main | No prediction generated, skipping report creation
+2025-12-23 06:57:05 | INFO | main | Pipeline completed successfully
+2025-12-23 06:57:05 | INFO | main | Pipeline execution completed
+2025-12-23 07:02:55 | INFO | main | ================================================================================
+2025-12-23 07:02:55 | INFO | main | VIX FORECASTING SYSTEM - STARTING
+2025-12-23 07:02:55 | INFO | main | ================================================================================
+2025-12-23 07:02:55 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2025-12-23 00:00:00
+2025-12-23 07:02:55 | INFO | feature_engineering | Loaded 4774 existing feature records
+2025-12-23 07:02:55 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-23 07:02:55 | INFO | predictor | No historical predictions found
+2025-12-23 07:02:55 | INFO | predictor | DailyPredictor initialized
+2025-12-23 07:02:55 | INFO | main | VIX Forecasting Pipeline initialized
+2025-12-23 07:02:55 | INFO | main | Step 1/5: Fetching market data
+2025-12-23 07:02:55 | INFO | data_fetcher | Last date in data: 2025-12-22 00:00:00, Last complete: 2025-12-22 00:00:00
+2025-12-23 07:02:55 | INFO | data_fetcher | Data is already up to date. No fetch required.
+2025-12-23 07:02:55 | INFO | main | Data fetched: 4774 records, Updated: False
+2025-12-23 07:02:55 | INFO | main | Latest complete data: 2025-12-22
+2025-12-23 07:02:55 | WARNING | main | Latest complete data is 1 days old
+2025-12-23 07:02:55 | INFO | main | Step 2/5: Engineering features
+2025-12-23 07:02:55 | INFO | feature_engineering | No new complete data. Latest complete: 2025-12-22 00:00:00, Last processed: 2025-12-22 00:00:00
+2025-12-23 07:02:55 | INFO | main | Feature validation: Feature validation passed (some optional features may be missing)
+2025-12-23 07:02:55 | INFO | main | Features engineered: 0 new records, 4774 total
+2025-12-23 07:02:55 | INFO | main | Step 3/5: Training/loading models
+2025-12-23 07:02:55 | INFO | models | No saved model found for xgboost_regressor
+2025-12-23 07:02:55 | INFO | main | Training XGBoost Regressor
+2025-12-23 07:02:55 | INFO | models | Training xgboost_regressor
+2025-12-23 07:02:55 | INFO | models | Dynamic split: Train end=2020-04-09, Val end=2023-02-13
+2025-12-23 07:02:55 | INFO | models | Split sizes: Train=3341, Val=716, Test=717
+2025-12-23 07:02:55 | ERROR | main | Regressor training/loading failed: Insufficient training data: 0 < 1000
+2025-12-23 07:02:55 | INFO | models | No saved model found for direction_classifier
+2025-12-23 07:02:55 | INFO | main | Training Direction Classifier
+2025-12-23 07:02:55 | INFO | models | Training direction_classifier
+2025-12-23 07:02:55 | INFO | models | Dynamic split: Train end=2020-04-09, Val end=2023-02-13
+2025-12-23 07:02:55 | INFO | models | Split sizes: Train=3341, Val=716, Test=717
+2025-12-23 07:02:55 | ERROR | main | Classifier training/loading failed: Insufficient training data: 0 < 100
+2025-12-23 07:02:55 | INFO | main | Step 4/5: Generating prediction
+2025-12-23 07:02:55 | INFO | models | No saved model found for xgboost_regressor
+2025-12-23 07:02:55 | ERROR | main | Prediction generation failed: Regressor model not trained. Train model first.
+2025-12-23 07:02:55 | INFO | main | Step 5/5: Evaluating and reporting
+2025-12-23 07:02:55 | INFO | predictor | No predictions to evaluate
+2025-12-23 07:02:55 | WARNING | main | No prediction generated, skipping report creation
+2025-12-23 07:02:55 | INFO | main | Pipeline completed successfully
+2025-12-23 07:02:55 | INFO | main | Pipeline execution completed
+2025-12-23 07:35:31 | INFO | main | ================================================================================
+2025-12-23 07:35:31 | INFO | main | VIX FORECASTING SYSTEM - STARTING
+2025-12-23 07:35:31 | INFO | main | ================================================================================
+2025-12-23 07:35:31 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2025-12-23 00:00:00
+2025-12-23 07:35:31 | INFO | feature_engineering | No existing processed features found
+2025-12-23 07:35:31 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-23 07:35:31 | INFO | predictor | No historical predictions found
+2025-12-23 07:35:31 | INFO | predictor | DailyPredictor initialized
+2025-12-23 07:35:31 | INFO | main | VIX Forecasting Pipeline initialized
+2025-12-23 07:35:31 | INFO | main | Step 1/5: Fetching market data
+2025-12-23 07:35:31 | INFO | main | Performing initial data fetch
+2025-12-23 07:35:31 | INFO | data_fetcher | Fetching initial historical data from 2007-01-01
+2025-12-23 07:35:34 | INFO | data_fetcher | Credit spread fetched: 4774 values
+2025-12-23 07:35:35 | INFO | data_fetcher | VVIX fetched successfully: 4774 values
+2025-12-23 07:35:35 | INFO | data_fetcher | SKEW fetched successfully: 4774 values
+2025-12-23 07:35:35 | INFO | data_fetcher | SPX_log_return: 1 missing (0.0%)
+2025-12-23 07:35:35 | INFO | data_fetcher | RV_5: 5 missing (0.1%)
+2025-12-23 07:35:35 | INFO | data_fetcher | RV_10: 10 missing (0.2%)
+2025-12-23 07:35:35 | INFO | data_fetcher | RV_20: 20 missing (0.4%)
+2025-12-23 07:35:35 | INFO | data_fetcher | logVIX_MA5: 4 missing (0.1%)
+2025-12-23 07:35:35 | INFO | data_fetcher | logVIX_MA20: 19 missing (0.4%)
+2025-12-23 07:35:35 | INFO | data_fetcher | Latest complete data date: 2025-12-22 00:00:00
+2025-12-23 07:35:35 | INFO | data_fetcher | Initial data fetched: 4774 records from 2007-01-03 00:00:00 to 2025-12-22 00:00:00
+2025-12-23 07:35:35 | INFO | main | Data fetched: 4774 records, Updated: True
+2025-12-23 07:35:35 | INFO | main | Latest complete data: 2025-12-22
+2025-12-23 07:35:35 | WARNING | main | Latest complete data is 1 days old
+2025-12-23 07:35:35 | INFO | main | Step 2/5: Engineering features
+2025-12-23 07:35:35 | INFO | feature_engineering | Processing full dataset: 4774 records
+2025-12-23 07:35:35 | INFO | feature_engineering | 4774 rows have complete critical features
+2025-12-23 07:35:35 | INFO | feature_engineering | Dropped 0 rows with missing critical features. Final: 4774 records
+2025-12-23 07:35:35 | INFO | main | Feature validation: Feature validation passed (some optional features may be missing)
+2025-12-23 07:35:35 | INFO | main | Features engineered: 4774 new records, 4774 total
+2025-12-23 07:35:35 | INFO | main | Step 3/5: Training/loading models
+2025-12-23 07:35:35 | INFO | models | No saved model found for xgboost_regressor
+2025-12-23 07:35:35 | INFO | main | Training XGBoost Regressor
+2025-12-23 07:35:35 | INFO | models | Training xgboost_regressor
+2025-12-23 07:35:35 | INFO | models | Dynamic split: Train end=2020-04-09, Val end=2023-02-13
+2025-12-23 07:35:35 | INFO | models | Split sizes: Train=3341, Val=716, Test=717
+2025-12-23 07:35:35 | INFO | models | Training samples: 3316, Validation: 716, Test: 716
+2025-12-23 07:35:35 | INFO | models | Using 17 features
+2025-12-23 07:35:36 | INFO | models | Saved xgboost_regressor to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\models\xgboost_regressor.pkl
+2025-12-23 07:35:36 | INFO | models | Training completed - Train RMSE: 0.0601 (logVIX)
+2025-12-23 07:35:36 | INFO | models | Test RMSE in VIX points: 1.90
+2025-12-23 07:35:36 | INFO | models | Improvement vs Naive: -3.98%
+2025-12-23 07:35:36 | INFO | models | No saved model found for direction_classifier
+2025-12-23 07:35:36 | INFO | main | Training Direction Classifier
+2025-12-23 07:35:36 | INFO | models | Training direction_classifier
+2025-12-23 07:35:36 | INFO | models | Dynamic split: Train end=2020-04-09, Val end=2023-02-13
+2025-12-23 07:35:36 | INFO | models | Split sizes: Train=3341, Val=716, Test=717
+2025-12-23 07:35:36 | INFO | models | Training samples: 3316, Test: 717
+2025-12-23 07:35:36 | INFO | models | Using 16 features
+2025-12-23 07:35:36 | INFO | models | Saved direction_classifier to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\models\direction_classifier.pkl
+2025-12-23 07:35:36 | INFO | models | Training completed - Train Accuracy: 0.791
+2025-12-23 07:35:36 | INFO | models | Test Accuracy: 0.565
+2025-12-23 07:35:36 | INFO | models | Test AUC: 0.561
+2025-12-23 07:35:36 | INFO | models | Edge over random: 6.49 percentage points
+2025-12-23 07:35:36 | INFO | main | Step 4/5: Generating prediction
+2025-12-23 07:35:36 | INFO | models | Loaded xgboost_regressor trained on 2025-12-23 07:35:36.038304
+2025-12-23 07:35:37 | INFO | models | Loaded direction_classifier trained on 2025-12-23 07:35:36.353051
+2025-12-23 07:35:37 | INFO | predictor | Generating prediction from 2025-12-22 (latest complete data)
+2025-12-23 07:35:37 | WARNING | predictor | Prediction based on data 1 days old
+2025-12-23 07:35:37 | INFO | predictor | Saved prediction to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\daily_predictions.csv
+2025-12-23 07:35:37 | INFO | main | Step 5/5: Evaluating and reporting
+2025-12-23 07:35:37 | INFO | predictor | No matching actuals for predictions yet
+2025-12-23 07:35:37 | INFO | main | Report saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\forecast_20251223_073537.txt
+2025-12-23 07:35:37 | INFO | main | Pipeline completed successfully
+2025-12-23 07:35:37 | INFO | main | Pipeline execution completed

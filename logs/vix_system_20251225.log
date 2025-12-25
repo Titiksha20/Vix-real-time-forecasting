@@ -1,0 +1,2553 @@
+2025-12-25 01:06:02 | INFO | main | ================================================================================
+2025-12-25 01:06:02 | INFO | main | VIX FORECASTING SYSTEM - 4 CORE TASKS
+2025-12-25 01:06:02 | INFO | main | ================================================================================
+2025-12-25 01:06:02 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2025-12-23 00:00:00
+2025-12-25 01:06:02 | INFO | feature_engineering | Loaded 4745 existing feature records
+2025-12-25 01:06:02 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-25 01:06:02 | INFO | main | VIX Forecasting System initialized
+2025-12-25 01:06:02 | INFO | main | Step 1: Fetching market data
+2025-12-25 01:06:02 | INFO | data_fetcher | Last date in data: 2025-12-23 00:00:00, Last complete: 2025-12-23 00:00:00
+2025-12-25 01:06:02 | INFO | data_fetcher | Fetching incremental data from 2025-12-23 to 2025-12-25
+2025-12-25 01:06:04 | INFO | data_fetcher | VIX OHLC fetched: 2 values
+2025-12-25 01:06:04 | INFO | data_fetcher | Credit spread fetched: 0 values
+2025-12-25 01:06:06 | INFO | data_fetcher | VVIX fetched successfully: 2 values
+2025-12-25 01:06:06 | INFO | data_fetcher | SKEW fetched successfully: 2 values
+2025-12-25 01:06:06 | INFO | data_fetcher | SPX_log_return: 1 missing (50.0%)
+2025-12-25 01:06:06 | INFO | data_fetcher | RV_5: 2 missing (100.0%)
+2025-12-25 01:06:06 | INFO | data_fetcher | RV_10: 2 missing (100.0%)
+2025-12-25 01:06:06 | INFO | data_fetcher | RV_20: 2 missing (100.0%)
+2025-12-25 01:06:06 | INFO | data_fetcher | logVIX_MA5: 2 missing (100.0%)
+2025-12-25 01:06:06 | INFO | data_fetcher | logVIX_MA20: 2 missing (100.0%)
+2025-12-25 01:06:06 | INFO | data_fetcher | Credit_Spread: 2 missing (100.0%)
+2025-12-25 01:06:06 | INFO | data_fetcher | New complete data through 2025-12-24 00:00:00
+2025-12-25 01:06:06 | INFO | data_fetcher | Total records: 4776
+2025-12-25 01:06:06 | INFO | main | Data fetched: 4776 records, Updated: True
+2025-12-25 01:06:06 | WARNING | main | Latest complete data is 1 days old
+2025-12-25 01:06:06 | INFO | main | Step 2: Engineering features
+2025-12-25 01:06:06 | INFO | feature_engineering | Processing incremental data. Last processed: 2025-12-16 00:00:00, New data through: 2025-12-24 00:00:00
+2025-12-25 01:06:07 | INFO | feature_engineering | Added 1 new feature rows. Total: 4746
+2025-12-25 01:06:07 | INFO | main | Features engineered: 1 new, 4746 total
+2025-12-25 01:06:07 | INFO | main | Step 3: Running all 4 forecasting tasks
+2025-12-25 01:06:07 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:06:07 | INFO | vix_forecasting_pipeline | VIX FORECASTING PIPELINE - 4 CORE TASKS
+2025-12-25 01:06:07 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 01:06:07 | INFO | vix_forecasting_pipeline | Preparing data for modeling...
+2025-12-25 01:06:07 | INFO | vix_forecasting_pipeline | Data splits:
+2025-12-25 01:06:07 | INFO | vix_forecasting_pipeline |   Train: 3752 days (2007-02-08 to 2021-12-31)
+2025-12-25 01:06:07 | INFO | vix_forecasting_pipeline |   Val:   251 days (2022-01-03 to 2022-12-30)
+2025-12-25 01:06:07 | INFO | vix_forecasting_pipeline |   Test:  737 days (2023-01-04 to 2025-12-10)
+2025-12-25 01:06:07 | INFO | vix_forecasting_pipeline |   → Test includes ALL available data (1075 days from val end)
+2025-12-25 01:06:07 | INFO | vix_forecasting_pipeline |   → Latest data: 2025-12-10
+2025-12-25 01:06:07 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:06:07 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:06:07 | INFO | task1_baselines | TASK 1: BASELINES AND FAILURE OF LEVEL PREDICTION
+2025-12-25 01:06:07 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:06:07 | INFO | task1_baselines |   Train period: 2007-02-08 to 2021-12-31
+2025-12-25 01:06:07 | INFO | task1_baselines |   Val period:   2022-01-03 to 2022-12-30
+2025-12-25 01:06:07 | INFO | task1_baselines |   Test period:  2023-01-04 to 2025-12-10
+2025-12-25 01:06:07 | INFO | task1_baselines |   Test size:    737 days (real-time data)
+2025-12-25 01:06:07 | INFO | task1_baselines | 
+1.1 NAIVE PERSISTENCE BASELINE
+2025-12-25 01:06:07 | INFO | task1_baselines |   Test RMSE (logVIX): 0.0766
+2025-12-25 01:06:07 | INFO | task1_baselines |   Test RMSE (VIX):    1.80
+2025-12-25 01:06:07 | INFO | task1_baselines |   Test period:        2023-01-04 to 2025-12-10
+2025-12-25 01:06:07 | INFO | task1_baselines |   → This is the benchmark to beat
+2025-12-25 01:06:07 | INFO | task1_baselines | 
+1.2 ARIMAX MODEL (Grid Search)
+2025-12-25 01:06:07 | INFO | task1_baselines |   Testing ARIMA configurations...
+2025-12-25 01:07:13 | INFO | task1_baselines |   Best model: ARIMA(1, 1, 1)
+2025-12-25 01:07:13 | INFO | task1_baselines |   Test RMSE: 0.0819
+2025-12-25 01:07:13 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 01:07:13 | INFO | task1_baselines |   vs Naive: -6.97%
+2025-12-25 01:07:13 | INFO | task1_baselines |   → WORSE than naive
+2025-12-25 01:07:13 | INFO | task1_baselines | 
+1.3 XGBOOST LEVEL REGRESSION (Grid Search)
+2025-12-25 01:07:14 | INFO | task1_baselines |   Best config: depth=3, trees=100
+2025-12-25 01:07:14 | INFO | task1_baselines |   Test RMSE: 0.0767
+2025-12-25 01:07:14 | INFO | task1_baselines |   Test RMSE (VIX): 1.81
+2025-12-25 01:07:14 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 01:07:14 | INFO | task1_baselines |   vs Naive: -0.21%
+2025-12-25 01:07:14 | INFO | task1_baselines |   → XGBoost ≈ naive baseline (no improvement)
+2025-12-25 01:07:14 | INFO | task1_baselines | 
+================================================================================
+2025-12-25 01:07:14 | INFO | task1_baselines | KEY FINDING: Level prediction is dominated by mean reversion
+2025-12-25 01:07:14 | INFO | task1_baselines |   • Naive: 0.0766
+2025-12-25 01:07:14 | INFO | task1_baselines |   • ARIMAX: 0.0819 (-7.0%)
+2025-12-25 01:07:14 | INFO | task1_baselines |   • XGBoost: 0.0767 (-0.2%)
+2025-12-25 01:07:14 | INFO | task1_baselines |   → ML does not beat persistence on raw levels
+2025-12-25 01:07:14 | INFO | task1_baselines |   → We need to model DEVIATIONS, not levels
+2025-12-25 01:07:14 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:07:14 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:07:14 | INFO | task2_regime | ================================================================================
+2025-12-25 01:07:14 | INFO | task2_regime | TASK 2: HIGH-VOLATILITY REGIME PREDICTION (PRIMARY MODEL)
+2025-12-25 01:07:14 | INFO | task2_regime | ================================================================================
+2025-12-25 01:07:14 | INFO | task2_regime | 
+High volatility threshold: VIX > 20 (market standard)
+2025-12-25 01:07:14 | INFO | task2_regime | 
+2.1 1D REGIME PREDICTION
+2025-12-25 01:07:14 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.2% high vol
+2025-12-25 01:07:15 | INFO | task2_regime |   Baseline accuracy: 0.828
+2025-12-25 01:07:15 | INFO | task2_regime |   Model accuracy:    0.908 (+8.0pp)
+2025-12-25 01:07:15 | INFO | task2_regime |   F1 score:          0.719
+2025-12-25 01:07:15 | INFO | task2_regime |   AUC:               0.946
+2025-12-25 01:07:15 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:07:15 | INFO | task2_regime | 
+2.2 3D REGIME PREDICTION
+2025-12-25 01:07:15 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.0% high vol
+2025-12-25 01:07:15 | INFO | task2_regime |   Baseline accuracy: 0.830
+2025-12-25 01:07:15 | INFO | task2_regime |   Model accuracy:    0.856 (+2.6pp)
+2025-12-25 01:07:15 | INFO | task2_regime |   F1 score:          0.569
+2025-12-25 01:07:15 | INFO | task2_regime |   AUC:               0.885
+2025-12-25 01:07:15 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:07:15 | INFO | task2_regime | 
+2.3 5D REGIME PREDICTION
+2025-12-25 01:07:15 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=16.7% high vol
+2025-12-25 01:07:15 | INFO | task2_regime |   Baseline accuracy: 0.833
+2025-12-25 01:07:15 | INFO | task2_regime |   Model accuracy:    0.829 (+-0.4pp)
+2025-12-25 01:07:15 | INFO | task2_regime |   F1 score:          0.496
+2025-12-25 01:07:15 | INFO | task2_regime |   AUC:               0.825
+2025-12-25 01:07:15 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:07:15 | INFO | task2_regime | 
+================================================================================
+2025-12-25 01:07:15 | INFO | task2_regime | CONCLUSION: Regime prediction is the primary actionable signal
+2025-12-25 01:07:15 | INFO | task2_regime | ================================================================================
+2025-12-25 01:07:15 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:07:15 | INFO | task3_direction | ================================================================================
+2025-12-25 01:07:15 | INFO | task3_direction | TASK 3: SIMPLE DIRECTIONAL PREDICTION (XGBoost vs Random Forest)
+2025-12-25 01:07:15 | INFO | task3_direction | ================================================================================
+2025-12-25 01:07:15 | INFO | task3_direction | 
+3.1 1D DIRECTION
+2025-12-25 01:07:15 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:07:15 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:07:16 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:07:16 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:07:16 | INFO | task3_direction |     Majority class:      0.563
+2025-12-25 01:07:16 | INFO | task3_direction |     Persistence:         0.468
+2025-12-25 01:07:16 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:07:16 | INFO | task3_direction |     Accuracy:            0.571
+2025-12-25 01:07:16 | INFO | task3_direction |     Precision:           0.512
+2025-12-25 01:07:16 | INFO | task3_direction |     Recall:              0.391
+2025-12-25 01:07:16 | INFO | task3_direction |     F1:                  0.444
+2025-12-25 01:07:16 | INFO | task3_direction |     AUC:                 0.577
+2025-12-25 01:07:16 | INFO | task3_direction |     vs Majority:         +0.81pp
+2025-12-25 01:07:16 | INFO | task3_direction |     vs Persistence:      +10.31pp
+2025-12-25 01:07:16 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:07:16 | INFO | task3_direction |     Accuracy:            0.598
+2025-12-25 01:07:16 | INFO | task3_direction |     Precision:           0.562
+2025-12-25 01:07:16 | INFO | task3_direction |     Recall:              0.363
+2025-12-25 01:07:16 | INFO | task3_direction |     F1:                  0.442
+2025-12-25 01:07:16 | INFO | task3_direction |     AUC:                 0.600
+2025-12-25 01:07:16 | INFO | task3_direction |     vs Majority:         +3.53pp
+2025-12-25 01:07:16 | INFO | task3_direction |     vs Persistence:      +13.03pp
+2025-12-25 01:07:16 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.598)
+2025-12-25 01:07:16 | INFO | task3_direction |   → Edge over random: +9.84pp
+2025-12-25 01:07:16 | INFO | task3_direction | 
+3.2 3D DIRECTION
+2025-12-25 01:07:16 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:07:16 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:07:17 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:07:17 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:07:17 | INFO | task3_direction |     Majority class:      0.550
+2025-12-25 01:07:17 | INFO | task3_direction |     Persistence:         0.461
+2025-12-25 01:07:17 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:07:17 | INFO | task3_direction |     Accuracy:            0.552
+2025-12-25 01:07:17 | INFO | task3_direction |     Precision:           0.504
+2025-12-25 01:07:17 | INFO | task3_direction |     Recall:              0.428
+2025-12-25 01:07:17 | INFO | task3_direction |     F1:                  0.463
+2025-12-25 01:07:17 | INFO | task3_direction |     AUC:                 0.572
+2025-12-25 01:07:17 | INFO | task3_direction |     vs Majority:         +0.27pp
+2025-12-25 01:07:17 | INFO | task3_direction |     vs Persistence:      +9.09pp
+2025-12-25 01:07:17 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:07:17 | INFO | task3_direction |     Accuracy:            0.579
+2025-12-25 01:07:17 | INFO | task3_direction |     Precision:           0.539
+2025-12-25 01:07:17 | INFO | task3_direction |     Recall:              0.455
+2025-12-25 01:07:17 | INFO | task3_direction |     F1:                  0.493
+2025-12-25 01:07:17 | INFO | task3_direction |     AUC:                 0.607
+2025-12-25 01:07:17 | INFO | task3_direction |     vs Majority:         +2.99pp
+2025-12-25 01:07:17 | INFO | task3_direction |     vs Persistence:      +11.80pp
+2025-12-25 01:07:17 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.579)
+2025-12-25 01:07:17 | INFO | task3_direction |   → Edge over random: +7.94pp
+2025-12-25 01:07:17 | INFO | task3_direction | 
+3.3 5D DIRECTION
+2025-12-25 01:07:17 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:07:17 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:07:17 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:07:17 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:07:17 | INFO | task3_direction |     Majority class:      0.540
+2025-12-25 01:07:17 | INFO | task3_direction |     Persistence:         0.421
+2025-12-25 01:07:17 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:07:17 | INFO | task3_direction |     Accuracy:            0.582
+2025-12-25 01:07:17 | INFO | task3_direction |     Precision:           0.549
+2025-12-25 01:07:17 | INFO | task3_direction |     Recall:              0.516
+2025-12-25 01:07:17 | INFO | task3_direction |     F1:                  0.532
+2025-12-25 01:07:17 | INFO | task3_direction |     AUC:                 0.602
+2025-12-25 01:07:17 | INFO | task3_direction |     vs Majority:         +4.21pp
+2025-12-25 01:07:17 | INFO | task3_direction |     vs Persistence:      +16.15pp
+2025-12-25 01:07:17 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:07:17 | INFO | task3_direction |     Accuracy:            0.581
+2025-12-25 01:07:17 | INFO | task3_direction |     Precision:           0.552
+2025-12-25 01:07:17 | INFO | task3_direction |     Recall:              0.469
+2025-12-25 01:07:17 | INFO | task3_direction |     F1:                  0.507
+2025-12-25 01:07:17 | INFO | task3_direction |     AUC:                 0.619
+2025-12-25 01:07:17 | INFO | task3_direction |     vs Majority:         +4.07pp
+2025-12-25 01:07:17 | INFO | task3_direction |     vs Persistence:      +16.01pp
+2025-12-25 01:07:17 | INFO | task3_direction | 
+  → Best model: XGBoost (Accuracy=0.582)
+2025-12-25 01:07:17 | INFO | task3_direction |   → Edge over random: +8.21pp
+2025-12-25 01:07:17 | INFO | task3_direction | 
+================================================================================
+2025-12-25 01:07:17 | INFO | task3_direction | MODEL COMPARISON SUMMARY
+2025-12-25 01:07:17 | INFO | task3_direction | ================================================================================
+2025-12-25 01:07:17 | INFO | task3_direction | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC        Edge      
+2025-12-25 01:07:17 | INFO | task3_direction | --------------------------------------------------------------------------------
+2025-12-25 01:07:17 | INFO | task3_direction | 1d         XGBoost         0.571      0.512      0.391      0.444      0.577      7.12      %
+2025-12-25 01:07:17 | INFO | task3_direction |            Random Forest   0.598      0.562      0.363      0.442      0.600      9.84      %
+2025-12-25 01:07:17 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 01:07:17 | INFO | task3_direction | 
+2025-12-25 01:07:17 | INFO | task3_direction | 3d         XGBoost         0.552      0.504      0.428      0.463      0.572      5.22      %
+2025-12-25 01:07:17 | INFO | task3_direction |            Random Forest   0.579      0.539      0.455      0.493      0.607      7.94      %
+2025-12-25 01:07:17 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 01:07:17 | INFO | task3_direction | 
+2025-12-25 01:07:17 | INFO | task3_direction | 5d         XGBoost         0.582      0.549      0.516      0.532      0.602      8.21      %
+2025-12-25 01:07:17 | INFO | task3_direction |            Random Forest   0.581      0.552      0.469      0.507      0.619      8.07      %
+2025-12-25 01:07:17 | INFO | task3_direction |            → BEST: XGBoost
+2025-12-25 01:07:17 | INFO | task3_direction | 
+2025-12-25 01:07:17 | INFO | task3_direction | ================================================================================
+2025-12-25 01:07:17 | INFO | task3_direction | CONCLUSION: Direction prediction provides modest edge
+2025-12-25 01:07:17 | INFO | task3_direction |   → XGBoost and Random Forest perform similarly
+2025-12-25 01:07:17 | INFO | task3_direction |   → Edge improves with longer forecast horizons
+2025-12-25 01:07:17 | INFO | task3_direction | ================================================================================
+2025-12-25 01:07:17 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:07:17 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:07:17 | INFO | task4_innovation | TASK 4: INNOVATION (DEVIATION) REGRESSION - ENHANCED
+2025-12-25 01:07:17 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:07:17 | INFO | task4_innovation | 
+4.1 HAR EXPECTATION MODEL (Multi-Horizon)
+2025-12-25 01:07:17 | INFO | task4_innovation |   train_df columns: 72
+2025-12-25 01:07:17 | INFO | task4_innovation |   train_df shape: (3752, 72)
+2025-12-25 01:07:17 | INFO | task4_innovation |   ✓ All HAR features present: ['logVIX_t', 'logVIX_weekly', 'logVIX_monthly']
+2025-12-25 01:07:17 | INFO | task4_innovation |   Before dropna: 3752 rows
+2025-12-25 01:07:17 | INFO | task4_innovation |   After dropna: 3751 rows
+2025-12-25 01:07:18 | INFO | task4_innovation |   ✓ HAR model fitted successfully!
+2025-12-25 01:07:18 | INFO | task4_innovation |   α (intercept):    0.0446
+2025-12-25 01:07:18 | INFO | task4_innovation |   β_daily (t):      0.8890
+2025-12-25 01:07:18 | INFO | task4_innovation |   β_weekly (5d):    0.0642
+2025-12-25 01:07:18 | INFO | task4_innovation |   β_monthly (22d):  0.0316
+2025-12-25 01:07:18 | INFO | task4_innovation |   In-sample R²:     0.9584
+2025-12-25 01:07:18 | INFO | task4_innovation |   In-sample RMSE:   0.0775
+2025-12-25 01:07:18 | INFO | task4_innovation |   Purpose: Multi-horizon mean reversion (should beat AR(1))
+2025-12-25 01:07:18 | INFO | task4_innovation | 
+Data after feature creation:
+2025-12-25 01:07:18 | INFO | task4_innovation |   Train: 3751 samples
+2025-12-25 01:07:18 | INFO | task4_innovation |   Val:   250 samples
+2025-12-25 01:07:18 | INFO | task4_innovation |   Test:  736 samples
+2025-12-25 01:07:18 | INFO | task4_innovation | 
+Innovation statistics:
+2025-12-25 01:07:18 | INFO | task4_innovation |   Train mean: -0.000000 (should be ≈0)
+2025-12-25 01:07:18 | INFO | task4_innovation |   Train std:  0.0775
+2025-12-25 01:07:18 | INFO | task4_innovation |   Test mean:  -0.002272
+2025-12-25 01:07:18 | INFO | task4_innovation |   Test std:   0.0757
+2025-12-25 01:07:18 | INFO | task4_innovation | 
+4.2 RIDGE REGRESSION (BASELINE)
+2025-12-25 01:07:18 | INFO | task4_innovation |   Test RMSE: 0.0756
+2025-12-25 01:07:18 | INFO | task4_innovation |   Test MAE:  0.0514
+2025-12-25 01:07:18 | INFO | task4_innovation |   Test R²:   0.0005
+2025-12-25 01:07:18 | INFO | task4_innovation | 
+4.3 XGBOOST REGRESSION (ENHANCED)
+2025-12-25 01:07:19 | INFO | task4_innovation |   Test RMSE: 0.0767
+2025-12-25 01:07:19 | INFO | task4_innovation |   Test MAE:  0.0517
+2025-12-25 01:07:19 | INFO | task4_innovation |   Test R²:   -0.0275
+2025-12-25 01:07:19 | INFO | task4_innovation |   vs Ridge:  -1.39%
+2025-12-25 01:07:19 | INFO | task4_innovation | 
+  Top 10 features:
+2025-12-25 01:07:19 | INFO | task4_innovation |     logVIX_weekly                 : 0.0628
+2025-12-25 01:07:19 | INFO | task4_innovation |     high_vol_yesterday            : 0.0592
+2025-12-25 01:07:19 | INFO | task4_innovation |     logVIX_monthly                : 0.0573
+2025-12-25 01:07:19 | INFO | task4_innovation |     vrp_normalized                : 0.0564
+2025-12-25 01:07:19 | INFO | task4_innovation |     vix_change_lag1               : 0.0549
+2025-12-25 01:07:19 | INFO | task4_innovation |     VIX_intraday_range            : 0.0537
+2025-12-25 01:07:19 | INFO | task4_innovation |     RV_weekly                     : 0.0500
+2025-12-25 01:07:19 | INFO | task4_innovation |     rv_surprise_normalized        : 0.0496
+2025-12-25 01:07:19 | INFO | task4_innovation |     variance_risk_premium         : 0.0495
+2025-12-25 01:07:19 | INFO | task4_innovation |     RV_monthly                    : 0.0481
+2025-12-25 01:07:19 | INFO | task4_innovation | 
+================================================================================
+2025-12-25 01:07:19 | INFO | task4_innovation | CONCLUSION: Innovations remain largely unpredictable
+2025-12-25 01:07:19 | INFO | task4_innovation |   R² = -0.028 - VIX shocks dominated by news/events
+2025-12-25 01:07:19 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:07:19 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:07:19 | INFO | vix_forecasting_pipeline | ALL TASKS COMPLETED SUCCESSFULLY
+2025-12-25 01:07:19 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 01:07:19 | INFO | vix_forecasting_pipeline | Summary report saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\summary_report_20251225_010719.txt
+2025-12-25 01:07:19 | INFO | main | Step 4: Generating visualizations
+2025-12-25 01:07:19 | INFO | visualizations | Generating visualizations...
+2025-12-25 01:07:24 | INFO | visualizations | All plots saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\plots
+2025-12-25 01:07:24 | INFO | main | Pipeline completed successfully
+2025-12-25 01:07:24 | INFO | main | Pipeline execution completed
+2025-12-25 01:14:48 | INFO | main | ================================================================================
+2025-12-25 01:14:48 | INFO | main | VIX FORECASTING SYSTEM - 4 CORE TASKS
+2025-12-25 01:14:48 | INFO | main | ================================================================================
+2025-12-25 01:14:48 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2025-12-24 00:00:00
+2025-12-25 01:14:48 | INFO | feature_engineering | Loaded 4746 existing feature records
+2025-12-25 01:14:48 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-25 01:14:48 | INFO | main | VIX Forecasting System initialized
+2025-12-25 01:14:48 | INFO | main | Step 1: Fetching market data
+2025-12-25 01:14:48 | INFO | data_fetcher | Last date in data: 2025-12-24 00:00:00, Last complete: 2025-12-24 00:00:00
+2025-12-25 01:14:48 | INFO | data_fetcher | Data is already up to date. No fetch required.
+2025-12-25 01:14:48 | INFO | main | Data fetched: 4776 records, Updated: False
+2025-12-25 01:14:48 | WARNING | main | Latest complete data is 1 days old
+2025-12-25 01:14:48 | INFO | main | Step 2: Engineering features
+2025-12-25 01:14:48 | INFO | feature_engineering | Processing incremental data. Last processed: 2025-12-17 00:00:00, New data through: 2025-12-24 00:00:00
+2025-12-25 01:14:48 | INFO | feature_engineering | No new valid features after processing
+2025-12-25 01:14:48 | INFO | main | Features engineered: 0 new, 4746 total
+2025-12-25 01:14:48 | INFO | main | Step 3: Running all 4 forecasting tasks
+2025-12-25 01:14:48 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:14:48 | INFO | vix_forecasting_pipeline | VIX FORECASTING PIPELINE - 4 CORE TASKS
+2025-12-25 01:14:48 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 01:14:48 | INFO | vix_forecasting_pipeline | Preparing data for modeling...
+2025-12-25 01:14:48 | INFO | vix_forecasting_pipeline | Data splits:
+2025-12-25 01:14:48 | INFO | vix_forecasting_pipeline |   Train: 3752 days (2007-02-08 to 2021-12-31)
+2025-12-25 01:14:48 | INFO | vix_forecasting_pipeline |   Val:   251 days (2022-01-03 to 2022-12-30)
+2025-12-25 01:14:48 | INFO | vix_forecasting_pipeline |   Test:  737 days (2023-01-04 to 2025-12-10)
+2025-12-25 01:14:48 | INFO | vix_forecasting_pipeline |   → Test includes ALL available data (1075 days from val end)
+2025-12-25 01:14:48 | INFO | vix_forecasting_pipeline |   → Latest data: 2025-12-10
+2025-12-25 01:14:48 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:14:48 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:14:48 | INFO | task1_baselines | TASK 1: BASELINES AND FAILURE OF LEVEL PREDICTION
+2025-12-25 01:14:48 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:14:48 | INFO | task1_baselines |   Train period: 2007-02-08 to 2021-12-31
+2025-12-25 01:14:48 | INFO | task1_baselines |   Val period:   2022-01-03 to 2022-12-30
+2025-12-25 01:14:48 | INFO | task1_baselines |   Test period:  2023-01-04 to 2025-12-10
+2025-12-25 01:14:48 | INFO | task1_baselines |   Test size:    737 days (real-time data)
+2025-12-25 01:14:48 | INFO | task1_baselines | 
+1.1 NAIVE PERSISTENCE BASELINE
+2025-12-25 01:14:48 | INFO | task1_baselines |   Test RMSE (logVIX): 0.0766
+2025-12-25 01:14:48 | INFO | task1_baselines |   Test RMSE (VIX):    1.80
+2025-12-25 01:14:48 | INFO | task1_baselines |   Test period:        2023-01-04 to 2025-12-10
+2025-12-25 01:14:48 | INFO | task1_baselines |   → This is the benchmark to beat
+2025-12-25 01:14:48 | INFO | task1_baselines | 
+1.2 ARIMAX MODEL (Grid Search)
+2025-12-25 01:14:48 | INFO | task1_baselines |   Testing ARIMA configurations...
+2025-12-25 01:16:03 | INFO | task1_baselines |   Best model: ARIMA(1, 1, 1)
+2025-12-25 01:16:03 | INFO | task1_baselines |   Test RMSE: 0.0819
+2025-12-25 01:16:03 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 01:16:03 | INFO | task1_baselines |   vs Naive: -6.97%
+2025-12-25 01:16:03 | INFO | task1_baselines |   → WORSE than naive
+2025-12-25 01:16:03 | INFO | task1_baselines | 
+1.3 XGBOOST LEVEL REGRESSION (Grid Search)
+2025-12-25 01:16:04 | INFO | task1_baselines |   Best config: depth=3, trees=100
+2025-12-25 01:16:04 | INFO | task1_baselines |   Test RMSE: 0.0767
+2025-12-25 01:16:04 | INFO | task1_baselines |   Test RMSE (VIX): 1.81
+2025-12-25 01:16:04 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 01:16:04 | INFO | task1_baselines |   vs Naive: -0.21%
+2025-12-25 01:16:04 | INFO | task1_baselines |   → XGBoost ≈ naive baseline (no improvement)
+2025-12-25 01:16:04 | INFO | task1_baselines | 
+================================================================================
+2025-12-25 01:16:04 | INFO | task1_baselines | KEY FINDING: Level prediction is dominated by mean reversion
+2025-12-25 01:16:04 | INFO | task1_baselines |   • Naive: 0.0766
+2025-12-25 01:16:04 | INFO | task1_baselines |   • ARIMAX: 0.0819 (-7.0%)
+2025-12-25 01:16:04 | INFO | task1_baselines |   • XGBoost: 0.0767 (-0.2%)
+2025-12-25 01:16:04 | INFO | task1_baselines |   → ML does not beat persistence on raw levels
+2025-12-25 01:16:04 | INFO | task1_baselines |   → We need to model DEVIATIONS, not levels
+2025-12-25 01:16:04 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:16:04 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:16:04 | INFO | task2_regime | ================================================================================
+2025-12-25 01:16:04 | INFO | task2_regime | TASK 2: HIGH-VOLATILITY REGIME PREDICTION (XGBoost vs Random Forest)
+2025-12-25 01:16:04 | INFO | task2_regime | ================================================================================
+2025-12-25 01:16:04 | INFO | task2_regime | 
+High volatility threshold: VIX > 20 (market standard)
+2025-12-25 01:16:04 | INFO | task2_regime | 
+2.1 1D REGIME PREDICTION
+2025-12-25 01:16:04 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.2% high vol
+2025-12-25 01:16:04 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:16:04 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:16:04 | INFO | task2_regime | 
+  Baseline (always low vol): 0.828
+2025-12-25 01:16:04 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:16:04 | INFO | task2_regime |     Accuracy:            0.908
+2025-12-25 01:16:04 | INFO | task2_regime |     Precision:           0.757
+2025-12-25 01:16:04 | INFO | task2_regime |     Recall:              0.685
+2025-12-25 01:16:04 | INFO | task2_regime |     F1 score:            0.719
+2025-12-25 01:16:04 | INFO | task2_regime |     AUC:                 0.946
+2025-12-25 01:16:04 | INFO | task2_regime |     vs Baseline:         +8.0pp
+2025-12-25 01:16:04 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:16:04 | INFO | task2_regime |     Accuracy:            0.923
+2025-12-25 01:16:04 | INFO | task2_regime |     Precision:           0.807
+2025-12-25 01:16:04 | INFO | task2_regime |     Recall:              0.724
+2025-12-25 01:16:04 | INFO | task2_regime |     F1 score:            0.763
+2025-12-25 01:16:04 | INFO | task2_regime |     AUC:                 0.952
+2025-12-25 01:16:04 | INFO | task2_regime |     vs Baseline:         +9.5pp
+2025-12-25 01:16:04 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.763)
+2025-12-25 01:16:04 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:16:04 | INFO | task2_regime | 
+2.2 3D REGIME PREDICTION
+2025-12-25 01:16:04 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.0% high vol
+2025-12-25 01:16:04 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:16:05 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:16:05 | INFO | task2_regime | 
+  Baseline (always low vol): 0.830
+2025-12-25 01:16:05 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:16:05 | INFO | task2_regime |     Accuracy:            0.856
+2025-12-25 01:16:05 | INFO | task2_regime |     Precision:           0.579
+2025-12-25 01:16:05 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 01:16:05 | INFO | task2_regime |     F1 score:            0.569
+2025-12-25 01:16:05 | INFO | task2_regime |     AUC:                 0.885
+2025-12-25 01:16:05 | INFO | task2_regime |     vs Baseline:         +2.6pp
+2025-12-25 01:16:05 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:16:05 | INFO | task2_regime |     Accuracy:            0.864
+2025-12-25 01:16:05 | INFO | task2_regime |     Precision:           0.609
+2025-12-25 01:16:05 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 01:16:05 | INFO | task2_regime |     F1 score:            0.583
+2025-12-25 01:16:05 | INFO | task2_regime |     AUC:                 0.876
+2025-12-25 01:16:05 | INFO | task2_regime |     vs Baseline:         +3.4pp
+2025-12-25 01:16:05 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.583)
+2025-12-25 01:16:05 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:16:05 | INFO | task2_regime | 
+2.3 5D REGIME PREDICTION
+2025-12-25 01:16:05 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=16.7% high vol
+2025-12-25 01:16:05 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:16:05 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:16:06 | INFO | task2_regime | 
+  Baseline (always low vol): 0.833
+2025-12-25 01:16:06 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:16:06 | INFO | task2_regime |     Accuracy:            0.829
+2025-12-25 01:16:06 | INFO | task2_regime |     Precision:           0.488
+2025-12-25 01:16:06 | INFO | task2_regime |     Recall:              0.504
+2025-12-25 01:16:06 | INFO | task2_regime |     F1 score:            0.496
+2025-12-25 01:16:06 | INFO | task2_regime |     AUC:                 0.825
+2025-12-25 01:16:06 | INFO | task2_regime |     vs Baseline:         -0.4pp
+2025-12-25 01:16:06 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:16:06 | INFO | task2_regime |     Accuracy:            0.832
+2025-12-25 01:16:06 | INFO | task2_regime |     Precision:           0.495
+2025-12-25 01:16:06 | INFO | task2_regime |     Recall:              0.415
+2025-12-25 01:16:06 | INFO | task2_regime |     F1 score:            0.451
+2025-12-25 01:16:06 | INFO | task2_regime |     AUC:                 0.826
+2025-12-25 01:16:06 | INFO | task2_regime |     vs Baseline:         -0.1pp
+2025-12-25 01:16:06 | INFO | task2_regime | 
+  → Best model: XGBoost (F1=0.496)
+2025-12-25 01:16:06 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:16:06 | INFO | task2_regime | 
+================================================================================
+2025-12-25 01:16:06 | INFO | task2_regime | MODEL COMPARISON SUMMARY
+2025-12-25 01:16:06 | INFO | task2_regime | ================================================================================
+2025-12-25 01:16:06 | INFO | task2_regime | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC       
+2025-12-25 01:16:06 | INFO | task2_regime | --------------------------------------------------------------------------------
+2025-12-25 01:16:06 | INFO | task2_regime | 1d         XGBoost         0.908      0.757      0.685      0.719      0.946     
+2025-12-25 01:16:06 | INFO | task2_regime |            Random Forest   0.923      0.807      0.724      0.763      0.952     
+2025-12-25 01:16:06 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 01:16:06 | INFO | task2_regime | 
+2025-12-25 01:16:06 | INFO | task2_regime | 3d         XGBoost         0.856      0.579      0.560      0.569      0.885     
+2025-12-25 01:16:06 | INFO | task2_regime |            Random Forest   0.864      0.609      0.560      0.583      0.876     
+2025-12-25 01:16:06 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 01:16:06 | INFO | task2_regime | 
+2025-12-25 01:16:06 | INFO | task2_regime | 5d         XGBoost         0.829      0.488      0.504      0.496      0.825     
+2025-12-25 01:16:06 | INFO | task2_regime |            Random Forest   0.832      0.495      0.415      0.451      0.826     
+2025-12-25 01:16:06 | INFO | task2_regime |            → BEST: XGBoost
+2025-12-25 01:16:06 | INFO | task2_regime | 
+2025-12-25 01:16:06 | INFO | task2_regime | ================================================================================
+2025-12-25 01:16:06 | INFO | task2_regime | CONCLUSION: Regime prediction is the primary actionable signal
+2025-12-25 01:16:06 | INFO | task2_regime |   → XGBoost typically achieves best F1 scores
+2025-12-25 01:16:06 | INFO | task2_regime |   → Both models show strong AUC (>0.85)
+2025-12-25 01:16:06 | INFO | task2_regime |   → 1-day predictions are most accurate
+2025-12-25 01:16:06 | INFO | task2_regime | ================================================================================
+2025-12-25 01:16:06 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:16:06 | INFO | task3_direction | ================================================================================
+2025-12-25 01:16:06 | INFO | task3_direction | TASK 3: SIMPLE DIRECTIONAL PREDICTION (XGBoost vs Random Forest)
+2025-12-25 01:16:06 | INFO | task3_direction | ================================================================================
+2025-12-25 01:16:06 | INFO | task3_direction | 
+3.1 1D DIRECTION
+2025-12-25 01:16:06 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:16:06 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:16:07 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:16:07 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:16:07 | INFO | task3_direction |     Majority class:      0.563
+2025-12-25 01:16:07 | INFO | task3_direction |     Persistence:         0.468
+2025-12-25 01:16:07 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:16:07 | INFO | task3_direction |     Accuracy:            0.571
+2025-12-25 01:16:07 | INFO | task3_direction |     Precision:           0.512
+2025-12-25 01:16:07 | INFO | task3_direction |     Recall:              0.391
+2025-12-25 01:16:07 | INFO | task3_direction |     F1:                  0.444
+2025-12-25 01:16:07 | INFO | task3_direction |     AUC:                 0.577
+2025-12-25 01:16:07 | INFO | task3_direction |     vs Majority:         +0.81pp
+2025-12-25 01:16:07 | INFO | task3_direction |     vs Persistence:      +10.31pp
+2025-12-25 01:16:07 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:16:07 | INFO | task3_direction |     Accuracy:            0.598
+2025-12-25 01:16:07 | INFO | task3_direction |     Precision:           0.562
+2025-12-25 01:16:07 | INFO | task3_direction |     Recall:              0.363
+2025-12-25 01:16:07 | INFO | task3_direction |     F1:                  0.442
+2025-12-25 01:16:07 | INFO | task3_direction |     AUC:                 0.600
+2025-12-25 01:16:07 | INFO | task3_direction |     vs Majority:         +3.53pp
+2025-12-25 01:16:07 | INFO | task3_direction |     vs Persistence:      +13.03pp
+2025-12-25 01:16:07 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.598)
+2025-12-25 01:16:07 | INFO | task3_direction |   → Edge over random: +9.84pp
+2025-12-25 01:16:07 | INFO | task3_direction | 
+3.2 3D DIRECTION
+2025-12-25 01:16:07 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:16:07 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:16:07 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:16:07 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:16:07 | INFO | task3_direction |     Majority class:      0.550
+2025-12-25 01:16:07 | INFO | task3_direction |     Persistence:         0.461
+2025-12-25 01:16:07 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:16:07 | INFO | task3_direction |     Accuracy:            0.552
+2025-12-25 01:16:07 | INFO | task3_direction |     Precision:           0.504
+2025-12-25 01:16:07 | INFO | task3_direction |     Recall:              0.428
+2025-12-25 01:16:07 | INFO | task3_direction |     F1:                  0.463
+2025-12-25 01:16:07 | INFO | task3_direction |     AUC:                 0.572
+2025-12-25 01:16:07 | INFO | task3_direction |     vs Majority:         +0.27pp
+2025-12-25 01:16:07 | INFO | task3_direction |     vs Persistence:      +9.09pp
+2025-12-25 01:16:07 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:16:07 | INFO | task3_direction |     Accuracy:            0.579
+2025-12-25 01:16:07 | INFO | task3_direction |     Precision:           0.539
+2025-12-25 01:16:07 | INFO | task3_direction |     Recall:              0.455
+2025-12-25 01:16:07 | INFO | task3_direction |     F1:                  0.493
+2025-12-25 01:16:07 | INFO | task3_direction |     AUC:                 0.607
+2025-12-25 01:16:07 | INFO | task3_direction |     vs Majority:         +2.99pp
+2025-12-25 01:16:07 | INFO | task3_direction |     vs Persistence:      +11.80pp
+2025-12-25 01:16:07 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.579)
+2025-12-25 01:16:07 | INFO | task3_direction |   → Edge over random: +7.94pp
+2025-12-25 01:16:07 | INFO | task3_direction | 
+3.3 5D DIRECTION
+2025-12-25 01:16:07 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:16:08 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:16:08 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:16:08 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:16:08 | INFO | task3_direction |     Majority class:      0.540
+2025-12-25 01:16:08 | INFO | task3_direction |     Persistence:         0.421
+2025-12-25 01:16:08 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:16:08 | INFO | task3_direction |     Accuracy:            0.582
+2025-12-25 01:16:08 | INFO | task3_direction |     Precision:           0.549
+2025-12-25 01:16:08 | INFO | task3_direction |     Recall:              0.516
+2025-12-25 01:16:08 | INFO | task3_direction |     F1:                  0.532
+2025-12-25 01:16:08 | INFO | task3_direction |     AUC:                 0.602
+2025-12-25 01:16:08 | INFO | task3_direction |     vs Majority:         +4.21pp
+2025-12-25 01:16:08 | INFO | task3_direction |     vs Persistence:      +16.15pp
+2025-12-25 01:16:08 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:16:08 | INFO | task3_direction |     Accuracy:            0.581
+2025-12-25 01:16:08 | INFO | task3_direction |     Precision:           0.552
+2025-12-25 01:16:08 | INFO | task3_direction |     Recall:              0.469
+2025-12-25 01:16:08 | INFO | task3_direction |     F1:                  0.507
+2025-12-25 01:16:08 | INFO | task3_direction |     AUC:                 0.619
+2025-12-25 01:16:08 | INFO | task3_direction |     vs Majority:         +4.07pp
+2025-12-25 01:16:08 | INFO | task3_direction |     vs Persistence:      +16.01pp
+2025-12-25 01:16:08 | INFO | task3_direction | 
+  → Best model: XGBoost (Accuracy=0.582)
+2025-12-25 01:16:08 | INFO | task3_direction |   → Edge over random: +8.21pp
+2025-12-25 01:16:08 | INFO | task3_direction | 
+================================================================================
+2025-12-25 01:16:08 | INFO | task3_direction | MODEL COMPARISON SUMMARY
+2025-12-25 01:16:08 | INFO | task3_direction | ================================================================================
+2025-12-25 01:16:08 | INFO | task3_direction | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC        Edge      
+2025-12-25 01:16:08 | INFO | task3_direction | --------------------------------------------------------------------------------
+2025-12-25 01:16:08 | INFO | task3_direction | 1d         XGBoost         0.571      0.512      0.391      0.444      0.577      7.12      %
+2025-12-25 01:16:08 | INFO | task3_direction |            Random Forest   0.598      0.562      0.363      0.442      0.600      9.84      %
+2025-12-25 01:16:08 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 01:16:08 | INFO | task3_direction | 
+2025-12-25 01:16:08 | INFO | task3_direction | 3d         XGBoost         0.552      0.504      0.428      0.463      0.572      5.22      %
+2025-12-25 01:16:08 | INFO | task3_direction |            Random Forest   0.579      0.539      0.455      0.493      0.607      7.94      %
+2025-12-25 01:16:08 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 01:16:08 | INFO | task3_direction | 
+2025-12-25 01:16:08 | INFO | task3_direction | 5d         XGBoost         0.582      0.549      0.516      0.532      0.602      8.21      %
+2025-12-25 01:16:08 | INFO | task3_direction |            Random Forest   0.581      0.552      0.469      0.507      0.619      8.07      %
+2025-12-25 01:16:08 | INFO | task3_direction |            → BEST: XGBoost
+2025-12-25 01:16:08 | INFO | task3_direction | 
+2025-12-25 01:16:08 | INFO | task3_direction | ================================================================================
+2025-12-25 01:16:08 | INFO | task3_direction | CONCLUSION: Direction prediction provides modest edge
+2025-12-25 01:16:08 | INFO | task3_direction |   → XGBoost and Random Forest perform similarly
+2025-12-25 01:16:08 | INFO | task3_direction |   → Edge improves with longer forecast horizons
+2025-12-25 01:16:08 | INFO | task3_direction | ================================================================================
+2025-12-25 01:16:08 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:16:08 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:16:08 | INFO | task4_innovation | TASK 4: INNOVATION (DEVIATION) REGRESSION - ENHANCED
+2025-12-25 01:16:08 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:16:08 | INFO | task4_innovation | 
+4.1 HAR EXPECTATION MODEL (Multi-Horizon)
+2025-12-25 01:16:08 | INFO | task4_innovation |   train_df columns: 72
+2025-12-25 01:16:08 | INFO | task4_innovation |   train_df shape: (3752, 72)
+2025-12-25 01:16:08 | INFO | task4_innovation |   ✓ All HAR features present: ['logVIX_t', 'logVIX_weekly', 'logVIX_monthly']
+2025-12-25 01:16:08 | INFO | task4_innovation |   Before dropna: 3752 rows
+2025-12-25 01:16:08 | INFO | task4_innovation |   After dropna: 3751 rows
+2025-12-25 01:16:08 | INFO | task4_innovation |   ✓ HAR model fitted successfully!
+2025-12-25 01:16:08 | INFO | task4_innovation |   α (intercept):    0.0446
+2025-12-25 01:16:08 | INFO | task4_innovation |   β_daily (t):      0.8890
+2025-12-25 01:16:08 | INFO | task4_innovation |   β_weekly (5d):    0.0642
+2025-12-25 01:16:08 | INFO | task4_innovation |   β_monthly (22d):  0.0316
+2025-12-25 01:16:08 | INFO | task4_innovation |   In-sample R²:     0.9584
+2025-12-25 01:16:08 | INFO | task4_innovation |   In-sample RMSE:   0.0775
+2025-12-25 01:16:08 | INFO | task4_innovation |   Purpose: Multi-horizon mean reversion (should beat AR(1))
+2025-12-25 01:16:08 | INFO | task4_innovation | 
+Data after feature creation:
+2025-12-25 01:16:08 | INFO | task4_innovation |   Train: 3751 samples
+2025-12-25 01:16:08 | INFO | task4_innovation |   Val:   250 samples
+2025-12-25 01:16:08 | INFO | task4_innovation |   Test:  736 samples
+2025-12-25 01:16:08 | INFO | task4_innovation | 
+Innovation statistics:
+2025-12-25 01:16:08 | INFO | task4_innovation |   Train mean: -0.000000 (should be ≈0)
+2025-12-25 01:16:08 | INFO | task4_innovation |   Train std:  0.0775
+2025-12-25 01:16:08 | INFO | task4_innovation |   Test mean:  -0.002272
+2025-12-25 01:16:08 | INFO | task4_innovation |   Test std:   0.0757
+2025-12-25 01:16:08 | INFO | task4_innovation | 
+4.2 RIDGE REGRESSION (BASELINE)
+2025-12-25 01:16:08 | INFO | task4_innovation |   Test RMSE: 0.0756
+2025-12-25 01:16:08 | INFO | task4_innovation |   Test MAE:  0.0514
+2025-12-25 01:16:08 | INFO | task4_innovation |   Test R²:   0.0005
+2025-12-25 01:16:08 | INFO | task4_innovation | 
+4.3 XGBOOST REGRESSION (ENHANCED)
+2025-12-25 01:16:09 | INFO | task4_innovation |   Test RMSE: 0.0767
+2025-12-25 01:16:09 | INFO | task4_innovation |   Test MAE:  0.0517
+2025-12-25 01:16:09 | INFO | task4_innovation |   Test R²:   -0.0275
+2025-12-25 01:16:09 | INFO | task4_innovation |   vs Ridge:  -1.39%
+2025-12-25 01:16:09 | INFO | task4_innovation | 
+  Top 10 features:
+2025-12-25 01:16:09 | INFO | task4_innovation |     logVIX_weekly                 : 0.0628
+2025-12-25 01:16:09 | INFO | task4_innovation |     high_vol_yesterday            : 0.0592
+2025-12-25 01:16:09 | INFO | task4_innovation |     logVIX_monthly                : 0.0573
+2025-12-25 01:16:09 | INFO | task4_innovation |     vrp_normalized                : 0.0564
+2025-12-25 01:16:09 | INFO | task4_innovation |     vix_change_lag1               : 0.0549
+2025-12-25 01:16:09 | INFO | task4_innovation |     VIX_intraday_range            : 0.0537
+2025-12-25 01:16:09 | INFO | task4_innovation |     RV_weekly                     : 0.0500
+2025-12-25 01:16:09 | INFO | task4_innovation |     rv_surprise_normalized        : 0.0496
+2025-12-25 01:16:09 | INFO | task4_innovation |     variance_risk_premium         : 0.0495
+2025-12-25 01:16:09 | INFO | task4_innovation |     RV_monthly                    : 0.0481
+2025-12-25 01:16:09 | INFO | task4_innovation | 
+================================================================================
+2025-12-25 01:16:09 | INFO | task4_innovation | CONCLUSION: Innovations remain largely unpredictable
+2025-12-25 01:16:09 | INFO | task4_innovation |   R² = -0.028 - VIX shocks dominated by news/events
+2025-12-25 01:16:09 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:16:09 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:16:09 | INFO | vix_forecasting_pipeline | ALL TASKS COMPLETED SUCCESSFULLY
+2025-12-25 01:16:09 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 01:16:09 | INFO | vix_forecasting_pipeline | Summary report saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\summary_report_20251225_011609.txt
+2025-12-25 01:16:09 | INFO | main | Step 4: Generating visualizations
+2025-12-25 01:16:09 | INFO | visualizations | Generating visualizations...
+2025-12-25 01:16:16 | INFO | visualizations | All plots saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\plots
+2025-12-25 01:16:16 | INFO | main | Pipeline completed successfully
+2025-12-25 01:16:16 | INFO | main | Pipeline execution completed
+2025-12-25 01:31:32 | INFO | main | ================================================================================
+2025-12-25 01:31:32 | INFO | main | VIX FORECASTING SYSTEM - 4 CORE TASKS
+2025-12-25 01:31:32 | INFO | main | ================================================================================
+2025-12-25 01:31:32 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2025-12-24 00:00:00
+2025-12-25 01:31:32 | INFO | feature_engineering | Loaded 4746 existing feature records
+2025-12-25 01:31:32 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-25 01:31:32 | INFO | main | VIX Forecasting System initialized
+2025-12-25 01:31:32 | INFO | main | Step 1: Fetching market data
+2025-12-25 01:31:32 | INFO | data_fetcher | Last date in data: 2025-12-24 00:00:00, Last complete: 2025-12-24 00:00:00
+2025-12-25 01:31:32 | INFO | data_fetcher | Data is already up to date. No fetch required.
+2025-12-25 01:31:32 | INFO | main | Data fetched: 4776 records, Updated: False
+2025-12-25 01:31:32 | WARNING | main | Latest complete data is 1 days old
+2025-12-25 01:31:32 | INFO | main | Step 2: Engineering features
+2025-12-25 01:31:32 | INFO | feature_engineering | Processing incremental data. Last processed: 2025-12-17 00:00:00, New data through: 2025-12-24 00:00:00
+2025-12-25 01:31:32 | INFO | feature_engineering | No new valid features after processing
+2025-12-25 01:31:32 | INFO | main | Features engineered: 0 new, 4746 total
+2025-12-25 01:31:32 | INFO | main | Step 3: Running all 4 forecasting tasks
+2025-12-25 01:31:32 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:31:32 | INFO | vix_forecasting_pipeline | VIX FORECASTING PIPELINE - 4 CORE TASKS
+2025-12-25 01:31:32 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 01:31:32 | INFO | vix_forecasting_pipeline | Preparing data for modeling...
+2025-12-25 01:31:32 | INFO | vix_forecasting_pipeline | Data splits:
+2025-12-25 01:31:32 | INFO | vix_forecasting_pipeline |   Train: 3752 days (2007-02-08 to 2021-12-31)
+2025-12-25 01:31:32 | INFO | vix_forecasting_pipeline |   Val:   251 days (2022-01-03 to 2022-12-30)
+2025-12-25 01:31:32 | INFO | vix_forecasting_pipeline |   Test:  737 days (2023-01-04 to 2025-12-10)
+2025-12-25 01:31:32 | INFO | vix_forecasting_pipeline |   → Test includes ALL available data (1075 days from val end)
+2025-12-25 01:31:32 | INFO | vix_forecasting_pipeline |   → Latest data: 2025-12-10
+2025-12-25 01:31:32 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:31:32 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:31:32 | INFO | task1_baselines | TASK 1: BASELINES AND FAILURE OF LEVEL PREDICTION
+2025-12-25 01:31:32 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:31:32 | INFO | task1_baselines |   Train period: 2007-02-08 to 2021-12-31
+2025-12-25 01:31:32 | INFO | task1_baselines |   Val period:   2022-01-03 to 2022-12-30
+2025-12-25 01:31:32 | INFO | task1_baselines |   Test period:  2023-01-04 to 2025-12-10
+2025-12-25 01:31:32 | INFO | task1_baselines |   Test size:    737 days (real-time data)
+2025-12-25 01:31:32 | INFO | task1_baselines | 
+1.1 NAIVE PERSISTENCE BASELINE
+2025-12-25 01:31:32 | INFO | task1_baselines |   Test RMSE (logVIX): 0.0766
+2025-12-25 01:31:32 | INFO | task1_baselines |   Test RMSE (VIX):    1.80
+2025-12-25 01:31:32 | INFO | task1_baselines |   Test period:        2023-01-04 to 2025-12-10
+2025-12-25 01:31:32 | INFO | task1_baselines |   → This is the benchmark to beat
+2025-12-25 01:31:32 | INFO | task1_baselines | 
+1.2 ARIMAX MODEL (Grid Search)
+2025-12-25 01:31:32 | INFO | task1_baselines |   Testing ARIMA configurations...
+2025-12-25 01:32:34 | INFO | task1_baselines |   Best model: ARIMA(1, 1, 1)
+2025-12-25 01:32:34 | INFO | task1_baselines |   Test RMSE: 0.0819
+2025-12-25 01:32:34 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 01:32:34 | INFO | task1_baselines |   vs Naive: -6.97%
+2025-12-25 01:32:34 | INFO | task1_baselines |   → WORSE than naive
+2025-12-25 01:32:34 | INFO | task1_baselines | 
+1.3 XGBOOST LEVEL REGRESSION (Grid Search)
+2025-12-25 01:32:34 | INFO | task1_baselines |   Best config: depth=3, trees=100
+2025-12-25 01:32:34 | INFO | task1_baselines |   Test RMSE: 0.0767
+2025-12-25 01:32:34 | INFO | task1_baselines |   Test RMSE (VIX): 1.81
+2025-12-25 01:32:34 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 01:32:34 | INFO | task1_baselines |   vs Naive: -0.21%
+2025-12-25 01:32:34 | INFO | task1_baselines |   → XGBoost ≈ naive baseline (no improvement)
+2025-12-25 01:32:34 | INFO | task1_baselines | 
+================================================================================
+2025-12-25 01:32:34 | INFO | task1_baselines | KEY FINDING: Level prediction is dominated by mean reversion
+2025-12-25 01:32:34 | INFO | task1_baselines |   • Naive: 0.0766
+2025-12-25 01:32:34 | INFO | task1_baselines |   • ARIMAX: 0.0819 (-7.0%)
+2025-12-25 01:32:34 | INFO | task1_baselines |   • XGBoost: 0.0767 (-0.2%)
+2025-12-25 01:32:34 | INFO | task1_baselines |   → ML does not beat persistence on raw levels
+2025-12-25 01:32:34 | INFO | task1_baselines |   → We need to model DEVIATIONS, not levels
+2025-12-25 01:32:34 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:32:34 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:32:34 | INFO | task2_regime | ================================================================================
+2025-12-25 01:32:34 | INFO | task2_regime | TASK 2: HIGH-VOLATILITY REGIME PREDICTION (XGBoost vs Random Forest)
+2025-12-25 01:32:34 | INFO | task2_regime | ================================================================================
+2025-12-25 01:32:34 | INFO | task2_regime | 
+High volatility threshold: VIX > 20 (market standard)
+2025-12-25 01:32:34 | INFO | task2_regime | 
+2.1 1D REGIME PREDICTION
+2025-12-25 01:32:34 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.2% high vol
+2025-12-25 01:32:34 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:32:34 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:32:35 | INFO | task2_regime | 
+  Baseline (always low vol): 0.828
+2025-12-25 01:32:35 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:32:35 | INFO | task2_regime |     Accuracy:            0.908
+2025-12-25 01:32:35 | INFO | task2_regime |     Precision:           0.757
+2025-12-25 01:32:35 | INFO | task2_regime |     Recall:              0.685
+2025-12-25 01:32:35 | INFO | task2_regime |     F1 score:            0.719
+2025-12-25 01:32:35 | INFO | task2_regime |     AUC:                 0.946
+2025-12-25 01:32:35 | INFO | task2_regime |     vs Baseline:         +8.0pp
+2025-12-25 01:32:35 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:32:35 | INFO | task2_regime |     Accuracy:            0.923
+2025-12-25 01:32:35 | INFO | task2_regime |     Precision:           0.807
+2025-12-25 01:32:35 | INFO | task2_regime |     Recall:              0.724
+2025-12-25 01:32:35 | INFO | task2_regime |     F1 score:            0.763
+2025-12-25 01:32:35 | INFO | task2_regime |     AUC:                 0.952
+2025-12-25 01:32:35 | INFO | task2_regime |     vs Baseline:         +9.5pp
+2025-12-25 01:32:35 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.763)
+2025-12-25 01:32:35 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:32:35 | INFO | task2_regime | 
+2.2 3D REGIME PREDICTION
+2025-12-25 01:32:35 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.0% high vol
+2025-12-25 01:32:35 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:32:35 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:32:36 | INFO | task2_regime | 
+  Baseline (always low vol): 0.830
+2025-12-25 01:32:36 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:32:36 | INFO | task2_regime |     Accuracy:            0.856
+2025-12-25 01:32:36 | INFO | task2_regime |     Precision:           0.579
+2025-12-25 01:32:36 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 01:32:36 | INFO | task2_regime |     F1 score:            0.569
+2025-12-25 01:32:36 | INFO | task2_regime |     AUC:                 0.885
+2025-12-25 01:32:36 | INFO | task2_regime |     vs Baseline:         +2.6pp
+2025-12-25 01:32:36 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:32:36 | INFO | task2_regime |     Accuracy:            0.864
+2025-12-25 01:32:36 | INFO | task2_regime |     Precision:           0.609
+2025-12-25 01:32:36 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 01:32:36 | INFO | task2_regime |     F1 score:            0.583
+2025-12-25 01:32:36 | INFO | task2_regime |     AUC:                 0.876
+2025-12-25 01:32:36 | INFO | task2_regime |     vs Baseline:         +3.4pp
+2025-12-25 01:32:36 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.583)
+2025-12-25 01:32:36 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:32:36 | INFO | task2_regime | 
+2.3 5D REGIME PREDICTION
+2025-12-25 01:32:36 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=16.7% high vol
+2025-12-25 01:32:36 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:32:36 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:32:36 | INFO | task2_regime | 
+  Baseline (always low vol): 0.833
+2025-12-25 01:32:36 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:32:36 | INFO | task2_regime |     Accuracy:            0.829
+2025-12-25 01:32:36 | INFO | task2_regime |     Precision:           0.488
+2025-12-25 01:32:36 | INFO | task2_regime |     Recall:              0.504
+2025-12-25 01:32:36 | INFO | task2_regime |     F1 score:            0.496
+2025-12-25 01:32:36 | INFO | task2_regime |     AUC:                 0.825
+2025-12-25 01:32:36 | INFO | task2_regime |     vs Baseline:         -0.4pp
+2025-12-25 01:32:36 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:32:36 | INFO | task2_regime |     Accuracy:            0.832
+2025-12-25 01:32:36 | INFO | task2_regime |     Precision:           0.495
+2025-12-25 01:32:36 | INFO | task2_regime |     Recall:              0.415
+2025-12-25 01:32:36 | INFO | task2_regime |     F1 score:            0.451
+2025-12-25 01:32:36 | INFO | task2_regime |     AUC:                 0.826
+2025-12-25 01:32:36 | INFO | task2_regime |     vs Baseline:         -0.1pp
+2025-12-25 01:32:36 | INFO | task2_regime | 
+  → Best model: XGBoost (F1=0.496)
+2025-12-25 01:32:36 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:32:36 | INFO | task2_regime | 
+================================================================================
+2025-12-25 01:32:36 | INFO | task2_regime | MODEL COMPARISON SUMMARY
+2025-12-25 01:32:36 | INFO | task2_regime | ================================================================================
+2025-12-25 01:32:36 | INFO | task2_regime | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC       
+2025-12-25 01:32:36 | INFO | task2_regime | --------------------------------------------------------------------------------
+2025-12-25 01:32:36 | INFO | task2_regime | 1d         XGBoost         0.908      0.757      0.685      0.719      0.946     
+2025-12-25 01:32:36 | INFO | task2_regime |            Random Forest   0.923      0.807      0.724      0.763      0.952     
+2025-12-25 01:32:36 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 01:32:36 | INFO | task2_regime | 
+2025-12-25 01:32:36 | INFO | task2_regime | 3d         XGBoost         0.856      0.579      0.560      0.569      0.885     
+2025-12-25 01:32:36 | INFO | task2_regime |            Random Forest   0.864      0.609      0.560      0.583      0.876     
+2025-12-25 01:32:36 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 01:32:36 | INFO | task2_regime | 
+2025-12-25 01:32:36 | INFO | task2_regime | 5d         XGBoost         0.829      0.488      0.504      0.496      0.825     
+2025-12-25 01:32:36 | INFO | task2_regime |            Random Forest   0.832      0.495      0.415      0.451      0.826     
+2025-12-25 01:32:36 | INFO | task2_regime |            → BEST: XGBoost
+2025-12-25 01:32:36 | INFO | task2_regime | 
+2025-12-25 01:32:36 | INFO | task2_regime | ================================================================================
+2025-12-25 01:32:36 | INFO | task2_regime | CONCLUSION: Regime prediction is the primary actionable signal
+2025-12-25 01:32:36 | INFO | task2_regime |   → XGBoost typically achieves best F1 scores
+2025-12-25 01:32:36 | INFO | task2_regime |   → Both models show strong AUC (>0.85)
+2025-12-25 01:32:36 | INFO | task2_regime |   → 1-day predictions are most accurate
+2025-12-25 01:32:36 | INFO | task2_regime | ================================================================================
+2025-12-25 01:32:36 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:32:36 | INFO | task3_direction | ================================================================================
+2025-12-25 01:32:36 | INFO | task3_direction | TASK 3: SIMPLE DIRECTIONAL PREDICTION (XGBoost vs Random Forest)
+2025-12-25 01:32:36 | INFO | task3_direction | ================================================================================
+2025-12-25 01:32:36 | INFO | task3_direction | 
+3.1 1D DIRECTION
+2025-12-25 01:32:36 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:32:36 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:32:37 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:32:37 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:32:37 | INFO | task3_direction |     Majority class:      0.563
+2025-12-25 01:32:37 | INFO | task3_direction |     Persistence:         0.468
+2025-12-25 01:32:37 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:32:37 | INFO | task3_direction |     Accuracy:            0.571
+2025-12-25 01:32:37 | INFO | task3_direction |     Precision:           0.512
+2025-12-25 01:32:37 | INFO | task3_direction |     Recall:              0.391
+2025-12-25 01:32:37 | INFO | task3_direction |     F1:                  0.444
+2025-12-25 01:32:37 | INFO | task3_direction |     AUC:                 0.577
+2025-12-25 01:32:37 | INFO | task3_direction |     vs Majority:         +0.81pp
+2025-12-25 01:32:37 | INFO | task3_direction |     vs Persistence:      +10.31pp
+2025-12-25 01:32:37 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:32:37 | INFO | task3_direction |     Accuracy:            0.598
+2025-12-25 01:32:37 | INFO | task3_direction |     Precision:           0.562
+2025-12-25 01:32:37 | INFO | task3_direction |     Recall:              0.363
+2025-12-25 01:32:37 | INFO | task3_direction |     F1:                  0.442
+2025-12-25 01:32:37 | INFO | task3_direction |     AUC:                 0.600
+2025-12-25 01:32:37 | INFO | task3_direction |     vs Majority:         +3.53pp
+2025-12-25 01:32:37 | INFO | task3_direction |     vs Persistence:      +13.03pp
+2025-12-25 01:32:37 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.598)
+2025-12-25 01:32:37 | INFO | task3_direction |   → Edge over random: +9.84pp
+2025-12-25 01:32:37 | INFO | task3_direction | 
+3.2 3D DIRECTION
+2025-12-25 01:32:37 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:32:37 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:32:38 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:32:38 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:32:38 | INFO | task3_direction |     Majority class:      0.550
+2025-12-25 01:32:38 | INFO | task3_direction |     Persistence:         0.461
+2025-12-25 01:32:38 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:32:38 | INFO | task3_direction |     Accuracy:            0.552
+2025-12-25 01:32:38 | INFO | task3_direction |     Precision:           0.504
+2025-12-25 01:32:38 | INFO | task3_direction |     Recall:              0.428
+2025-12-25 01:32:38 | INFO | task3_direction |     F1:                  0.463
+2025-12-25 01:32:38 | INFO | task3_direction |     AUC:                 0.572
+2025-12-25 01:32:38 | INFO | task3_direction |     vs Majority:         +0.27pp
+2025-12-25 01:32:38 | INFO | task3_direction |     vs Persistence:      +9.09pp
+2025-12-25 01:32:38 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:32:38 | INFO | task3_direction |     Accuracy:            0.579
+2025-12-25 01:32:38 | INFO | task3_direction |     Precision:           0.539
+2025-12-25 01:32:38 | INFO | task3_direction |     Recall:              0.455
+2025-12-25 01:32:38 | INFO | task3_direction |     F1:                  0.493
+2025-12-25 01:32:38 | INFO | task3_direction |     AUC:                 0.607
+2025-12-25 01:32:38 | INFO | task3_direction |     vs Majority:         +2.99pp
+2025-12-25 01:32:38 | INFO | task3_direction |     vs Persistence:      +11.80pp
+2025-12-25 01:32:38 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.579)
+2025-12-25 01:32:38 | INFO | task3_direction |   → Edge over random: +7.94pp
+2025-12-25 01:32:38 | INFO | task3_direction | 
+3.3 5D DIRECTION
+2025-12-25 01:32:38 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:32:38 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:32:38 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:32:38 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:32:38 | INFO | task3_direction |     Majority class:      0.540
+2025-12-25 01:32:38 | INFO | task3_direction |     Persistence:         0.421
+2025-12-25 01:32:38 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:32:38 | INFO | task3_direction |     Accuracy:            0.582
+2025-12-25 01:32:38 | INFO | task3_direction |     Precision:           0.549
+2025-12-25 01:32:38 | INFO | task3_direction |     Recall:              0.516
+2025-12-25 01:32:38 | INFO | task3_direction |     F1:                  0.532
+2025-12-25 01:32:38 | INFO | task3_direction |     AUC:                 0.602
+2025-12-25 01:32:38 | INFO | task3_direction |     vs Majority:         +4.21pp
+2025-12-25 01:32:38 | INFO | task3_direction |     vs Persistence:      +16.15pp
+2025-12-25 01:32:38 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:32:38 | INFO | task3_direction |     Accuracy:            0.581
+2025-12-25 01:32:38 | INFO | task3_direction |     Precision:           0.552
+2025-12-25 01:32:38 | INFO | task3_direction |     Recall:              0.469
+2025-12-25 01:32:38 | INFO | task3_direction |     F1:                  0.507
+2025-12-25 01:32:38 | INFO | task3_direction |     AUC:                 0.619
+2025-12-25 01:32:38 | INFO | task3_direction |     vs Majority:         +4.07pp
+2025-12-25 01:32:38 | INFO | task3_direction |     vs Persistence:      +16.01pp
+2025-12-25 01:32:38 | INFO | task3_direction | 
+  → Best model: XGBoost (Accuracy=0.582)
+2025-12-25 01:32:38 | INFO | task3_direction |   → Edge over random: +8.21pp
+2025-12-25 01:32:38 | INFO | task3_direction | 
+================================================================================
+2025-12-25 01:32:38 | INFO | task3_direction | MODEL COMPARISON SUMMARY
+2025-12-25 01:32:38 | INFO | task3_direction | ================================================================================
+2025-12-25 01:32:38 | INFO | task3_direction | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC        Edge      
+2025-12-25 01:32:38 | INFO | task3_direction | --------------------------------------------------------------------------------
+2025-12-25 01:32:38 | INFO | task3_direction | 1d         XGBoost         0.571      0.512      0.391      0.444      0.577      7.12      %
+2025-12-25 01:32:38 | INFO | task3_direction |            Random Forest   0.598      0.562      0.363      0.442      0.600      9.84      %
+2025-12-25 01:32:38 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 01:32:38 | INFO | task3_direction | 
+2025-12-25 01:32:38 | INFO | task3_direction | 3d         XGBoost         0.552      0.504      0.428      0.463      0.572      5.22      %
+2025-12-25 01:32:38 | INFO | task3_direction |            Random Forest   0.579      0.539      0.455      0.493      0.607      7.94      %
+2025-12-25 01:32:38 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 01:32:38 | INFO | task3_direction | 
+2025-12-25 01:32:38 | INFO | task3_direction | 5d         XGBoost         0.582      0.549      0.516      0.532      0.602      8.21      %
+2025-12-25 01:32:38 | INFO | task3_direction |            Random Forest   0.581      0.552      0.469      0.507      0.619      8.07      %
+2025-12-25 01:32:38 | INFO | task3_direction |            → BEST: XGBoost
+2025-12-25 01:32:38 | INFO | task3_direction | 
+2025-12-25 01:32:38 | INFO | task3_direction | ================================================================================
+2025-12-25 01:32:38 | INFO | task3_direction | CONCLUSION: Direction prediction provides modest edge
+2025-12-25 01:32:38 | INFO | task3_direction |   → XGBoost and Random Forest perform similarly
+2025-12-25 01:32:38 | INFO | task3_direction |   → Edge improves with longer forecast horizons
+2025-12-25 01:32:38 | INFO | task3_direction | ================================================================================
+2025-12-25 01:32:38 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:32:38 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:32:38 | INFO | task4_innovation | TASK 4: INNOVATION (DEVIATION) REGRESSION - ENHANCED
+2025-12-25 01:32:38 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:32:39 | INFO | task4_innovation | 
+4.1 HAR EXPECTATION MODEL (Multi-Horizon)
+2025-12-25 01:32:39 | INFO | task4_innovation |   train_df columns: 72
+2025-12-25 01:32:39 | INFO | task4_innovation |   train_df shape: (3752, 72)
+2025-12-25 01:32:39 | INFO | task4_innovation |   ✓ All HAR features present: ['logVIX_t', 'logVIX_weekly', 'logVIX_monthly']
+2025-12-25 01:32:39 | INFO | task4_innovation |   Before dropna: 3752 rows
+2025-12-25 01:32:39 | INFO | task4_innovation |   After dropna: 3751 rows
+2025-12-25 01:32:39 | INFO | task4_innovation |   ✓ HAR model fitted successfully!
+2025-12-25 01:32:39 | INFO | task4_innovation |   α (intercept):    0.0446
+2025-12-25 01:32:39 | INFO | task4_innovation |   β_daily (t):      0.8890
+2025-12-25 01:32:39 | INFO | task4_innovation |   β_weekly (5d):    0.0642
+2025-12-25 01:32:39 | INFO | task4_innovation |   β_monthly (22d):  0.0316
+2025-12-25 01:32:39 | INFO | task4_innovation |   In-sample R²:     0.9584
+2025-12-25 01:32:39 | INFO | task4_innovation |   In-sample RMSE:   0.0775
+2025-12-25 01:32:39 | INFO | task4_innovation |   Purpose: Multi-horizon mean reversion (should beat AR(1))
+2025-12-25 01:32:39 | INFO | task4_innovation | 
+Data after feature creation:
+2025-12-25 01:32:39 | INFO | task4_innovation |   Train: 3751 samples
+2025-12-25 01:32:39 | INFO | task4_innovation |   Val:   250 samples
+2025-12-25 01:32:39 | INFO | task4_innovation |   Test:  736 samples
+2025-12-25 01:32:39 | INFO | task4_innovation | 
+Innovation statistics:
+2025-12-25 01:32:39 | INFO | task4_innovation |   Train mean: -0.000000 (should be ≈0)
+2025-12-25 01:32:39 | INFO | task4_innovation |   Train std:  0.0775
+2025-12-25 01:32:39 | INFO | task4_innovation |   Test mean:  -0.002272
+2025-12-25 01:32:39 | INFO | task4_innovation |   Test std:   0.0757
+2025-12-25 01:32:39 | INFO | task4_innovation | 
+4.2 RIDGE REGRESSION (BASELINE)
+2025-12-25 01:32:39 | INFO | task4_innovation |   Test RMSE: 0.0756
+2025-12-25 01:32:39 | INFO | task4_innovation |   Test MAE:  0.0514
+2025-12-25 01:32:39 | INFO | task4_innovation |   Test R²:   0.0005
+2025-12-25 01:32:39 | INFO | task4_innovation | 
+4.3 XGBOOST REGRESSION (ENHANCED)
+2025-12-25 01:32:40 | INFO | task4_innovation |   Test RMSE: 0.0767
+2025-12-25 01:32:40 | INFO | task4_innovation |   Test MAE:  0.0517
+2025-12-25 01:32:40 | INFO | task4_innovation |   Test R²:   -0.0275
+2025-12-25 01:32:40 | INFO | task4_innovation |   vs Ridge:  -1.39%
+2025-12-25 01:32:40 | INFO | task4_innovation | 
+  Top 10 features:
+2025-12-25 01:32:40 | INFO | task4_innovation |     logVIX_weekly                 : 0.0628
+2025-12-25 01:32:40 | INFO | task4_innovation |     high_vol_yesterday            : 0.0592
+2025-12-25 01:32:40 | INFO | task4_innovation |     logVIX_monthly                : 0.0573
+2025-12-25 01:32:40 | INFO | task4_innovation |     vrp_normalized                : 0.0564
+2025-12-25 01:32:40 | INFO | task4_innovation |     vix_change_lag1               : 0.0549
+2025-12-25 01:32:40 | INFO | task4_innovation |     VIX_intraday_range            : 0.0537
+2025-12-25 01:32:40 | INFO | task4_innovation |     RV_weekly                     : 0.0500
+2025-12-25 01:32:40 | INFO | task4_innovation |     rv_surprise_normalized        : 0.0496
+2025-12-25 01:32:40 | INFO | task4_innovation |     variance_risk_premium         : 0.0495
+2025-12-25 01:32:40 | INFO | task4_innovation |     RV_monthly                    : 0.0481
+2025-12-25 01:32:40 | INFO | task4_innovation | 
+================================================================================
+2025-12-25 01:32:40 | INFO | task4_innovation | CONCLUSION: Innovations remain largely unpredictable
+2025-12-25 01:32:40 | INFO | task4_innovation |   R² = -0.028 - VIX shocks dominated by news/events
+2025-12-25 01:32:40 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:32:40 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:32:40 | INFO | vix_forecasting_pipeline | ALL TASKS COMPLETED SUCCESSFULLY
+2025-12-25 01:32:40 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 01:32:40 | INFO | vix_forecasting_pipeline | Summary report saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\summary_report_20251225_013240.txt
+2025-12-25 01:32:40 | INFO | main | Step 4: Generating visualizations
+2025-12-25 01:32:40 | INFO | visualizations | Generating visualizations...
+2025-12-25 01:32:46 | INFO | visualizations | All plots saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\plots
+2025-12-25 01:32:46 | INFO | main | Pipeline completed successfully
+2025-12-25 01:32:46 | INFO | main | Pipeline execution completed
+2025-12-25 01:36:12 | INFO | main | ================================================================================
+2025-12-25 01:36:12 | INFO | main | VIX FORECASTING SYSTEM - 4 CORE TASKS
+2025-12-25 01:36:12 | INFO | main | ================================================================================
+2025-12-25 01:36:12 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2025-12-24 00:00:00
+2025-12-25 01:36:12 | INFO | feature_engineering | Loaded 4746 existing feature records
+2025-12-25 01:36:12 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-25 01:36:12 | INFO | main | VIX Forecasting System initialized
+2025-12-25 01:36:12 | INFO | main | Step 1: Fetching market data
+2025-12-25 01:36:12 | INFO | data_fetcher | Last date in data: 2025-12-24 00:00:00, Last complete: 2025-12-24 00:00:00
+2025-12-25 01:36:12 | INFO | data_fetcher | Data is already up to date. No fetch required.
+2025-12-25 01:36:12 | INFO | main | Data fetched: 4776 records, Updated: False
+2025-12-25 01:36:12 | WARNING | main | Latest complete data is 1 days old
+2025-12-25 01:36:12 | INFO | main | Step 2: Engineering features
+2025-12-25 01:36:12 | INFO | feature_engineering | Processing incremental data. Last processed: 2025-12-17 00:00:00, New data through: 2025-12-24 00:00:00
+2025-12-25 01:36:13 | INFO | feature_engineering | No new valid features after processing
+2025-12-25 01:36:13 | INFO | main | Features engineered: 0 new, 4746 total
+2025-12-25 01:36:13 | INFO | main | Step 3: Running all 4 forecasting tasks
+2025-12-25 01:36:13 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:36:13 | INFO | vix_forecasting_pipeline | VIX FORECASTING PIPELINE - 4 CORE TASKS
+2025-12-25 01:36:13 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 01:36:13 | INFO | vix_forecasting_pipeline | Preparing data for modeling...
+2025-12-25 01:36:13 | INFO | vix_forecasting_pipeline | Data splits:
+2025-12-25 01:36:13 | INFO | vix_forecasting_pipeline |   Train: 3752 days (2007-02-08 to 2021-12-31)
+2025-12-25 01:36:13 | INFO | vix_forecasting_pipeline |   Val:   251 days (2022-01-03 to 2022-12-30)
+2025-12-25 01:36:13 | INFO | vix_forecasting_pipeline |   Test:  737 days (2023-01-04 to 2025-12-10)
+2025-12-25 01:36:13 | INFO | vix_forecasting_pipeline |   → Test includes ALL available data (1075 days from val end)
+2025-12-25 01:36:13 | INFO | vix_forecasting_pipeline |   → Latest data: 2025-12-10
+2025-12-25 01:36:13 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:36:13 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:36:13 | INFO | task1_baselines | TASK 1: BASELINES AND FAILURE OF LEVEL PREDICTION
+2025-12-25 01:36:13 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:36:13 | INFO | task1_baselines |   Train period: 2007-02-08 to 2021-12-31
+2025-12-25 01:36:13 | INFO | task1_baselines |   Val period:   2022-01-03 to 2022-12-30
+2025-12-25 01:36:13 | INFO | task1_baselines |   Test period:  2023-01-04 to 2025-12-10
+2025-12-25 01:36:13 | INFO | task1_baselines |   Test size:    737 days (real-time data)
+2025-12-25 01:36:13 | INFO | task1_baselines | 
+1.1 NAIVE PERSISTENCE BASELINE
+2025-12-25 01:36:13 | INFO | task1_baselines |   Test RMSE (logVIX): 0.0766
+2025-12-25 01:36:13 | INFO | task1_baselines |   Test RMSE (VIX):    1.80
+2025-12-25 01:36:13 | INFO | task1_baselines |   Test period:        2023-01-04 to 2025-12-10
+2025-12-25 01:36:13 | INFO | task1_baselines |   → This is the benchmark to beat
+2025-12-25 01:36:13 | INFO | task1_baselines | 
+1.2 ARIMAX MODEL (Grid Search)
+2025-12-25 01:36:13 | INFO | task1_baselines |   Testing ARIMA configurations...
+2025-12-25 01:38:39 | INFO | task1_baselines |   Best model: ARIMA(1, 1, 1)
+2025-12-25 01:38:39 | INFO | task1_baselines |   Test RMSE: 0.0819
+2025-12-25 01:38:39 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 01:38:39 | INFO | task1_baselines |   vs Naive: -6.97%
+2025-12-25 01:38:39 | INFO | task1_baselines |   → WORSE than naive
+2025-12-25 01:38:39 | INFO | task1_baselines | 
+1.3 XGBOOST LEVEL REGRESSION (Grid Search)
+2025-12-25 01:38:43 | INFO | task1_baselines |   Best config: depth=3, trees=100
+2025-12-25 01:38:43 | INFO | task1_baselines |   Test RMSE: 0.0767
+2025-12-25 01:38:43 | INFO | task1_baselines |   Test RMSE (VIX): 1.81
+2025-12-25 01:38:43 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 01:38:43 | INFO | task1_baselines |   vs Naive: -0.21%
+2025-12-25 01:38:43 | INFO | task1_baselines |   → XGBoost ≈ naive baseline (no improvement)
+2025-12-25 01:38:43 | INFO | task1_baselines | 
+================================================================================
+2025-12-25 01:38:43 | INFO | task1_baselines | KEY FINDING: Level prediction is dominated by mean reversion
+2025-12-25 01:38:43 | INFO | task1_baselines |   • Naive: 0.0766
+2025-12-25 01:38:43 | INFO | task1_baselines |   • ARIMAX: 0.0819 (-7.0%)
+2025-12-25 01:38:43 | INFO | task1_baselines |   • XGBoost: 0.0767 (-0.2%)
+2025-12-25 01:38:43 | INFO | task1_baselines |   → ML does not beat persistence on raw levels
+2025-12-25 01:38:43 | INFO | task1_baselines |   → We need to model DEVIATIONS, not levels
+2025-12-25 01:38:43 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:38:43 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:38:43 | INFO | task2_regime | ================================================================================
+2025-12-25 01:38:43 | INFO | task2_regime | TASK 2: HIGH-VOLATILITY REGIME PREDICTION (XGBoost vs Random Forest)
+2025-12-25 01:38:43 | INFO | task2_regime | ================================================================================
+2025-12-25 01:38:43 | INFO | task2_regime | 
+High volatility threshold: VIX > 20 (market standard)
+2025-12-25 01:38:43 | INFO | task2_regime | 
+2.1 1D REGIME PREDICTION
+2025-12-25 01:38:43 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.2% high vol
+2025-12-25 01:38:43 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:38:44 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:38:46 | INFO | task2_regime | 
+  Baseline (always low vol): 0.828
+2025-12-25 01:38:46 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:38:46 | INFO | task2_regime |     Accuracy:            0.908
+2025-12-25 01:38:46 | INFO | task2_regime |     Precision:           0.757
+2025-12-25 01:38:46 | INFO | task2_regime |     Recall:              0.685
+2025-12-25 01:38:46 | INFO | task2_regime |     F1 score:            0.719
+2025-12-25 01:38:46 | INFO | task2_regime |     AUC:                 0.946
+2025-12-25 01:38:46 | INFO | task2_regime |     vs Baseline:         +8.0pp
+2025-12-25 01:38:46 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:38:46 | INFO | task2_regime |     Accuracy:            0.923
+2025-12-25 01:38:46 | INFO | task2_regime |     Precision:           0.807
+2025-12-25 01:38:46 | INFO | task2_regime |     Recall:              0.724
+2025-12-25 01:38:46 | INFO | task2_regime |     F1 score:            0.763
+2025-12-25 01:38:46 | INFO | task2_regime |     AUC:                 0.952
+2025-12-25 01:38:46 | INFO | task2_regime |     vs Baseline:         +9.5pp
+2025-12-25 01:38:46 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.763)
+2025-12-25 01:38:46 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:38:46 | INFO | task2_regime | 
+2.2 3D REGIME PREDICTION
+2025-12-25 01:38:46 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.0% high vol
+2025-12-25 01:38:46 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:38:47 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:38:50 | INFO | task2_regime | 
+  Baseline (always low vol): 0.830
+2025-12-25 01:38:50 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:38:50 | INFO | task2_regime |     Accuracy:            0.856
+2025-12-25 01:38:50 | INFO | task2_regime |     Precision:           0.579
+2025-12-25 01:38:50 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 01:38:50 | INFO | task2_regime |     F1 score:            0.569
+2025-12-25 01:38:50 | INFO | task2_regime |     AUC:                 0.885
+2025-12-25 01:38:50 | INFO | task2_regime |     vs Baseline:         +2.6pp
+2025-12-25 01:38:50 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:38:50 | INFO | task2_regime |     Accuracy:            0.864
+2025-12-25 01:38:50 | INFO | task2_regime |     Precision:           0.609
+2025-12-25 01:38:50 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 01:38:50 | INFO | task2_regime |     F1 score:            0.583
+2025-12-25 01:38:50 | INFO | task2_regime |     AUC:                 0.876
+2025-12-25 01:38:50 | INFO | task2_regime |     vs Baseline:         +3.4pp
+2025-12-25 01:38:50 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.583)
+2025-12-25 01:38:50 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:38:50 | INFO | task2_regime | 
+2.3 5D REGIME PREDICTION
+2025-12-25 01:38:50 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=16.7% high vol
+2025-12-25 01:38:50 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:38:51 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:38:54 | INFO | task2_regime | 
+  Baseline (always low vol): 0.833
+2025-12-25 01:38:54 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:38:54 | INFO | task2_regime |     Accuracy:            0.829
+2025-12-25 01:38:54 | INFO | task2_regime |     Precision:           0.488
+2025-12-25 01:38:54 | INFO | task2_regime |     Recall:              0.504
+2025-12-25 01:38:54 | INFO | task2_regime |     F1 score:            0.496
+2025-12-25 01:38:54 | INFO | task2_regime |     AUC:                 0.825
+2025-12-25 01:38:54 | INFO | task2_regime |     vs Baseline:         -0.4pp
+2025-12-25 01:38:54 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:38:54 | INFO | task2_regime |     Accuracy:            0.832
+2025-12-25 01:38:54 | INFO | task2_regime |     Precision:           0.495
+2025-12-25 01:38:54 | INFO | task2_regime |     Recall:              0.415
+2025-12-25 01:38:54 | INFO | task2_regime |     F1 score:            0.451
+2025-12-25 01:38:54 | INFO | task2_regime |     AUC:                 0.826
+2025-12-25 01:38:54 | INFO | task2_regime |     vs Baseline:         -0.1pp
+2025-12-25 01:38:54 | INFO | task2_regime | 
+  → Best model: XGBoost (F1=0.496)
+2025-12-25 01:38:54 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:38:54 | INFO | task2_regime | 
+================================================================================
+2025-12-25 01:38:54 | INFO | task2_regime | MODEL COMPARISON SUMMARY
+2025-12-25 01:38:54 | INFO | task2_regime | ================================================================================
+2025-12-25 01:38:54 | INFO | task2_regime | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC       
+2025-12-25 01:38:54 | INFO | task2_regime | --------------------------------------------------------------------------------
+2025-12-25 01:38:54 | INFO | task2_regime | 1d         XGBoost         0.908      0.757      0.685      0.719      0.946     
+2025-12-25 01:38:54 | INFO | task2_regime |            Random Forest   0.923      0.807      0.724      0.763      0.952     
+2025-12-25 01:38:54 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 01:38:54 | INFO | task2_regime | 
+2025-12-25 01:38:54 | INFO | task2_regime | 3d         XGBoost         0.856      0.579      0.560      0.569      0.885     
+2025-12-25 01:38:54 | INFO | task2_regime |            Random Forest   0.864      0.609      0.560      0.583      0.876     
+2025-12-25 01:38:54 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 01:38:54 | INFO | task2_regime | 
+2025-12-25 01:38:54 | INFO | task2_regime | 5d         XGBoost         0.829      0.488      0.504      0.496      0.825     
+2025-12-25 01:38:54 | INFO | task2_regime |            Random Forest   0.832      0.495      0.415      0.451      0.826     
+2025-12-25 01:38:54 | INFO | task2_regime |            → BEST: XGBoost
+2025-12-25 01:38:54 | INFO | task2_regime | 
+2025-12-25 01:38:54 | INFO | task2_regime | ================================================================================
+2025-12-25 01:38:54 | INFO | task2_regime | CONCLUSION: Regime prediction is the primary actionable signal
+2025-12-25 01:38:54 | INFO | task2_regime |   → XGBoost typically achieves best F1 scores
+2025-12-25 01:38:54 | INFO | task2_regime |   → Both models show strong AUC (>0.85)
+2025-12-25 01:38:54 | INFO | task2_regime |   → 1-day predictions are most accurate
+2025-12-25 01:38:54 | INFO | task2_regime | ================================================================================
+2025-12-25 01:38:54 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:38:54 | INFO | task3_direction | ================================================================================
+2025-12-25 01:38:54 | INFO | task3_direction | TASK 3: SIMPLE DIRECTIONAL PREDICTION (XGBoost vs Random Forest)
+2025-12-25 01:38:54 | INFO | task3_direction | ================================================================================
+2025-12-25 01:38:54 | INFO | task3_direction | 
+3.1 1D DIRECTION
+2025-12-25 01:38:54 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:38:55 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:38:58 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:38:58 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:38:58 | INFO | task3_direction |     Majority class:      0.563
+2025-12-25 01:38:58 | INFO | task3_direction |     Persistence:         0.468
+2025-12-25 01:38:58 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:38:58 | INFO | task3_direction |     Accuracy:            0.571
+2025-12-25 01:38:58 | INFO | task3_direction |     Precision:           0.512
+2025-12-25 01:38:58 | INFO | task3_direction |     Recall:              0.391
+2025-12-25 01:38:58 | INFO | task3_direction |     F1:                  0.444
+2025-12-25 01:38:58 | INFO | task3_direction |     AUC:                 0.577
+2025-12-25 01:38:58 | INFO | task3_direction |     vs Majority:         +0.81pp
+2025-12-25 01:38:58 | INFO | task3_direction |     vs Persistence:      +10.31pp
+2025-12-25 01:38:58 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:38:58 | INFO | task3_direction |     Accuracy:            0.598
+2025-12-25 01:38:58 | INFO | task3_direction |     Precision:           0.562
+2025-12-25 01:38:58 | INFO | task3_direction |     Recall:              0.363
+2025-12-25 01:38:58 | INFO | task3_direction |     F1:                  0.442
+2025-12-25 01:38:58 | INFO | task3_direction |     AUC:                 0.600
+2025-12-25 01:38:58 | INFO | task3_direction |     vs Majority:         +3.53pp
+2025-12-25 01:38:58 | INFO | task3_direction |     vs Persistence:      +13.03pp
+2025-12-25 01:38:58 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.598)
+2025-12-25 01:38:58 | INFO | task3_direction |   → Edge over random: +9.84pp
+2025-12-25 01:38:58 | INFO | task3_direction | 
+3.2 3D DIRECTION
+2025-12-25 01:38:58 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:39:00 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:39:04 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:39:04 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:39:04 | INFO | task3_direction |     Majority class:      0.550
+2025-12-25 01:39:04 | INFO | task3_direction |     Persistence:         0.461
+2025-12-25 01:39:04 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:39:04 | INFO | task3_direction |     Accuracy:            0.552
+2025-12-25 01:39:04 | INFO | task3_direction |     Precision:           0.504
+2025-12-25 01:39:04 | INFO | task3_direction |     Recall:              0.428
+2025-12-25 01:39:04 | INFO | task3_direction |     F1:                  0.463
+2025-12-25 01:39:04 | INFO | task3_direction |     AUC:                 0.572
+2025-12-25 01:39:04 | INFO | task3_direction |     vs Majority:         +0.27pp
+2025-12-25 01:39:04 | INFO | task3_direction |     vs Persistence:      +9.09pp
+2025-12-25 01:39:04 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:39:04 | INFO | task3_direction |     Accuracy:            0.579
+2025-12-25 01:39:04 | INFO | task3_direction |     Precision:           0.539
+2025-12-25 01:39:04 | INFO | task3_direction |     Recall:              0.455
+2025-12-25 01:39:04 | INFO | task3_direction |     F1:                  0.493
+2025-12-25 01:39:04 | INFO | task3_direction |     AUC:                 0.607
+2025-12-25 01:39:04 | INFO | task3_direction |     vs Majority:         +2.99pp
+2025-12-25 01:39:04 | INFO | task3_direction |     vs Persistence:      +11.80pp
+2025-12-25 01:39:04 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.579)
+2025-12-25 01:39:04 | INFO | task3_direction |   → Edge over random: +7.94pp
+2025-12-25 01:39:04 | INFO | task3_direction | 
+3.3 5D DIRECTION
+2025-12-25 01:39:04 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:39:04 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:39:07 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:39:07 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:39:07 | INFO | task3_direction |     Majority class:      0.540
+2025-12-25 01:39:07 | INFO | task3_direction |     Persistence:         0.421
+2025-12-25 01:39:07 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:39:07 | INFO | task3_direction |     Accuracy:            0.582
+2025-12-25 01:39:07 | INFO | task3_direction |     Precision:           0.549
+2025-12-25 01:39:07 | INFO | task3_direction |     Recall:              0.516
+2025-12-25 01:39:07 | INFO | task3_direction |     F1:                  0.532
+2025-12-25 01:39:07 | INFO | task3_direction |     AUC:                 0.602
+2025-12-25 01:39:07 | INFO | task3_direction |     vs Majority:         +4.21pp
+2025-12-25 01:39:07 | INFO | task3_direction |     vs Persistence:      +16.15pp
+2025-12-25 01:39:07 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:39:07 | INFO | task3_direction |     Accuracy:            0.581
+2025-12-25 01:39:07 | INFO | task3_direction |     Precision:           0.552
+2025-12-25 01:39:07 | INFO | task3_direction |     Recall:              0.469
+2025-12-25 01:39:07 | INFO | task3_direction |     F1:                  0.507
+2025-12-25 01:39:07 | INFO | task3_direction |     AUC:                 0.619
+2025-12-25 01:39:07 | INFO | task3_direction |     vs Majority:         +4.07pp
+2025-12-25 01:39:07 | INFO | task3_direction |     vs Persistence:      +16.01pp
+2025-12-25 01:39:08 | INFO | task3_direction | 
+  → Best model: XGBoost (Accuracy=0.582)
+2025-12-25 01:39:08 | INFO | task3_direction |   → Edge over random: +8.21pp
+2025-12-25 01:39:08 | INFO | task3_direction | 
+================================================================================
+2025-12-25 01:39:08 | INFO | task3_direction | MODEL COMPARISON SUMMARY
+2025-12-25 01:39:08 | INFO | task3_direction | ================================================================================
+2025-12-25 01:39:08 | INFO | task3_direction | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC        Edge      
+2025-12-25 01:39:08 | INFO | task3_direction | --------------------------------------------------------------------------------
+2025-12-25 01:39:08 | INFO | task3_direction | 1d         XGBoost         0.571      0.512      0.391      0.444      0.577      7.12      %
+2025-12-25 01:39:08 | INFO | task3_direction |            Random Forest   0.598      0.562      0.363      0.442      0.600      9.84      %
+2025-12-25 01:39:08 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 01:39:08 | INFO | task3_direction | 
+2025-12-25 01:39:08 | INFO | task3_direction | 3d         XGBoost         0.552      0.504      0.428      0.463      0.572      5.22      %
+2025-12-25 01:39:08 | INFO | task3_direction |            Random Forest   0.579      0.539      0.455      0.493      0.607      7.94      %
+2025-12-25 01:39:08 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 01:39:08 | INFO | task3_direction | 
+2025-12-25 01:39:08 | INFO | task3_direction | 5d         XGBoost         0.582      0.549      0.516      0.532      0.602      8.21      %
+2025-12-25 01:39:08 | INFO | task3_direction |            Random Forest   0.581      0.552      0.469      0.507      0.619      8.07      %
+2025-12-25 01:39:08 | INFO | task3_direction |            → BEST: XGBoost
+2025-12-25 01:39:08 | INFO | task3_direction | 
+2025-12-25 01:39:08 | INFO | task3_direction | ================================================================================
+2025-12-25 01:39:08 | INFO | task3_direction | CONCLUSION: Direction prediction provides modest edge
+2025-12-25 01:39:08 | INFO | task3_direction |   → XGBoost and Random Forest perform similarly
+2025-12-25 01:39:08 | INFO | task3_direction |   → Edge improves with longer forecast horizons
+2025-12-25 01:39:08 | INFO | task3_direction | ================================================================================
+2025-12-25 01:39:08 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:39:08 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:39:08 | INFO | task4_innovation | TASK 4: INNOVATION (DEVIATION) REGRESSION - ENHANCED
+2025-12-25 01:39:08 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:39:08 | INFO | task4_innovation | 
+4.1 HAR EXPECTATION MODEL (Multi-Horizon)
+2025-12-25 01:39:08 | INFO | task4_innovation |   train_df columns: 72
+2025-12-25 01:39:08 | INFO | task4_innovation |   train_df shape: (3752, 72)
+2025-12-25 01:39:08 | INFO | task4_innovation |   ✓ All HAR features present: ['logVIX_t', 'logVIX_weekly', 'logVIX_monthly']
+2025-12-25 01:39:08 | INFO | task4_innovation |   Before dropna: 3752 rows
+2025-12-25 01:39:08 | INFO | task4_innovation |   After dropna: 3751 rows
+2025-12-25 01:39:08 | INFO | task4_innovation |   ✓ HAR model fitted successfully!
+2025-12-25 01:39:08 | INFO | task4_innovation |   α (intercept):    0.0446
+2025-12-25 01:39:08 | INFO | task4_innovation |   β_daily (t):      0.8890
+2025-12-25 01:39:08 | INFO | task4_innovation |   β_weekly (5d):    0.0642
+2025-12-25 01:39:08 | INFO | task4_innovation |   β_monthly (22d):  0.0316
+2025-12-25 01:39:08 | INFO | task4_innovation |   In-sample R²:     0.9584
+2025-12-25 01:39:08 | INFO | task4_innovation |   In-sample RMSE:   0.0775
+2025-12-25 01:39:08 | INFO | task4_innovation |   Purpose: Multi-horizon mean reversion (should beat AR(1))
+2025-12-25 01:39:08 | INFO | task4_innovation | 
+Data after feature creation:
+2025-12-25 01:39:08 | INFO | task4_innovation |   Train: 3751 samples
+2025-12-25 01:39:08 | INFO | task4_innovation |   Val:   250 samples
+2025-12-25 01:39:08 | INFO | task4_innovation |   Test:  736 samples
+2025-12-25 01:39:08 | INFO | task4_innovation | 
+Innovation statistics:
+2025-12-25 01:39:08 | INFO | task4_innovation |   Train mean: -0.000000 (should be ≈0)
+2025-12-25 01:39:08 | INFO | task4_innovation |   Train std:  0.0775
+2025-12-25 01:39:08 | INFO | task4_innovation |   Test mean:  -0.002272
+2025-12-25 01:39:08 | INFO | task4_innovation |   Test std:   0.0757
+2025-12-25 01:39:08 | INFO | task4_innovation | 
+4.2 RIDGE REGRESSION (BASELINE)
+2025-12-25 01:39:08 | INFO | task4_innovation |   Test RMSE: 0.0756
+2025-12-25 01:39:08 | INFO | task4_innovation |   Test MAE:  0.0514
+2025-12-25 01:39:08 | INFO | task4_innovation |   Test R²:   0.0005
+2025-12-25 01:39:08 | INFO | task4_innovation | 
+4.3 XGBOOST REGRESSION (ENHANCED)
+2025-12-25 01:39:15 | INFO | task4_innovation |   Test RMSE: 0.0767
+2025-12-25 01:39:15 | INFO | task4_innovation |   Test MAE:  0.0517
+2025-12-25 01:39:15 | INFO | task4_innovation |   Test R²:   -0.0275
+2025-12-25 01:39:15 | INFO | task4_innovation |   vs Ridge:  -1.39%
+2025-12-25 01:39:15 | INFO | task4_innovation | 
+  Top 10 features:
+2025-12-25 01:39:15 | INFO | task4_innovation |     logVIX_weekly                 : 0.0628
+2025-12-25 01:39:15 | INFO | task4_innovation |     high_vol_yesterday            : 0.0592
+2025-12-25 01:39:15 | INFO | task4_innovation |     logVIX_monthly                : 0.0573
+2025-12-25 01:39:15 | INFO | task4_innovation |     vrp_normalized                : 0.0564
+2025-12-25 01:39:15 | INFO | task4_innovation |     vix_change_lag1               : 0.0549
+2025-12-25 01:39:15 | INFO | task4_innovation |     VIX_intraday_range            : 0.0537
+2025-12-25 01:39:15 | INFO | task4_innovation |     RV_weekly                     : 0.0500
+2025-12-25 01:39:15 | INFO | task4_innovation |     rv_surprise_normalized        : 0.0496
+2025-12-25 01:39:15 | INFO | task4_innovation |     variance_risk_premium         : 0.0495
+2025-12-25 01:39:15 | INFO | task4_innovation |     RV_monthly                    : 0.0481
+2025-12-25 01:39:15 | INFO | task4_innovation | 
+================================================================================
+2025-12-25 01:39:15 | INFO | task4_innovation | CONCLUSION: Innovations remain largely unpredictable
+2025-12-25 01:39:15 | INFO | task4_innovation |   R² = -0.028 - VIX shocks dominated by news/events
+2025-12-25 01:39:15 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:39:15 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:39:15 | INFO | vix_forecasting_pipeline | ALL TASKS COMPLETED SUCCESSFULLY
+2025-12-25 01:39:15 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 01:39:15 | INFO | vix_forecasting_pipeline | Summary report saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\summary_report_20251225_013915.txt
+2025-12-25 01:39:15 | INFO | main | Step 4: Generating visualizations
+2025-12-25 01:39:15 | INFO | visualizations | Generating visualizations...
+2025-12-25 01:39:25 | INFO | visualizations | All plots saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\plots
+2025-12-25 01:39:25 | INFO | main | Pipeline completed successfully
+2025-12-25 01:39:25 | INFO | main | Pipeline execution completed
+2025-12-25 01:55:29 | INFO | main | ================================================================================
+2025-12-25 01:55:29 | INFO | main | VIX FORECASTING SYSTEM - 4 CORE TASKS
+2025-12-25 01:55:29 | INFO | main | ================================================================================
+2025-12-25 01:55:29 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2025-12-24 00:00:00
+2025-12-25 01:55:30 | INFO | feature_engineering | Loaded 4746 existing feature records
+2025-12-25 01:55:30 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-25 01:55:30 | INFO | main | VIX Forecasting System initialized
+2025-12-25 01:55:30 | INFO | main | Step 1: Fetching market data
+2025-12-25 01:55:30 | INFO | data_fetcher | Last date in data: 2025-12-24 00:00:00, Last complete: 2025-12-24 00:00:00
+2025-12-25 01:55:30 | INFO | data_fetcher | Data is already up to date. No fetch required.
+2025-12-25 01:55:30 | INFO | main | Data fetched: 4776 records, Updated: False
+2025-12-25 01:55:30 | WARNING | main | Latest complete data is 1 days old
+2025-12-25 01:55:30 | INFO | main | Step 2: Engineering features
+2025-12-25 01:55:30 | INFO | feature_engineering | Processing incremental data. Last processed: 2025-12-17 00:00:00, New data through: 2025-12-24 00:00:00
+2025-12-25 01:55:30 | INFO | feature_engineering | No new valid features after processing
+2025-12-25 01:55:30 | INFO | main | Features engineered: 0 new, 4746 total
+2025-12-25 01:55:30 | INFO | main | Step 3: Running all 4 forecasting tasks
+2025-12-25 01:55:30 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:55:30 | INFO | vix_forecasting_pipeline | VIX FORECASTING PIPELINE - 4 CORE TASKS
+2025-12-25 01:55:30 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 01:55:30 | INFO | vix_forecasting_pipeline | Preparing data for modeling...
+2025-12-25 01:55:30 | INFO | vix_forecasting_pipeline | Data splits:
+2025-12-25 01:55:30 | INFO | vix_forecasting_pipeline |   Train: 3752 days (2007-02-08 to 2021-12-31)
+2025-12-25 01:55:30 | INFO | vix_forecasting_pipeline |   Val:   251 days (2022-01-03 to 2022-12-30)
+2025-12-25 01:55:30 | INFO | vix_forecasting_pipeline |   Test:  737 days (2023-01-04 to 2025-12-10)
+2025-12-25 01:55:30 | INFO | vix_forecasting_pipeline |   → Test includes ALL available data (1075 days from val end)
+2025-12-25 01:55:30 | INFO | vix_forecasting_pipeline |   → Latest data: 2025-12-10
+2025-12-25 01:55:30 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:55:30 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:55:30 | INFO | task1_baselines | TASK 1: BASELINES AND FAILURE OF LEVEL PREDICTION
+2025-12-25 01:55:30 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:55:30 | INFO | task1_baselines |   Train period: 2007-02-08 to 2021-12-31
+2025-12-25 01:55:30 | INFO | task1_baselines |   Val period:   2022-01-03 to 2022-12-30
+2025-12-25 01:55:30 | INFO | task1_baselines |   Test period:  2023-01-04 to 2025-12-10
+2025-12-25 01:55:30 | INFO | task1_baselines |   Test size:    737 days (real-time data)
+2025-12-25 01:55:30 | INFO | task1_baselines | 
+1.1 NAIVE PERSISTENCE BASELINE
+2025-12-25 01:55:30 | INFO | task1_baselines |   Test RMSE (logVIX): 0.0766
+2025-12-25 01:55:30 | INFO | task1_baselines |   Test RMSE (VIX):    1.80
+2025-12-25 01:55:30 | INFO | task1_baselines |   Test period:        2023-01-04 to 2025-12-10
+2025-12-25 01:55:30 | INFO | task1_baselines |   → This is the benchmark to beat
+2025-12-25 01:55:30 | INFO | task1_baselines | 
+1.2 ARIMAX MODEL (Grid Search)
+2025-12-25 01:55:30 | INFO | task1_baselines |   Testing ARIMA configurations...
+2025-12-25 01:57:47 | INFO | task1_baselines |   Best model: ARIMA(1, 1, 1)
+2025-12-25 01:57:47 | INFO | task1_baselines |   Test RMSE: 0.0819
+2025-12-25 01:57:47 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 01:57:47 | INFO | task1_baselines |   vs Naive: -6.97%
+2025-12-25 01:57:47 | INFO | task1_baselines |   → WORSE than naive
+2025-12-25 01:57:47 | INFO | task1_baselines | 
+1.3 XGBOOST LEVEL REGRESSION (Grid Search)
+2025-12-25 01:57:51 | INFO | task1_baselines |   Best config: depth=3, trees=100
+2025-12-25 01:57:51 | INFO | task1_baselines |   Test RMSE: 0.0767
+2025-12-25 01:57:51 | INFO | task1_baselines |   Test RMSE (VIX): 1.81
+2025-12-25 01:57:51 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 01:57:51 | INFO | task1_baselines |   vs Naive: -0.21%
+2025-12-25 01:57:51 | INFO | task1_baselines |   → XGBoost ≈ naive baseline (no improvement)
+2025-12-25 01:57:51 | INFO | task1_baselines | 
+================================================================================
+2025-12-25 01:57:51 | INFO | task1_baselines | KEY FINDING: Level prediction is dominated by mean reversion
+2025-12-25 01:57:51 | INFO | task1_baselines |   • Naive: 0.0766
+2025-12-25 01:57:51 | INFO | task1_baselines |   • ARIMAX: 0.0819 (-7.0%)
+2025-12-25 01:57:51 | INFO | task1_baselines |   • XGBoost: 0.0767 (-0.2%)
+2025-12-25 01:57:51 | INFO | task1_baselines |   → ML does not beat persistence on raw levels
+2025-12-25 01:57:51 | INFO | task1_baselines |   → We need to model DEVIATIONS, not levels
+2025-12-25 01:57:51 | INFO | task1_baselines | ================================================================================
+2025-12-25 01:57:51 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:57:51 | INFO | task2_regime | ================================================================================
+2025-12-25 01:57:51 | INFO | task2_regime | TASK 2: HIGH-VOLATILITY REGIME PREDICTION (XGBoost vs Random Forest)
+2025-12-25 01:57:51 | INFO | task2_regime | ================================================================================
+2025-12-25 01:57:51 | INFO | task2_regime | 
+High volatility threshold: VIX > 20 (market standard)
+2025-12-25 01:57:51 | INFO | task2_regime | 
+2.1 1D REGIME PREDICTION
+2025-12-25 01:57:51 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.2% high vol
+2025-12-25 01:57:51 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:57:52 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:57:55 | INFO | task2_regime | 
+  Baseline (always low vol): 0.828
+2025-12-25 01:57:55 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:57:55 | INFO | task2_regime |     Accuracy:            0.908
+2025-12-25 01:57:55 | INFO | task2_regime |     Precision:           0.757
+2025-12-25 01:57:55 | INFO | task2_regime |     Recall:              0.685
+2025-12-25 01:57:55 | INFO | task2_regime |     F1 score:            0.719
+2025-12-25 01:57:55 | INFO | task2_regime |     AUC:                 0.946
+2025-12-25 01:57:55 | INFO | task2_regime |     vs Baseline:         +8.0pp
+2025-12-25 01:57:55 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:57:55 | INFO | task2_regime |     Accuracy:            0.923
+2025-12-25 01:57:55 | INFO | task2_regime |     Precision:           0.807
+2025-12-25 01:57:55 | INFO | task2_regime |     Recall:              0.724
+2025-12-25 01:57:55 | INFO | task2_regime |     F1 score:            0.763
+2025-12-25 01:57:55 | INFO | task2_regime |     AUC:                 0.952
+2025-12-25 01:57:55 | INFO | task2_regime |     vs Baseline:         +9.5pp
+2025-12-25 01:57:55 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.763)
+2025-12-25 01:57:55 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:57:55 | INFO | task2_regime | 
+2.2 3D REGIME PREDICTION
+2025-12-25 01:57:55 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.0% high vol
+2025-12-25 01:57:55 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:57:56 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:57:57 | INFO | task2_regime | 
+  Baseline (always low vol): 0.830
+2025-12-25 01:57:57 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:57:57 | INFO | task2_regime |     Accuracy:            0.856
+2025-12-25 01:57:57 | INFO | task2_regime |     Precision:           0.579
+2025-12-25 01:57:57 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 01:57:57 | INFO | task2_regime |     F1 score:            0.569
+2025-12-25 01:57:57 | INFO | task2_regime |     AUC:                 0.885
+2025-12-25 01:57:57 | INFO | task2_regime |     vs Baseline:         +2.6pp
+2025-12-25 01:57:57 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:57:57 | INFO | task2_regime |     Accuracy:            0.864
+2025-12-25 01:57:57 | INFO | task2_regime |     Precision:           0.609
+2025-12-25 01:57:57 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 01:57:57 | INFO | task2_regime |     F1 score:            0.583
+2025-12-25 01:57:57 | INFO | task2_regime |     AUC:                 0.876
+2025-12-25 01:57:57 | INFO | task2_regime |     vs Baseline:         +3.4pp
+2025-12-25 01:57:57 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.583)
+2025-12-25 01:57:57 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:57:57 | INFO | task2_regime | 
+2.3 5D REGIME PREDICTION
+2025-12-25 01:57:57 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=16.7% high vol
+2025-12-25 01:57:57 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 01:57:57 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 01:57:58 | INFO | task2_regime | 
+  Baseline (always low vol): 0.833
+2025-12-25 01:57:58 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 01:57:58 | INFO | task2_regime |     Accuracy:            0.829
+2025-12-25 01:57:58 | INFO | task2_regime |     Precision:           0.488
+2025-12-25 01:57:58 | INFO | task2_regime |     Recall:              0.504
+2025-12-25 01:57:58 | INFO | task2_regime |     F1 score:            0.496
+2025-12-25 01:57:58 | INFO | task2_regime |     AUC:                 0.825
+2025-12-25 01:57:58 | INFO | task2_regime |     vs Baseline:         -0.4pp
+2025-12-25 01:57:58 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 01:57:58 | INFO | task2_regime |     Accuracy:            0.832
+2025-12-25 01:57:58 | INFO | task2_regime |     Precision:           0.495
+2025-12-25 01:57:58 | INFO | task2_regime |     Recall:              0.415
+2025-12-25 01:57:58 | INFO | task2_regime |     F1 score:            0.451
+2025-12-25 01:57:58 | INFO | task2_regime |     AUC:                 0.826
+2025-12-25 01:57:58 | INFO | task2_regime |     vs Baseline:         -0.1pp
+2025-12-25 01:57:58 | INFO | task2_regime | 
+  → Best model: XGBoost (F1=0.496)
+2025-12-25 01:57:58 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 01:57:58 | INFO | task2_regime | 
+================================================================================
+2025-12-25 01:57:58 | INFO | task2_regime | MODEL COMPARISON SUMMARY
+2025-12-25 01:57:58 | INFO | task2_regime | ================================================================================
+2025-12-25 01:57:58 | INFO | task2_regime | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC       
+2025-12-25 01:57:58 | INFO | task2_regime | --------------------------------------------------------------------------------
+2025-12-25 01:57:58 | INFO | task2_regime | 1d         XGBoost         0.908      0.757      0.685      0.719      0.946     
+2025-12-25 01:57:58 | INFO | task2_regime |            Random Forest   0.923      0.807      0.724      0.763      0.952     
+2025-12-25 01:57:58 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 01:57:58 | INFO | task2_regime | 
+2025-12-25 01:57:58 | INFO | task2_regime | 3d         XGBoost         0.856      0.579      0.560      0.569      0.885     
+2025-12-25 01:57:58 | INFO | task2_regime |            Random Forest   0.864      0.609      0.560      0.583      0.876     
+2025-12-25 01:57:58 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 01:57:58 | INFO | task2_regime | 
+2025-12-25 01:57:58 | INFO | task2_regime | 5d         XGBoost         0.829      0.488      0.504      0.496      0.825     
+2025-12-25 01:57:58 | INFO | task2_regime |            Random Forest   0.832      0.495      0.415      0.451      0.826     
+2025-12-25 01:57:58 | INFO | task2_regime |            → BEST: XGBoost
+2025-12-25 01:57:58 | INFO | task2_regime | 
+2025-12-25 01:57:58 | INFO | task2_regime | ================================================================================
+2025-12-25 01:57:58 | INFO | task2_regime | CONCLUSION: Regime prediction is the primary actionable signal
+2025-12-25 01:57:58 | INFO | task2_regime |   → XGBoost typically achieves best F1 scores
+2025-12-25 01:57:58 | INFO | task2_regime |   → Both models show strong AUC (>0.85)
+2025-12-25 01:57:58 | INFO | task2_regime |   → 1-day predictions are most accurate
+2025-12-25 01:57:58 | INFO | task2_regime | ================================================================================
+2025-12-25 01:57:58 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:57:58 | INFO | task3_direction | ================================================================================
+2025-12-25 01:57:58 | INFO | task3_direction | TASK 3: SIMPLE DIRECTIONAL PREDICTION (XGBoost vs Random Forest)
+2025-12-25 01:57:58 | INFO | task3_direction | ================================================================================
+2025-12-25 01:57:58 | INFO | task3_direction | 
+3.1 1D DIRECTION
+2025-12-25 01:57:58 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:57:59 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:58:00 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:58:00 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:58:00 | INFO | task3_direction |     Majority class:      0.563
+2025-12-25 01:58:00 | INFO | task3_direction |     Persistence:         0.468
+2025-12-25 01:58:00 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:58:00 | INFO | task3_direction |     Accuracy:            0.571
+2025-12-25 01:58:00 | INFO | task3_direction |     Precision:           0.512
+2025-12-25 01:58:00 | INFO | task3_direction |     Recall:              0.391
+2025-12-25 01:58:00 | INFO | task3_direction |     F1:                  0.444
+2025-12-25 01:58:00 | INFO | task3_direction |     AUC:                 0.577
+2025-12-25 01:58:00 | INFO | task3_direction |     vs Majority:         +0.81pp
+2025-12-25 01:58:00 | INFO | task3_direction |     vs Persistence:      +10.31pp
+2025-12-25 01:58:00 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:58:00 | INFO | task3_direction |     Accuracy:            0.598
+2025-12-25 01:58:00 | INFO | task3_direction |     Precision:           0.562
+2025-12-25 01:58:00 | INFO | task3_direction |     Recall:              0.363
+2025-12-25 01:58:00 | INFO | task3_direction |     F1:                  0.442
+2025-12-25 01:58:00 | INFO | task3_direction |     AUC:                 0.600
+2025-12-25 01:58:00 | INFO | task3_direction |     vs Majority:         +3.53pp
+2025-12-25 01:58:00 | INFO | task3_direction |     vs Persistence:      +13.03pp
+2025-12-25 01:58:00 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.598)
+2025-12-25 01:58:00 | INFO | task3_direction |   → Edge over random: +9.84pp
+2025-12-25 01:58:00 | INFO | task3_direction | 
+3.2 3D DIRECTION
+2025-12-25 01:58:00 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:58:01 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:58:02 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:58:02 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:58:02 | INFO | task3_direction |     Majority class:      0.550
+2025-12-25 01:58:02 | INFO | task3_direction |     Persistence:         0.461
+2025-12-25 01:58:02 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:58:02 | INFO | task3_direction |     Accuracy:            0.552
+2025-12-25 01:58:02 | INFO | task3_direction |     Precision:           0.504
+2025-12-25 01:58:02 | INFO | task3_direction |     Recall:              0.428
+2025-12-25 01:58:02 | INFO | task3_direction |     F1:                  0.463
+2025-12-25 01:58:02 | INFO | task3_direction |     AUC:                 0.572
+2025-12-25 01:58:02 | INFO | task3_direction |     vs Majority:         +0.27pp
+2025-12-25 01:58:02 | INFO | task3_direction |     vs Persistence:      +9.09pp
+2025-12-25 01:58:02 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:58:02 | INFO | task3_direction |     Accuracy:            0.579
+2025-12-25 01:58:02 | INFO | task3_direction |     Precision:           0.539
+2025-12-25 01:58:02 | INFO | task3_direction |     Recall:              0.455
+2025-12-25 01:58:02 | INFO | task3_direction |     F1:                  0.493
+2025-12-25 01:58:02 | INFO | task3_direction |     AUC:                 0.607
+2025-12-25 01:58:02 | INFO | task3_direction |     vs Majority:         +2.99pp
+2025-12-25 01:58:02 | INFO | task3_direction |     vs Persistence:      +11.80pp
+2025-12-25 01:58:02 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.579)
+2025-12-25 01:58:02 | INFO | task3_direction |   → Edge over random: +7.94pp
+2025-12-25 01:58:02 | INFO | task3_direction | 
+3.3 5D DIRECTION
+2025-12-25 01:58:02 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 01:58:02 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 01:58:03 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 01:58:03 | INFO | task3_direction |     Random:              0.500
+2025-12-25 01:58:03 | INFO | task3_direction |     Majority class:      0.540
+2025-12-25 01:58:03 | INFO | task3_direction |     Persistence:         0.421
+2025-12-25 01:58:03 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 01:58:03 | INFO | task3_direction |     Accuracy:            0.582
+2025-12-25 01:58:03 | INFO | task3_direction |     Precision:           0.549
+2025-12-25 01:58:03 | INFO | task3_direction |     Recall:              0.516
+2025-12-25 01:58:03 | INFO | task3_direction |     F1:                  0.532
+2025-12-25 01:58:03 | INFO | task3_direction |     AUC:                 0.602
+2025-12-25 01:58:03 | INFO | task3_direction |     vs Majority:         +4.21pp
+2025-12-25 01:58:03 | INFO | task3_direction |     vs Persistence:      +16.15pp
+2025-12-25 01:58:03 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 01:58:03 | INFO | task3_direction |     Accuracy:            0.581
+2025-12-25 01:58:03 | INFO | task3_direction |     Precision:           0.552
+2025-12-25 01:58:03 | INFO | task3_direction |     Recall:              0.469
+2025-12-25 01:58:03 | INFO | task3_direction |     F1:                  0.507
+2025-12-25 01:58:03 | INFO | task3_direction |     AUC:                 0.619
+2025-12-25 01:58:03 | INFO | task3_direction |     vs Majority:         +4.07pp
+2025-12-25 01:58:03 | INFO | task3_direction |     vs Persistence:      +16.01pp
+2025-12-25 01:58:03 | INFO | task3_direction | 
+  → Best model: XGBoost (Accuracy=0.582)
+2025-12-25 01:58:03 | INFO | task3_direction |   → Edge over random: +8.21pp
+2025-12-25 01:58:03 | INFO | task3_direction | 
+================================================================================
+2025-12-25 01:58:03 | INFO | task3_direction | MODEL COMPARISON SUMMARY
+2025-12-25 01:58:03 | INFO | task3_direction | ================================================================================
+2025-12-25 01:58:03 | INFO | task3_direction | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC        Edge      
+2025-12-25 01:58:03 | INFO | task3_direction | --------------------------------------------------------------------------------
+2025-12-25 01:58:03 | INFO | task3_direction | 1d         XGBoost         0.571      0.512      0.391      0.444      0.577      7.12      %
+2025-12-25 01:58:03 | INFO | task3_direction |            Random Forest   0.598      0.562      0.363      0.442      0.600      9.84      %
+2025-12-25 01:58:03 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 01:58:03 | INFO | task3_direction | 
+2025-12-25 01:58:03 | INFO | task3_direction | 3d         XGBoost         0.552      0.504      0.428      0.463      0.572      5.22      %
+2025-12-25 01:58:03 | INFO | task3_direction |            Random Forest   0.579      0.539      0.455      0.493      0.607      7.94      %
+2025-12-25 01:58:03 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 01:58:03 | INFO | task3_direction | 
+2025-12-25 01:58:03 | INFO | task3_direction | 5d         XGBoost         0.582      0.549      0.516      0.532      0.602      8.21      %
+2025-12-25 01:58:03 | INFO | task3_direction |            Random Forest   0.581      0.552      0.469      0.507      0.619      8.07      %
+2025-12-25 01:58:03 | INFO | task3_direction |            → BEST: XGBoost
+2025-12-25 01:58:03 | INFO | task3_direction | 
+2025-12-25 01:58:03 | INFO | task3_direction | ================================================================================
+2025-12-25 01:58:03 | INFO | task3_direction | CONCLUSION: Direction prediction provides modest edge
+2025-12-25 01:58:03 | INFO | task3_direction |   → XGBoost and Random Forest perform similarly
+2025-12-25 01:58:03 | INFO | task3_direction |   → Edge improves with longer forecast horizons
+2025-12-25 01:58:03 | INFO | task3_direction | ================================================================================
+2025-12-25 01:58:03 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 01:58:03 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:58:03 | INFO | task4_innovation | TASK 4: INNOVATION (DEVIATION) REGRESSION - ENHANCED
+2025-12-25 01:58:03 | INFO | task4_innovation | ================================================================================
+2025-12-25 01:58:03 | INFO | task4_innovation | 
+4.1 HAR EXPECTATION MODEL (Multi-Horizon)
+2025-12-25 01:58:03 | INFO | task4_innovation |   train_df columns: 72
+2025-12-25 01:58:03 | INFO | task4_innovation |   train_df shape: (3752, 72)
+2025-12-25 01:58:03 | INFO | task4_innovation |   ✓ All HAR features present: ['logVIX_t', 'logVIX_weekly', 'logVIX_monthly']
+2025-12-25 01:58:03 | INFO | task4_innovation |   Before dropna: 3752 rows
+2025-12-25 01:58:03 | INFO | task4_innovation |   After dropna: 3751 rows
+2025-12-25 01:58:03 | INFO | task4_innovation |   ✓ HAR model fitted successfully!
+2025-12-25 01:58:03 | INFO | task4_innovation |   α (intercept):    0.0446
+2025-12-25 01:58:03 | INFO | task4_innovation |   β_daily (t):      0.8890
+2025-12-25 01:58:03 | INFO | task4_innovation |   β_weekly (5d):    0.0642
+2025-12-25 01:58:03 | INFO | task4_innovation |   β_monthly (22d):  0.0316
+2025-12-25 01:58:03 | INFO | task4_innovation |   In-sample R²:     0.9584
+2025-12-25 01:58:03 | INFO | task4_innovation |   In-sample RMSE:   0.0775
+2025-12-25 01:58:03 | INFO | task4_innovation |   Purpose: Multi-horizon mean reversion (should beat AR(1))
+2025-12-25 01:58:03 | INFO | task4_innovation | 
+Data after feature creation:
+2025-12-25 01:58:03 | INFO | task4_innovation |   Train: 3751 samples
+2025-12-25 01:58:03 | INFO | task4_innovation |   Val:   250 samples
+2025-12-25 01:58:03 | INFO | task4_innovation |   Test:  736 samples
+2025-12-25 01:58:03 | INFO | task4_innovation | 
+Innovation statistics:
+2025-12-25 01:58:03 | INFO | task4_innovation |   Train mean: -0.000000 (should be ≈0)
+2025-12-25 01:58:03 | INFO | task4_innovation |   Train std:  0.0775
+2025-12-25 01:58:03 | INFO | task4_innovation |   Test mean:  -0.002272
+2025-12-25 01:58:03 | INFO | task4_innovation |   Test std:   0.0757
+2025-12-25 01:58:03 | INFO | task4_innovation | 
+4.2 RIDGE REGRESSION (BASELINE)
+2025-12-25 01:58:03 | INFO | task4_innovation |   Test RMSE: 0.0756
+2025-12-25 01:58:03 | INFO | task4_innovation |   Test MAE:  0.0514
+2025-12-25 01:58:03 | INFO | task4_innovation |   Test R²:   0.0005
+2025-12-25 01:58:03 | INFO | task4_innovation | 
+4.3 XGBOOST REGRESSION (ENHANCED)
+2025-12-25 01:58:05 | INFO | task4_innovation |   Test RMSE: 0.0767
+2025-12-25 01:58:05 | INFO | task4_innovation |   Test MAE:  0.0517
+2025-12-25 01:58:05 | INFO | task4_innovation |   Test R²:   -0.0275
+2025-12-25 01:58:05 | INFO | task4_innovation |   vs Ridge:  -1.39%
+2025-12-25 01:58:05 | INFO | task4_innovation | 
+  Top 10 features:
+2025-12-25 01:58:05 | INFO | task4_innovation |     logVIX_weekly                 : 0.0628
+2025-12-25 01:58:05 | INFO | task4_innovation |     high_vol_yesterday            : 0.0592
+2025-12-25 01:58:05 | INFO | task4_innovation |     logVIX_monthly                : 0.0573
+2025-12-25 01:58:05 | INFO | task4_innovation |     vrp_normalized                : 0.0564
+2025-12-25 01:58:05 | INFO | task4_innovation |     vix_change_lag1               : 0.0549
+2025-12-25 01:58:05 | INFO | task4_innovation |     VIX_intraday_range            : 0.0537
+2025-12-25 01:58:05 | INFO | task4_innovation |     RV_weekly                     : 0.0500
+2025-12-25 01:58:05 | INFO | task4_innovation |     rv_surprise_normalized        : 0.0496
+2025-12-25 01:58:05 | INFO | task4_innovation |     variance_risk_premium         : 0.0495
+2025-12-25 01:58:05 | INFO | task4_innovation |     RV_monthly                    : 0.0481
+2025-12-25 01:58:05 | ERROR | main | Pipeline failed: 'har_pred'
+Traceback (most recent call last):
+  File "C:\Users\mahi2\anaconda3\envs\linkedin\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'har_pred'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\main.py", line 81, in run_full_pipeline
+    pipeline, task_results, report = run_pipeline(df_features, RESULTS_DIR)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\vix_forecasting_pipeline.py", line 399, in run_pipeline
+    results = pipeline.run_all_tasks(df)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\vix_forecasting_pipeline.py", line 138, in run_all_tasks
+    self.all_results['task4_innovation'] = self.task4.run(train_df, val_df, test_df)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\task4_innovation.py", line 320, in run
+    'test_har_pred': test_clean['har_pred'].values,  # Add HAR predictions
+                     ~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\mahi2\anaconda3\envs\linkedin\Lib\site-packages\pandas\core\frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mahi2\anaconda3\envs\linkedin\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'har_pred'
+2025-12-25 01:58:05 | INFO | main | Pipeline execution completed
+2025-12-25 02:01:06 | INFO | main | ================================================================================
+2025-12-25 02:01:06 | INFO | main | VIX FORECASTING SYSTEM - 4 CORE TASKS
+2025-12-25 02:01:06 | INFO | main | ================================================================================
+2025-12-25 02:01:06 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2025-12-24 00:00:00
+2025-12-25 02:01:07 | INFO | feature_engineering | Loaded 4746 existing feature records
+2025-12-25 02:01:07 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-25 02:01:07 | INFO | main | VIX Forecasting System initialized
+2025-12-25 02:01:07 | INFO | main | Step 1: Fetching market data
+2025-12-25 02:01:07 | INFO | data_fetcher | Last date in data: 2025-12-24 00:00:00, Last complete: 2025-12-24 00:00:00
+2025-12-25 02:01:07 | INFO | data_fetcher | Data is already up to date. No fetch required.
+2025-12-25 02:01:07 | INFO | main | Data fetched: 4776 records, Updated: False
+2025-12-25 02:01:07 | WARNING | main | Latest complete data is 1 days old
+2025-12-25 02:01:07 | INFO | main | Step 2: Engineering features
+2025-12-25 02:01:07 | INFO | feature_engineering | Processing incremental data. Last processed: 2025-12-17 00:00:00, New data through: 2025-12-24 00:00:00
+2025-12-25 02:01:07 | INFO | feature_engineering | No new valid features after processing
+2025-12-25 02:01:07 | INFO | main | Features engineered: 0 new, 4746 total
+2025-12-25 02:01:07 | INFO | main | Step 3: Running all 4 forecasting tasks
+2025-12-25 02:01:07 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:01:07 | INFO | vix_forecasting_pipeline | VIX FORECASTING PIPELINE - 4 CORE TASKS
+2025-12-25 02:01:07 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 02:01:07 | INFO | vix_forecasting_pipeline | Preparing data for modeling...
+2025-12-25 02:01:07 | INFO | vix_forecasting_pipeline | Data splits:
+2025-12-25 02:01:07 | INFO | vix_forecasting_pipeline |   Train: 3752 days (2007-02-08 to 2021-12-31)
+2025-12-25 02:01:07 | INFO | vix_forecasting_pipeline |   Val:   251 days (2022-01-03 to 2022-12-30)
+2025-12-25 02:01:07 | INFO | vix_forecasting_pipeline |   Test:  737 days (2023-01-04 to 2025-12-10)
+2025-12-25 02:01:07 | INFO | vix_forecasting_pipeline |   → Test includes ALL available data (1075 days from val end)
+2025-12-25 02:01:07 | INFO | vix_forecasting_pipeline |   → Latest data: 2025-12-10
+2025-12-25 02:01:07 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:01:07 | INFO | task1_baselines | ================================================================================
+2025-12-25 02:01:07 | INFO | task1_baselines | TASK 1: BASELINES AND FAILURE OF LEVEL PREDICTION
+2025-12-25 02:01:07 | INFO | task1_baselines | ================================================================================
+2025-12-25 02:01:07 | INFO | task1_baselines |   Train period: 2007-02-08 to 2021-12-31
+2025-12-25 02:01:07 | INFO | task1_baselines |   Val period:   2022-01-03 to 2022-12-30
+2025-12-25 02:01:07 | INFO | task1_baselines |   Test period:  2023-01-04 to 2025-12-10
+2025-12-25 02:01:07 | INFO | task1_baselines |   Test size:    737 days (real-time data)
+2025-12-25 02:01:07 | INFO | task1_baselines | 
+1.1 NAIVE PERSISTENCE BASELINE
+2025-12-25 02:01:07 | INFO | task1_baselines |   Test RMSE (logVIX): 0.0766
+2025-12-25 02:01:07 | INFO | task1_baselines |   Test RMSE (VIX):    1.80
+2025-12-25 02:01:07 | INFO | task1_baselines |   Test period:        2023-01-04 to 2025-12-10
+2025-12-25 02:01:07 | INFO | task1_baselines |   → This is the benchmark to beat
+2025-12-25 02:01:07 | INFO | task1_baselines | 
+1.2 ARIMAX MODEL (Grid Search)
+2025-12-25 02:01:07 | INFO | task1_baselines |   Testing ARIMA configurations...
+2025-12-25 02:02:59 | INFO | task1_baselines |   Best model: ARIMA(1, 1, 1)
+2025-12-25 02:02:59 | INFO | task1_baselines |   Test RMSE: 0.0819
+2025-12-25 02:02:59 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 02:02:59 | INFO | task1_baselines |   vs Naive: -6.97%
+2025-12-25 02:02:59 | INFO | task1_baselines |   → WORSE than naive
+2025-12-25 02:02:59 | INFO | task1_baselines | 
+1.3 XGBOOST LEVEL REGRESSION (Grid Search)
+2025-12-25 02:03:00 | INFO | task1_baselines |   Best config: depth=3, trees=100
+2025-12-25 02:03:00 | INFO | task1_baselines |   Test RMSE: 0.0767
+2025-12-25 02:03:00 | INFO | task1_baselines |   Test RMSE (VIX): 1.81
+2025-12-25 02:03:00 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 02:03:00 | INFO | task1_baselines |   vs Naive: -0.21%
+2025-12-25 02:03:00 | INFO | task1_baselines |   → XGBoost ≈ naive baseline (no improvement)
+2025-12-25 02:03:00 | INFO | task1_baselines | 
+================================================================================
+2025-12-25 02:03:00 | INFO | task1_baselines | KEY FINDING: Level prediction is dominated by mean reversion
+2025-12-25 02:03:00 | INFO | task1_baselines |   • Naive: 0.0766
+2025-12-25 02:03:00 | INFO | task1_baselines |   • ARIMAX: 0.0819 (-7.0%)
+2025-12-25 02:03:00 | INFO | task1_baselines |   • XGBoost: 0.0767 (-0.2%)
+2025-12-25 02:03:00 | INFO | task1_baselines |   → ML does not beat persistence on raw levels
+2025-12-25 02:03:00 | INFO | task1_baselines |   → We need to model DEVIATIONS, not levels
+2025-12-25 02:03:00 | INFO | task1_baselines | ================================================================================
+2025-12-25 02:03:00 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:03:00 | INFO | task2_regime | ================================================================================
+2025-12-25 02:03:00 | INFO | task2_regime | TASK 2: HIGH-VOLATILITY REGIME PREDICTION (XGBoost vs Random Forest)
+2025-12-25 02:03:00 | INFO | task2_regime | ================================================================================
+2025-12-25 02:03:00 | INFO | task2_regime | 
+High volatility threshold: VIX > 20 (market standard)
+2025-12-25 02:03:00 | INFO | task2_regime | 
+2.1 1D REGIME PREDICTION
+2025-12-25 02:03:00 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.2% high vol
+2025-12-25 02:03:00 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 02:03:00 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 02:03:01 | INFO | task2_regime | 
+  Baseline (always low vol): 0.828
+2025-12-25 02:03:01 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 02:03:01 | INFO | task2_regime |     Accuracy:            0.908
+2025-12-25 02:03:01 | INFO | task2_regime |     Precision:           0.757
+2025-12-25 02:03:01 | INFO | task2_regime |     Recall:              0.685
+2025-12-25 02:03:01 | INFO | task2_regime |     F1 score:            0.719
+2025-12-25 02:03:01 | INFO | task2_regime |     AUC:                 0.946
+2025-12-25 02:03:01 | INFO | task2_regime |     vs Baseline:         +8.0pp
+2025-12-25 02:03:01 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 02:03:01 | INFO | task2_regime |     Accuracy:            0.923
+2025-12-25 02:03:01 | INFO | task2_regime |     Precision:           0.807
+2025-12-25 02:03:01 | INFO | task2_regime |     Recall:              0.724
+2025-12-25 02:03:01 | INFO | task2_regime |     F1 score:            0.763
+2025-12-25 02:03:01 | INFO | task2_regime |     AUC:                 0.952
+2025-12-25 02:03:01 | INFO | task2_regime |     vs Baseline:         +9.5pp
+2025-12-25 02:03:01 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.763)
+2025-12-25 02:03:01 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 02:03:01 | INFO | task2_regime | 
+2.2 3D REGIME PREDICTION
+2025-12-25 02:03:01 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.0% high vol
+2025-12-25 02:03:01 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 02:03:01 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 02:03:02 | INFO | task2_regime | 
+  Baseline (always low vol): 0.830
+2025-12-25 02:03:02 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 02:03:02 | INFO | task2_regime |     Accuracy:            0.856
+2025-12-25 02:03:02 | INFO | task2_regime |     Precision:           0.579
+2025-12-25 02:03:02 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 02:03:02 | INFO | task2_regime |     F1 score:            0.569
+2025-12-25 02:03:02 | INFO | task2_regime |     AUC:                 0.885
+2025-12-25 02:03:02 | INFO | task2_regime |     vs Baseline:         +2.6pp
+2025-12-25 02:03:02 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 02:03:02 | INFO | task2_regime |     Accuracy:            0.864
+2025-12-25 02:03:02 | INFO | task2_regime |     Precision:           0.609
+2025-12-25 02:03:02 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 02:03:02 | INFO | task2_regime |     F1 score:            0.583
+2025-12-25 02:03:02 | INFO | task2_regime |     AUC:                 0.876
+2025-12-25 02:03:02 | INFO | task2_regime |     vs Baseline:         +3.4pp
+2025-12-25 02:03:02 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.583)
+2025-12-25 02:03:02 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 02:03:02 | INFO | task2_regime | 
+2.3 5D REGIME PREDICTION
+2025-12-25 02:03:02 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=16.7% high vol
+2025-12-25 02:03:02 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 02:03:03 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 02:03:04 | INFO | task2_regime | 
+  Baseline (always low vol): 0.833
+2025-12-25 02:03:04 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 02:03:04 | INFO | task2_regime |     Accuracy:            0.829
+2025-12-25 02:03:04 | INFO | task2_regime |     Precision:           0.488
+2025-12-25 02:03:04 | INFO | task2_regime |     Recall:              0.504
+2025-12-25 02:03:04 | INFO | task2_regime |     F1 score:            0.496
+2025-12-25 02:03:04 | INFO | task2_regime |     AUC:                 0.825
+2025-12-25 02:03:04 | INFO | task2_regime |     vs Baseline:         -0.4pp
+2025-12-25 02:03:04 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 02:03:04 | INFO | task2_regime |     Accuracy:            0.832
+2025-12-25 02:03:04 | INFO | task2_regime |     Precision:           0.495
+2025-12-25 02:03:04 | INFO | task2_regime |     Recall:              0.415
+2025-12-25 02:03:04 | INFO | task2_regime |     F1 score:            0.451
+2025-12-25 02:03:04 | INFO | task2_regime |     AUC:                 0.826
+2025-12-25 02:03:04 | INFO | task2_regime |     vs Baseline:         -0.1pp
+2025-12-25 02:03:04 | INFO | task2_regime | 
+  → Best model: XGBoost (F1=0.496)
+2025-12-25 02:03:04 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 02:03:04 | INFO | task2_regime | 
+================================================================================
+2025-12-25 02:03:04 | INFO | task2_regime | MODEL COMPARISON SUMMARY
+2025-12-25 02:03:04 | INFO | task2_regime | ================================================================================
+2025-12-25 02:03:04 | INFO | task2_regime | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC       
+2025-12-25 02:03:04 | INFO | task2_regime | --------------------------------------------------------------------------------
+2025-12-25 02:03:04 | INFO | task2_regime | 1d         XGBoost         0.908      0.757      0.685      0.719      0.946     
+2025-12-25 02:03:04 | INFO | task2_regime |            Random Forest   0.923      0.807      0.724      0.763      0.952     
+2025-12-25 02:03:04 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 02:03:04 | INFO | task2_regime | 
+2025-12-25 02:03:04 | INFO | task2_regime | 3d         XGBoost         0.856      0.579      0.560      0.569      0.885     
+2025-12-25 02:03:04 | INFO | task2_regime |            Random Forest   0.864      0.609      0.560      0.583      0.876     
+2025-12-25 02:03:04 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 02:03:04 | INFO | task2_regime | 
+2025-12-25 02:03:04 | INFO | task2_regime | 5d         XGBoost         0.829      0.488      0.504      0.496      0.825     
+2025-12-25 02:03:04 | INFO | task2_regime |            Random Forest   0.832      0.495      0.415      0.451      0.826     
+2025-12-25 02:03:04 | INFO | task2_regime |            → BEST: XGBoost
+2025-12-25 02:03:04 | INFO | task2_regime | 
+2025-12-25 02:03:04 | INFO | task2_regime | ================================================================================
+2025-12-25 02:03:04 | INFO | task2_regime | CONCLUSION: Regime prediction is the primary actionable signal
+2025-12-25 02:03:04 | INFO | task2_regime |   → XGBoost typically achieves best F1 scores
+2025-12-25 02:03:04 | INFO | task2_regime |   → Both models show strong AUC (>0.85)
+2025-12-25 02:03:04 | INFO | task2_regime |   → 1-day predictions are most accurate
+2025-12-25 02:03:04 | INFO | task2_regime | ================================================================================
+2025-12-25 02:03:04 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:03:04 | INFO | task3_direction | ================================================================================
+2025-12-25 02:03:04 | INFO | task3_direction | TASK 3: SIMPLE DIRECTIONAL PREDICTION (XGBoost vs Random Forest)
+2025-12-25 02:03:04 | INFO | task3_direction | ================================================================================
+2025-12-25 02:03:04 | INFO | task3_direction | 
+3.1 1D DIRECTION
+2025-12-25 02:03:04 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 02:03:04 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 02:03:05 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 02:03:05 | INFO | task3_direction |     Random:              0.500
+2025-12-25 02:03:05 | INFO | task3_direction |     Majority class:      0.563
+2025-12-25 02:03:05 | INFO | task3_direction |     Persistence:         0.468
+2025-12-25 02:03:05 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 02:03:05 | INFO | task3_direction |     Accuracy:            0.571
+2025-12-25 02:03:05 | INFO | task3_direction |     Precision:           0.512
+2025-12-25 02:03:05 | INFO | task3_direction |     Recall:              0.391
+2025-12-25 02:03:05 | INFO | task3_direction |     F1:                  0.444
+2025-12-25 02:03:05 | INFO | task3_direction |     AUC:                 0.577
+2025-12-25 02:03:05 | INFO | task3_direction |     vs Majority:         +0.81pp
+2025-12-25 02:03:05 | INFO | task3_direction |     vs Persistence:      +10.31pp
+2025-12-25 02:03:05 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 02:03:05 | INFO | task3_direction |     Accuracy:            0.598
+2025-12-25 02:03:05 | INFO | task3_direction |     Precision:           0.562
+2025-12-25 02:03:05 | INFO | task3_direction |     Recall:              0.363
+2025-12-25 02:03:05 | INFO | task3_direction |     F1:                  0.442
+2025-12-25 02:03:05 | INFO | task3_direction |     AUC:                 0.600
+2025-12-25 02:03:05 | INFO | task3_direction |     vs Majority:         +3.53pp
+2025-12-25 02:03:05 | INFO | task3_direction |     vs Persistence:      +13.03pp
+2025-12-25 02:03:05 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.598)
+2025-12-25 02:03:05 | INFO | task3_direction |   → Edge over random: +9.84pp
+2025-12-25 02:03:05 | INFO | task3_direction | 
+3.2 3D DIRECTION
+2025-12-25 02:03:05 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 02:03:06 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 02:03:07 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 02:03:07 | INFO | task3_direction |     Random:              0.500
+2025-12-25 02:03:07 | INFO | task3_direction |     Majority class:      0.550
+2025-12-25 02:03:07 | INFO | task3_direction |     Persistence:         0.461
+2025-12-25 02:03:07 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 02:03:07 | INFO | task3_direction |     Accuracy:            0.552
+2025-12-25 02:03:07 | INFO | task3_direction |     Precision:           0.504
+2025-12-25 02:03:07 | INFO | task3_direction |     Recall:              0.428
+2025-12-25 02:03:07 | INFO | task3_direction |     F1:                  0.463
+2025-12-25 02:03:07 | INFO | task3_direction |     AUC:                 0.572
+2025-12-25 02:03:07 | INFO | task3_direction |     vs Majority:         +0.27pp
+2025-12-25 02:03:07 | INFO | task3_direction |     vs Persistence:      +9.09pp
+2025-12-25 02:03:07 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 02:03:07 | INFO | task3_direction |     Accuracy:            0.579
+2025-12-25 02:03:07 | INFO | task3_direction |     Precision:           0.539
+2025-12-25 02:03:07 | INFO | task3_direction |     Recall:              0.455
+2025-12-25 02:03:07 | INFO | task3_direction |     F1:                  0.493
+2025-12-25 02:03:07 | INFO | task3_direction |     AUC:                 0.607
+2025-12-25 02:03:07 | INFO | task3_direction |     vs Majority:         +2.99pp
+2025-12-25 02:03:07 | INFO | task3_direction |     vs Persistence:      +11.80pp
+2025-12-25 02:03:07 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.579)
+2025-12-25 02:03:07 | INFO | task3_direction |   → Edge over random: +7.94pp
+2025-12-25 02:03:07 | INFO | task3_direction | 
+3.3 5D DIRECTION
+2025-12-25 02:03:07 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 02:03:07 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 02:03:08 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 02:03:08 | INFO | task3_direction |     Random:              0.500
+2025-12-25 02:03:08 | INFO | task3_direction |     Majority class:      0.540
+2025-12-25 02:03:08 | INFO | task3_direction |     Persistence:         0.421
+2025-12-25 02:03:08 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 02:03:08 | INFO | task3_direction |     Accuracy:            0.582
+2025-12-25 02:03:08 | INFO | task3_direction |     Precision:           0.549
+2025-12-25 02:03:08 | INFO | task3_direction |     Recall:              0.516
+2025-12-25 02:03:08 | INFO | task3_direction |     F1:                  0.532
+2025-12-25 02:03:08 | INFO | task3_direction |     AUC:                 0.602
+2025-12-25 02:03:08 | INFO | task3_direction |     vs Majority:         +4.21pp
+2025-12-25 02:03:08 | INFO | task3_direction |     vs Persistence:      +16.15pp
+2025-12-25 02:03:08 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 02:03:08 | INFO | task3_direction |     Accuracy:            0.581
+2025-12-25 02:03:08 | INFO | task3_direction |     Precision:           0.552
+2025-12-25 02:03:08 | INFO | task3_direction |     Recall:              0.469
+2025-12-25 02:03:08 | INFO | task3_direction |     F1:                  0.507
+2025-12-25 02:03:08 | INFO | task3_direction |     AUC:                 0.619
+2025-12-25 02:03:08 | INFO | task3_direction |     vs Majority:         +4.07pp
+2025-12-25 02:03:08 | INFO | task3_direction |     vs Persistence:      +16.01pp
+2025-12-25 02:03:08 | INFO | task3_direction | 
+  → Best model: XGBoost (Accuracy=0.582)
+2025-12-25 02:03:08 | INFO | task3_direction |   → Edge over random: +8.21pp
+2025-12-25 02:03:08 | INFO | task3_direction | 
+================================================================================
+2025-12-25 02:03:08 | INFO | task3_direction | MODEL COMPARISON SUMMARY
+2025-12-25 02:03:08 | INFO | task3_direction | ================================================================================
+2025-12-25 02:03:08 | INFO | task3_direction | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC        Edge      
+2025-12-25 02:03:08 | INFO | task3_direction | --------------------------------------------------------------------------------
+2025-12-25 02:03:08 | INFO | task3_direction | 1d         XGBoost         0.571      0.512      0.391      0.444      0.577      7.12      %
+2025-12-25 02:03:08 | INFO | task3_direction |            Random Forest   0.598      0.562      0.363      0.442      0.600      9.84      %
+2025-12-25 02:03:08 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 02:03:08 | INFO | task3_direction | 
+2025-12-25 02:03:08 | INFO | task3_direction | 3d         XGBoost         0.552      0.504      0.428      0.463      0.572      5.22      %
+2025-12-25 02:03:08 | INFO | task3_direction |            Random Forest   0.579      0.539      0.455      0.493      0.607      7.94      %
+2025-12-25 02:03:08 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 02:03:08 | INFO | task3_direction | 
+2025-12-25 02:03:08 | INFO | task3_direction | 5d         XGBoost         0.582      0.549      0.516      0.532      0.602      8.21      %
+2025-12-25 02:03:08 | INFO | task3_direction |            Random Forest   0.581      0.552      0.469      0.507      0.619      8.07      %
+2025-12-25 02:03:08 | INFO | task3_direction |            → BEST: XGBoost
+2025-12-25 02:03:08 | INFO | task3_direction | 
+2025-12-25 02:03:08 | INFO | task3_direction | ================================================================================
+2025-12-25 02:03:08 | INFO | task3_direction | CONCLUSION: Direction prediction provides modest edge
+2025-12-25 02:03:08 | INFO | task3_direction |   → XGBoost and Random Forest perform similarly
+2025-12-25 02:03:08 | INFO | task3_direction |   → Edge improves with longer forecast horizons
+2025-12-25 02:03:08 | INFO | task3_direction | ================================================================================
+2025-12-25 02:03:08 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:03:08 | INFO | task4_innovation | ================================================================================
+2025-12-25 02:03:08 | INFO | task4_innovation | TASK 4: INNOVATION (DEVIATION) REGRESSION - ENHANCED
+2025-12-25 02:03:08 | INFO | task4_innovation | ================================================================================
+2025-12-25 02:03:08 | INFO | task4_innovation | 
+4.1 HAR EXPECTATION MODEL (Multi-Horizon)
+2025-12-25 02:03:08 | INFO | task4_innovation |   train_df columns: 72
+2025-12-25 02:03:08 | INFO | task4_innovation |   train_df shape: (3752, 72)
+2025-12-25 02:03:08 | INFO | task4_innovation |   ✓ All HAR features present: ['logVIX_t', 'logVIX_weekly', 'logVIX_monthly']
+2025-12-25 02:03:08 | INFO | task4_innovation |   Before dropna: 3752 rows
+2025-12-25 02:03:08 | INFO | task4_innovation |   After dropna: 3751 rows
+2025-12-25 02:03:08 | INFO | task4_innovation |   ✓ HAR model fitted successfully!
+2025-12-25 02:03:08 | INFO | task4_innovation |   α (intercept):    0.0446
+2025-12-25 02:03:08 | INFO | task4_innovation |   β_daily (t):      0.8890
+2025-12-25 02:03:08 | INFO | task4_innovation |   β_weekly (5d):    0.0642
+2025-12-25 02:03:08 | INFO | task4_innovation |   β_monthly (22d):  0.0316
+2025-12-25 02:03:08 | INFO | task4_innovation |   In-sample R²:     0.9584
+2025-12-25 02:03:08 | INFO | task4_innovation |   In-sample RMSE:   0.0775
+2025-12-25 02:03:08 | INFO | task4_innovation |   Purpose: Multi-horizon mean reversion (should beat AR(1))
+2025-12-25 02:03:08 | INFO | task4_innovation | 
+Data after feature creation:
+2025-12-25 02:03:08 | INFO | task4_innovation |   Train: 3751 samples
+2025-12-25 02:03:08 | INFO | task4_innovation |   Val:   250 samples
+2025-12-25 02:03:08 | INFO | task4_innovation |   Test:  736 samples
+2025-12-25 02:03:08 | INFO | task4_innovation | 
+Innovation statistics:
+2025-12-25 02:03:08 | INFO | task4_innovation |   Train mean: -0.000000 (should be ≈0)
+2025-12-25 02:03:08 | INFO | task4_innovation |   Train std:  0.0775
+2025-12-25 02:03:08 | INFO | task4_innovation |   Test mean:  -0.002272
+2025-12-25 02:03:08 | INFO | task4_innovation |   Test std:   0.0757
+2025-12-25 02:03:08 | INFO | task4_innovation | 
+4.2 RIDGE REGRESSION (BASELINE)
+2025-12-25 02:03:08 | INFO | task4_innovation |   Test RMSE: 0.0756
+2025-12-25 02:03:08 | INFO | task4_innovation |   Test MAE:  0.0514
+2025-12-25 02:03:08 | INFO | task4_innovation |   Test R²:   0.0005
+2025-12-25 02:03:08 | INFO | task4_innovation | 
+4.3 XGBOOST REGRESSION (ENHANCED)
+2025-12-25 02:03:11 | INFO | task4_innovation |   Test RMSE: 0.0767
+2025-12-25 02:03:11 | INFO | task4_innovation |   Test MAE:  0.0517
+2025-12-25 02:03:11 | INFO | task4_innovation |   Test R²:   -0.0275
+2025-12-25 02:03:11 | INFO | task4_innovation |   vs Ridge:  -1.39%
+2025-12-25 02:03:11 | INFO | task4_innovation | 
+  Top 10 features:
+2025-12-25 02:03:11 | INFO | task4_innovation |     logVIX_weekly                 : 0.0628
+2025-12-25 02:03:11 | INFO | task4_innovation |     high_vol_yesterday            : 0.0592
+2025-12-25 02:03:11 | INFO | task4_innovation |     logVIX_monthly                : 0.0573
+2025-12-25 02:03:11 | INFO | task4_innovation |     vrp_normalized                : 0.0564
+2025-12-25 02:03:11 | INFO | task4_innovation |     vix_change_lag1               : 0.0549
+2025-12-25 02:03:11 | INFO | task4_innovation |     VIX_intraday_range            : 0.0537
+2025-12-25 02:03:11 | INFO | task4_innovation |     RV_weekly                     : 0.0500
+2025-12-25 02:03:11 | INFO | task4_innovation |     rv_surprise_normalized        : 0.0496
+2025-12-25 02:03:11 | INFO | task4_innovation |     variance_risk_premium         : 0.0495
+2025-12-25 02:03:11 | INFO | task4_innovation |     RV_monthly                    : 0.0481
+2025-12-25 02:03:11 | INFO | task4_innovation | 
+================================================================================
+2025-12-25 02:03:11 | INFO | task4_innovation | CONCLUSION: Innovations remain largely unpredictable
+2025-12-25 02:03:11 | INFO | task4_innovation |   R² = -0.028 - VIX shocks dominated by news/events
+2025-12-25 02:03:11 | INFO | task4_innovation | ================================================================================
+2025-12-25 02:03:11 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:03:11 | INFO | vix_forecasting_pipeline | ALL TASKS COMPLETED SUCCESSFULLY
+2025-12-25 02:03:11 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 02:03:11 | INFO | vix_forecasting_pipeline | Preparing data for modeling...
+2025-12-25 02:03:11 | INFO | vix_forecasting_pipeline | Data splits:
+2025-12-25 02:03:11 | INFO | vix_forecasting_pipeline |   Train: 3752 days (2007-02-08 to 2021-12-31)
+2025-12-25 02:03:11 | INFO | vix_forecasting_pipeline |   Val:   251 days (2022-01-03 to 2022-12-30)
+2025-12-25 02:03:11 | INFO | vix_forecasting_pipeline |   Test:  737 days (2023-01-04 to 2025-12-10)
+2025-12-25 02:03:11 | INFO | vix_forecasting_pipeline |   → Test includes ALL available data (1075 days from val end)
+2025-12-25 02:03:11 | INFO | vix_forecasting_pipeline |   → Latest data: 2025-12-10
+2025-12-25 02:03:11 | INFO | vix_forecasting_pipeline | Saving daily predictions to CSV...
+2025-12-25 02:03:11 | ERROR | main | Pipeline failed: Length of values (736) does not match length of index (737)
+Traceback (most recent call last):
+  File "C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\main.py", line 81, in run_full_pipeline
+    pipeline, task_results, report = run_pipeline(df_features, RESULTS_DIR)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\vix_forecasting_pipeline.py", line 403, in run_pipeline
+    pipeline.save_daily_predictions(test_df)
+  File "C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\vix_forecasting_pipeline.py", line 187, in save_daily_predictions
+    predictions_df['Innovation_pred_xgb'] = r['xgboost']['predictions']
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mahi2\anaconda3\envs\linkedin\Lib\site-packages\pandas\core\frame.py", line 4311, in __setitem__
+    self._set_item(key, value)
+  File "C:\Users\mahi2\anaconda3\envs\linkedin\Lib\site-packages\pandas\core\frame.py", line 4524, in _set_item
+    value, refs = self._sanitize_column(value)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mahi2\anaconda3\envs\linkedin\Lib\site-packages\pandas\core\frame.py", line 5266, in _sanitize_column
+    com.require_length_match(value, self.index)
+  File "C:\Users\mahi2\anaconda3\envs\linkedin\Lib\site-packages\pandas\core\common.py", line 573, in require_length_match
+    raise ValueError(
+ValueError: Length of values (736) does not match length of index (737)
+2025-12-25 02:03:11 | INFO | main | Pipeline execution completed
+2025-12-25 02:05:33 | INFO | main | ================================================================================
+2025-12-25 02:05:33 | INFO | main | VIX FORECASTING SYSTEM - 4 CORE TASKS
+2025-12-25 02:05:33 | INFO | main | ================================================================================
+2025-12-25 02:05:33 | INFO | data_fetcher | DataFetcher initialized. Last processed date: 2025-12-24 00:00:00
+2025-12-25 02:05:33 | INFO | feature_engineering | Loaded 4746 existing feature records
+2025-12-25 02:05:33 | INFO | feature_engineering | FeatureEngineer initialized
+2025-12-25 02:05:33 | INFO | main | VIX Forecasting System initialized
+2025-12-25 02:05:33 | INFO | main | Step 1: Fetching market data
+2025-12-25 02:05:33 | INFO | data_fetcher | Last date in data: 2025-12-24 00:00:00, Last complete: 2025-12-24 00:00:00
+2025-12-25 02:05:33 | INFO | data_fetcher | Data is already up to date. No fetch required.
+2025-12-25 02:05:33 | INFO | main | Data fetched: 4776 records, Updated: False
+2025-12-25 02:05:33 | WARNING | main | Latest complete data is 1 days old
+2025-12-25 02:05:33 | INFO | main | Step 2: Engineering features
+2025-12-25 02:05:33 | INFO | feature_engineering | Processing incremental data. Last processed: 2025-12-17 00:00:00, New data through: 2025-12-24 00:00:00
+2025-12-25 02:05:33 | INFO | feature_engineering | No new valid features after processing
+2025-12-25 02:05:33 | INFO | main | Features engineered: 0 new, 4746 total
+2025-12-25 02:05:33 | INFO | main | Step 3: Running all 4 forecasting tasks
+2025-12-25 02:05:33 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:05:33 | INFO | vix_forecasting_pipeline | VIX FORECASTING PIPELINE - 4 CORE TASKS
+2025-12-25 02:05:33 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 02:05:33 | INFO | vix_forecasting_pipeline | Preparing data for modeling...
+2025-12-25 02:05:33 | INFO | vix_forecasting_pipeline | Data splits:
+2025-12-25 02:05:33 | INFO | vix_forecasting_pipeline |   Train: 3752 days (2007-02-08 to 2021-12-31)
+2025-12-25 02:05:33 | INFO | vix_forecasting_pipeline |   Val:   251 days (2022-01-03 to 2022-12-30)
+2025-12-25 02:05:33 | INFO | vix_forecasting_pipeline |   Test:  737 days (2023-01-04 to 2025-12-10)
+2025-12-25 02:05:33 | INFO | vix_forecasting_pipeline |   → Test includes ALL available data (1075 days from val end)
+2025-12-25 02:05:33 | INFO | vix_forecasting_pipeline |   → Latest data: 2025-12-10
+2025-12-25 02:05:33 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:05:33 | INFO | task1_baselines | ================================================================================
+2025-12-25 02:05:33 | INFO | task1_baselines | TASK 1: BASELINES AND FAILURE OF LEVEL PREDICTION
+2025-12-25 02:05:33 | INFO | task1_baselines | ================================================================================
+2025-12-25 02:05:33 | INFO | task1_baselines |   Train period: 2007-02-08 to 2021-12-31
+2025-12-25 02:05:33 | INFO | task1_baselines |   Val period:   2022-01-03 to 2022-12-30
+2025-12-25 02:05:33 | INFO | task1_baselines |   Test period:  2023-01-04 to 2025-12-10
+2025-12-25 02:05:33 | INFO | task1_baselines |   Test size:    737 days (real-time data)
+2025-12-25 02:05:33 | INFO | task1_baselines | 
+1.1 NAIVE PERSISTENCE BASELINE
+2025-12-25 02:05:33 | INFO | task1_baselines |   Test RMSE (logVIX): 0.0766
+2025-12-25 02:05:33 | INFO | task1_baselines |   Test RMSE (VIX):    1.80
+2025-12-25 02:05:33 | INFO | task1_baselines |   Test period:        2023-01-04 to 2025-12-10
+2025-12-25 02:05:33 | INFO | task1_baselines |   → This is the benchmark to beat
+2025-12-25 02:05:33 | INFO | task1_baselines | 
+1.2 ARIMAX MODEL (Grid Search)
+2025-12-25 02:05:33 | INFO | task1_baselines |   Testing ARIMA configurations...
+2025-12-25 02:06:56 | INFO | task1_baselines |   Best model: ARIMA(1, 1, 1)
+2025-12-25 02:06:56 | INFO | task1_baselines |   Test RMSE: 0.0819
+2025-12-25 02:06:56 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 02:06:56 | INFO | task1_baselines |   vs Naive: -6.97%
+2025-12-25 02:06:56 | INFO | task1_baselines |   → WORSE than naive
+2025-12-25 02:06:56 | INFO | task1_baselines | 
+1.3 XGBOOST LEVEL REGRESSION (Grid Search)
+2025-12-25 02:06:57 | INFO | task1_baselines |   Best config: depth=3, trees=100
+2025-12-25 02:06:57 | INFO | task1_baselines |   Test RMSE: 0.0767
+2025-12-25 02:06:57 | INFO | task1_baselines |   Test RMSE (VIX): 1.81
+2025-12-25 02:06:57 | INFO | task1_baselines |   Test period: 2023-01-04 to 2025-12-10
+2025-12-25 02:06:57 | INFO | task1_baselines |   vs Naive: -0.21%
+2025-12-25 02:06:57 | INFO | task1_baselines |   → XGBoost ≈ naive baseline (no improvement)
+2025-12-25 02:06:57 | INFO | task1_baselines | 
+================================================================================
+2025-12-25 02:06:57 | INFO | task1_baselines | KEY FINDING: Level prediction is dominated by mean reversion
+2025-12-25 02:06:57 | INFO | task1_baselines |   • Naive: 0.0766
+2025-12-25 02:06:57 | INFO | task1_baselines |   • ARIMAX: 0.0819 (-7.0%)
+2025-12-25 02:06:57 | INFO | task1_baselines |   • XGBoost: 0.0767 (-0.2%)
+2025-12-25 02:06:57 | INFO | task1_baselines |   → ML does not beat persistence on raw levels
+2025-12-25 02:06:57 | INFO | task1_baselines |   → We need to model DEVIATIONS, not levels
+2025-12-25 02:06:57 | INFO | task1_baselines | ================================================================================
+2025-12-25 02:06:57 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:06:57 | INFO | task2_regime | ================================================================================
+2025-12-25 02:06:57 | INFO | task2_regime | TASK 2: HIGH-VOLATILITY REGIME PREDICTION (XGBoost vs Random Forest)
+2025-12-25 02:06:57 | INFO | task2_regime | ================================================================================
+2025-12-25 02:06:57 | INFO | task2_regime | 
+High volatility threshold: VIX > 20 (market standard)
+2025-12-25 02:06:57 | INFO | task2_regime | 
+2.1 1D REGIME PREDICTION
+2025-12-25 02:06:57 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.2% high vol
+2025-12-25 02:06:57 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 02:06:57 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 02:06:58 | INFO | task2_regime | 
+  Baseline (always low vol): 0.828
+2025-12-25 02:06:58 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 02:06:58 | INFO | task2_regime |     Accuracy:            0.908
+2025-12-25 02:06:58 | INFO | task2_regime |     Precision:           0.757
+2025-12-25 02:06:58 | INFO | task2_regime |     Recall:              0.685
+2025-12-25 02:06:58 | INFO | task2_regime |     F1 score:            0.719
+2025-12-25 02:06:58 | INFO | task2_regime |     AUC:                 0.946
+2025-12-25 02:06:58 | INFO | task2_regime |     vs Baseline:         +8.0pp
+2025-12-25 02:06:58 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 02:06:58 | INFO | task2_regime |     Accuracy:            0.923
+2025-12-25 02:06:58 | INFO | task2_regime |     Precision:           0.807
+2025-12-25 02:06:58 | INFO | task2_regime |     Recall:              0.724
+2025-12-25 02:06:58 | INFO | task2_regime |     F1 score:            0.763
+2025-12-25 02:06:58 | INFO | task2_regime |     AUC:                 0.952
+2025-12-25 02:06:58 | INFO | task2_regime |     vs Baseline:         +9.5pp
+2025-12-25 02:06:58 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.763)
+2025-12-25 02:06:58 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 02:06:58 | INFO | task2_regime | 
+2.2 3D REGIME PREDICTION
+2025-12-25 02:06:58 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=17.0% high vol
+2025-12-25 02:06:58 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 02:06:59 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 02:07:00 | INFO | task2_regime | 
+  Baseline (always low vol): 0.830
+2025-12-25 02:07:00 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 02:07:00 | INFO | task2_regime |     Accuracy:            0.856
+2025-12-25 02:07:00 | INFO | task2_regime |     Precision:           0.579
+2025-12-25 02:07:00 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 02:07:00 | INFO | task2_regime |     F1 score:            0.569
+2025-12-25 02:07:00 | INFO | task2_regime |     AUC:                 0.885
+2025-12-25 02:07:00 | INFO | task2_regime |     vs Baseline:         +2.6pp
+2025-12-25 02:07:00 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 02:07:00 | INFO | task2_regime |     Accuracy:            0.864
+2025-12-25 02:07:00 | INFO | task2_regime |     Precision:           0.609
+2025-12-25 02:07:00 | INFO | task2_regime |     Recall:              0.560
+2025-12-25 02:07:00 | INFO | task2_regime |     F1 score:            0.583
+2025-12-25 02:07:00 | INFO | task2_regime |     AUC:                 0.876
+2025-12-25 02:07:00 | INFO | task2_regime |     vs Baseline:         +3.4pp
+2025-12-25 02:07:00 | INFO | task2_regime | 
+  → Best model: Random Forest (F1=0.583)
+2025-12-25 02:07:00 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 02:07:00 | INFO | task2_regime | 
+2.3 5D REGIME PREDICTION
+2025-12-25 02:07:00 | INFO | task2_regime |   Class distribution: Train=36.6% high vol, Test=16.7% high vol
+2025-12-25 02:07:00 | INFO | task2_regime |   Training XGBoost...
+2025-12-25 02:07:00 | INFO | task2_regime |   Training Random Forest...
+2025-12-25 02:07:01 | INFO | task2_regime | 
+  Baseline (always low vol): 0.833
+2025-12-25 02:07:01 | INFO | task2_regime | 
+  XGBoost:
+2025-12-25 02:07:01 | INFO | task2_regime |     Accuracy:            0.829
+2025-12-25 02:07:01 | INFO | task2_regime |     Precision:           0.488
+2025-12-25 02:07:01 | INFO | task2_regime |     Recall:              0.504
+2025-12-25 02:07:01 | INFO | task2_regime |     F1 score:            0.496
+2025-12-25 02:07:01 | INFO | task2_regime |     AUC:                 0.825
+2025-12-25 02:07:01 | INFO | task2_regime |     vs Baseline:         -0.4pp
+2025-12-25 02:07:01 | INFO | task2_regime | 
+  Random Forest:
+2025-12-25 02:07:01 | INFO | task2_regime |     Accuracy:            0.832
+2025-12-25 02:07:01 | INFO | task2_regime |     Precision:           0.495
+2025-12-25 02:07:01 | INFO | task2_regime |     Recall:              0.415
+2025-12-25 02:07:01 | INFO | task2_regime |     F1 score:            0.451
+2025-12-25 02:07:01 | INFO | task2_regime |     AUC:                 0.826
+2025-12-25 02:07:01 | INFO | task2_regime |     vs Baseline:         -0.1pp
+2025-12-25 02:07:01 | INFO | task2_regime | 
+  → Best model: XGBoost (F1=0.496)
+2025-12-25 02:07:01 | INFO | task2_regime |   → Strong, interpretable, stable
+2025-12-25 02:07:01 | INFO | task2_regime | 
+================================================================================
+2025-12-25 02:07:01 | INFO | task2_regime | MODEL COMPARISON SUMMARY
+2025-12-25 02:07:01 | INFO | task2_regime | ================================================================================
+2025-12-25 02:07:01 | INFO | task2_regime | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC       
+2025-12-25 02:07:01 | INFO | task2_regime | --------------------------------------------------------------------------------
+2025-12-25 02:07:01 | INFO | task2_regime | 1d         XGBoost         0.908      0.757      0.685      0.719      0.946     
+2025-12-25 02:07:01 | INFO | task2_regime |            Random Forest   0.923      0.807      0.724      0.763      0.952     
+2025-12-25 02:07:01 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 02:07:01 | INFO | task2_regime | 
+2025-12-25 02:07:01 | INFO | task2_regime | 3d         XGBoost         0.856      0.579      0.560      0.569      0.885     
+2025-12-25 02:07:01 | INFO | task2_regime |            Random Forest   0.864      0.609      0.560      0.583      0.876     
+2025-12-25 02:07:01 | INFO | task2_regime |            → BEST: Random Forest
+2025-12-25 02:07:01 | INFO | task2_regime | 
+2025-12-25 02:07:01 | INFO | task2_regime | 5d         XGBoost         0.829      0.488      0.504      0.496      0.825     
+2025-12-25 02:07:01 | INFO | task2_regime |            Random Forest   0.832      0.495      0.415      0.451      0.826     
+2025-12-25 02:07:01 | INFO | task2_regime |            → BEST: XGBoost
+2025-12-25 02:07:01 | INFO | task2_regime | 
+2025-12-25 02:07:01 | INFO | task2_regime | ================================================================================
+2025-12-25 02:07:01 | INFO | task2_regime | CONCLUSION: Regime prediction is the primary actionable signal
+2025-12-25 02:07:01 | INFO | task2_regime |   → XGBoost typically achieves best F1 scores
+2025-12-25 02:07:01 | INFO | task2_regime |   → Both models show strong AUC (>0.85)
+2025-12-25 02:07:01 | INFO | task2_regime |   → 1-day predictions are most accurate
+2025-12-25 02:07:01 | INFO | task2_regime | ================================================================================
+2025-12-25 02:07:01 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:07:01 | INFO | task3_direction | ================================================================================
+2025-12-25 02:07:01 | INFO | task3_direction | TASK 3: SIMPLE DIRECTIONAL PREDICTION (XGBoost vs Random Forest)
+2025-12-25 02:07:01 | INFO | task3_direction | ================================================================================
+2025-12-25 02:07:01 | INFO | task3_direction | 
+3.1 1D DIRECTION
+2025-12-25 02:07:01 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 02:07:02 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 02:07:03 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 02:07:03 | INFO | task3_direction |     Random:              0.500
+2025-12-25 02:07:03 | INFO | task3_direction |     Majority class:      0.563
+2025-12-25 02:07:03 | INFO | task3_direction |     Persistence:         0.468
+2025-12-25 02:07:03 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 02:07:03 | INFO | task3_direction |     Accuracy:            0.571
+2025-12-25 02:07:03 | INFO | task3_direction |     Precision:           0.512
+2025-12-25 02:07:03 | INFO | task3_direction |     Recall:              0.391
+2025-12-25 02:07:03 | INFO | task3_direction |     F1:                  0.444
+2025-12-25 02:07:03 | INFO | task3_direction |     AUC:                 0.577
+2025-12-25 02:07:03 | INFO | task3_direction |     vs Majority:         +0.81pp
+2025-12-25 02:07:03 | INFO | task3_direction |     vs Persistence:      +10.31pp
+2025-12-25 02:07:03 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 02:07:03 | INFO | task3_direction |     Accuracy:            0.598
+2025-12-25 02:07:03 | INFO | task3_direction |     Precision:           0.562
+2025-12-25 02:07:03 | INFO | task3_direction |     Recall:              0.363
+2025-12-25 02:07:03 | INFO | task3_direction |     F1:                  0.442
+2025-12-25 02:07:03 | INFO | task3_direction |     AUC:                 0.600
+2025-12-25 02:07:03 | INFO | task3_direction |     vs Majority:         +3.53pp
+2025-12-25 02:07:03 | INFO | task3_direction |     vs Persistence:      +13.03pp
+2025-12-25 02:07:03 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.598)
+2025-12-25 02:07:03 | INFO | task3_direction |   → Edge over random: +9.84pp
+2025-12-25 02:07:03 | INFO | task3_direction | 
+3.2 3D DIRECTION
+2025-12-25 02:07:03 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 02:07:03 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 02:07:05 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 02:07:05 | INFO | task3_direction |     Random:              0.500
+2025-12-25 02:07:05 | INFO | task3_direction |     Majority class:      0.550
+2025-12-25 02:07:05 | INFO | task3_direction |     Persistence:         0.461
+2025-12-25 02:07:05 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 02:07:05 | INFO | task3_direction |     Accuracy:            0.552
+2025-12-25 02:07:05 | INFO | task3_direction |     Precision:           0.504
+2025-12-25 02:07:05 | INFO | task3_direction |     Recall:              0.428
+2025-12-25 02:07:05 | INFO | task3_direction |     F1:                  0.463
+2025-12-25 02:07:05 | INFO | task3_direction |     AUC:                 0.572
+2025-12-25 02:07:05 | INFO | task3_direction |     vs Majority:         +0.27pp
+2025-12-25 02:07:05 | INFO | task3_direction |     vs Persistence:      +9.09pp
+2025-12-25 02:07:05 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 02:07:05 | INFO | task3_direction |     Accuracy:            0.579
+2025-12-25 02:07:05 | INFO | task3_direction |     Precision:           0.539
+2025-12-25 02:07:05 | INFO | task3_direction |     Recall:              0.455
+2025-12-25 02:07:05 | INFO | task3_direction |     F1:                  0.493
+2025-12-25 02:07:05 | INFO | task3_direction |     AUC:                 0.607
+2025-12-25 02:07:05 | INFO | task3_direction |     vs Majority:         +2.99pp
+2025-12-25 02:07:05 | INFO | task3_direction |     vs Persistence:      +11.80pp
+2025-12-25 02:07:05 | INFO | task3_direction | 
+  → Best model: Random Forest (Accuracy=0.579)
+2025-12-25 02:07:05 | INFO | task3_direction |   → Edge over random: +7.94pp
+2025-12-25 02:07:05 | INFO | task3_direction | 
+3.3 5D DIRECTION
+2025-12-25 02:07:05 | INFO | task3_direction |   Training XGBoost...
+2025-12-25 02:07:05 | INFO | task3_direction |   Training Random Forest...
+2025-12-25 02:07:06 | INFO | task3_direction | 
+  Baselines:
+2025-12-25 02:07:06 | INFO | task3_direction |     Random:              0.500
+2025-12-25 02:07:06 | INFO | task3_direction |     Majority class:      0.540
+2025-12-25 02:07:06 | INFO | task3_direction |     Persistence:         0.421
+2025-12-25 02:07:06 | INFO | task3_direction | 
+  XGBoost:
+2025-12-25 02:07:06 | INFO | task3_direction |     Accuracy:            0.582
+2025-12-25 02:07:06 | INFO | task3_direction |     Precision:           0.549
+2025-12-25 02:07:06 | INFO | task3_direction |     Recall:              0.516
+2025-12-25 02:07:06 | INFO | task3_direction |     F1:                  0.532
+2025-12-25 02:07:06 | INFO | task3_direction |     AUC:                 0.602
+2025-12-25 02:07:06 | INFO | task3_direction |     vs Majority:         +4.21pp
+2025-12-25 02:07:06 | INFO | task3_direction |     vs Persistence:      +16.15pp
+2025-12-25 02:07:06 | INFO | task3_direction | 
+  Random Forest:
+2025-12-25 02:07:06 | INFO | task3_direction |     Accuracy:            0.581
+2025-12-25 02:07:06 | INFO | task3_direction |     Precision:           0.552
+2025-12-25 02:07:06 | INFO | task3_direction |     Recall:              0.469
+2025-12-25 02:07:06 | INFO | task3_direction |     F1:                  0.507
+2025-12-25 02:07:06 | INFO | task3_direction |     AUC:                 0.619
+2025-12-25 02:07:06 | INFO | task3_direction |     vs Majority:         +4.07pp
+2025-12-25 02:07:06 | INFO | task3_direction |     vs Persistence:      +16.01pp
+2025-12-25 02:07:06 | INFO | task3_direction | 
+  → Best model: XGBoost (Accuracy=0.582)
+2025-12-25 02:07:06 | INFO | task3_direction |   → Edge over random: +8.21pp
+2025-12-25 02:07:06 | INFO | task3_direction | 
+================================================================================
+2025-12-25 02:07:06 | INFO | task3_direction | MODEL COMPARISON SUMMARY
+2025-12-25 02:07:06 | INFO | task3_direction | ================================================================================
+2025-12-25 02:07:06 | INFO | task3_direction | 
+Horizon    Model           Accuracy   Precision  Recall     F1         AUC        Edge      
+2025-12-25 02:07:06 | INFO | task3_direction | --------------------------------------------------------------------------------
+2025-12-25 02:07:06 | INFO | task3_direction | 1d         XGBoost         0.571      0.512      0.391      0.444      0.577      7.12      %
+2025-12-25 02:07:06 | INFO | task3_direction |            Random Forest   0.598      0.562      0.363      0.442      0.600      9.84      %
+2025-12-25 02:07:06 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 02:07:06 | INFO | task3_direction | 
+2025-12-25 02:07:06 | INFO | task3_direction | 3d         XGBoost         0.552      0.504      0.428      0.463      0.572      5.22      %
+2025-12-25 02:07:06 | INFO | task3_direction |            Random Forest   0.579      0.539      0.455      0.493      0.607      7.94      %
+2025-12-25 02:07:06 | INFO | task3_direction |            → BEST: Random Forest
+2025-12-25 02:07:06 | INFO | task3_direction | 
+2025-12-25 02:07:06 | INFO | task3_direction | 5d         XGBoost         0.582      0.549      0.516      0.532      0.602      8.21      %
+2025-12-25 02:07:06 | INFO | task3_direction |            Random Forest   0.581      0.552      0.469      0.507      0.619      8.07      %
+2025-12-25 02:07:06 | INFO | task3_direction |            → BEST: XGBoost
+2025-12-25 02:07:06 | INFO | task3_direction | 
+2025-12-25 02:07:06 | INFO | task3_direction | ================================================================================
+2025-12-25 02:07:06 | INFO | task3_direction | CONCLUSION: Direction prediction provides modest edge
+2025-12-25 02:07:06 | INFO | task3_direction |   → XGBoost and Random Forest perform similarly
+2025-12-25 02:07:06 | INFO | task3_direction |   → Edge improves with longer forecast horizons
+2025-12-25 02:07:06 | INFO | task3_direction | ================================================================================
+2025-12-25 02:07:06 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:07:06 | INFO | task4_innovation | ================================================================================
+2025-12-25 02:07:06 | INFO | task4_innovation | TASK 4: INNOVATION (DEVIATION) REGRESSION - ENHANCED
+2025-12-25 02:07:06 | INFO | task4_innovation | ================================================================================
+2025-12-25 02:07:06 | INFO | task4_innovation | 
+4.1 HAR EXPECTATION MODEL (Multi-Horizon)
+2025-12-25 02:07:06 | INFO | task4_innovation |   train_df columns: 72
+2025-12-25 02:07:06 | INFO | task4_innovation |   train_df shape: (3752, 72)
+2025-12-25 02:07:06 | INFO | task4_innovation |   ✓ All HAR features present: ['logVIX_t', 'logVIX_weekly', 'logVIX_monthly']
+2025-12-25 02:07:06 | INFO | task4_innovation |   Before dropna: 3752 rows
+2025-12-25 02:07:06 | INFO | task4_innovation |   After dropna: 3751 rows
+2025-12-25 02:07:06 | INFO | task4_innovation |   ✓ HAR model fitted successfully!
+2025-12-25 02:07:06 | INFO | task4_innovation |   α (intercept):    0.0446
+2025-12-25 02:07:06 | INFO | task4_innovation |   β_daily (t):      0.8890
+2025-12-25 02:07:06 | INFO | task4_innovation |   β_weekly (5d):    0.0642
+2025-12-25 02:07:06 | INFO | task4_innovation |   β_monthly (22d):  0.0316
+2025-12-25 02:07:06 | INFO | task4_innovation |   In-sample R²:     0.9584
+2025-12-25 02:07:06 | INFO | task4_innovation |   In-sample RMSE:   0.0775
+2025-12-25 02:07:06 | INFO | task4_innovation |   Purpose: Multi-horizon mean reversion (should beat AR(1))
+2025-12-25 02:07:06 | INFO | task4_innovation | 
+Data after feature creation:
+2025-12-25 02:07:06 | INFO | task4_innovation |   Train: 3751 samples
+2025-12-25 02:07:06 | INFO | task4_innovation |   Val:   250 samples
+2025-12-25 02:07:06 | INFO | task4_innovation |   Test:  736 samples
+2025-12-25 02:07:06 | INFO | task4_innovation | 
+Innovation statistics:
+2025-12-25 02:07:06 | INFO | task4_innovation |   Train mean: -0.000000 (should be ≈0)
+2025-12-25 02:07:06 | INFO | task4_innovation |   Train std:  0.0775
+2025-12-25 02:07:06 | INFO | task4_innovation |   Test mean:  -0.002272
+2025-12-25 02:07:06 | INFO | task4_innovation |   Test std:   0.0757
+2025-12-25 02:07:06 | INFO | task4_innovation | 
+4.2 RIDGE REGRESSION (BASELINE)
+2025-12-25 02:07:06 | INFO | task4_innovation |   Test RMSE: 0.0756
+2025-12-25 02:07:06 | INFO | task4_innovation |   Test MAE:  0.0514
+2025-12-25 02:07:06 | INFO | task4_innovation |   Test R²:   0.0005
+2025-12-25 02:07:06 | INFO | task4_innovation | 
+4.3 XGBOOST REGRESSION (ENHANCED)
+2025-12-25 02:07:08 | INFO | task4_innovation |   Test RMSE: 0.0767
+2025-12-25 02:07:08 | INFO | task4_innovation |   Test MAE:  0.0517
+2025-12-25 02:07:08 | INFO | task4_innovation |   Test R²:   -0.0275
+2025-12-25 02:07:08 | INFO | task4_innovation |   vs Ridge:  -1.39%
+2025-12-25 02:07:08 | INFO | task4_innovation | 
+  Top 10 features:
+2025-12-25 02:07:08 | INFO | task4_innovation |     logVIX_weekly                 : 0.0628
+2025-12-25 02:07:08 | INFO | task4_innovation |     high_vol_yesterday            : 0.0592
+2025-12-25 02:07:08 | INFO | task4_innovation |     logVIX_monthly                : 0.0573
+2025-12-25 02:07:08 | INFO | task4_innovation |     vrp_normalized                : 0.0564
+2025-12-25 02:07:08 | INFO | task4_innovation |     vix_change_lag1               : 0.0549
+2025-12-25 02:07:08 | INFO | task4_innovation |     VIX_intraday_range            : 0.0537
+2025-12-25 02:07:08 | INFO | task4_innovation |     RV_weekly                     : 0.0500
+2025-12-25 02:07:08 | INFO | task4_innovation |     rv_surprise_normalized        : 0.0496
+2025-12-25 02:07:08 | INFO | task4_innovation |     variance_risk_premium         : 0.0495
+2025-12-25 02:07:08 | INFO | task4_innovation |     RV_monthly                    : 0.0481
+2025-12-25 02:07:08 | INFO | task4_innovation | 
+================================================================================
+2025-12-25 02:07:08 | INFO | task4_innovation | CONCLUSION: Innovations remain largely unpredictable
+2025-12-25 02:07:08 | INFO | task4_innovation |   R² = -0.028 - VIX shocks dominated by news/events
+2025-12-25 02:07:08 | INFO | task4_innovation | ================================================================================
+2025-12-25 02:07:08 | INFO | vix_forecasting_pipeline | 
+====================================================================================================
+2025-12-25 02:07:08 | INFO | vix_forecasting_pipeline | ALL TASKS COMPLETED SUCCESSFULLY
+2025-12-25 02:07:08 | INFO | vix_forecasting_pipeline | ====================================================================================================
+2025-12-25 02:07:08 | INFO | vix_forecasting_pipeline | Preparing data for modeling...
+2025-12-25 02:07:08 | INFO | vix_forecasting_pipeline | Data splits:
+2025-12-25 02:07:08 | INFO | vix_forecasting_pipeline |   Train: 3752 days (2007-02-08 to 2021-12-31)
+2025-12-25 02:07:08 | INFO | vix_forecasting_pipeline |   Val:   251 days (2022-01-03 to 2022-12-30)
+2025-12-25 02:07:08 | INFO | vix_forecasting_pipeline |   Test:  737 days (2023-01-04 to 2025-12-10)
+2025-12-25 02:07:08 | INFO | vix_forecasting_pipeline |   → Test includes ALL available data (1075 days from val end)
+2025-12-25 02:07:08 | INFO | vix_forecasting_pipeline |   → Latest data: 2025-12-10
+2025-12-25 02:07:08 | INFO | vix_forecasting_pipeline | Saving daily predictions to CSV...
+2025-12-25 02:07:09 | INFO | vix_forecasting_pipeline | Daily predictions saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\daily_predictions_20251225_020709.csv
+2025-12-25 02:07:09 | INFO | vix_forecasting_pipeline |   Rows: 737
+2025-12-25 02:07:09 | INFO | vix_forecasting_pipeline |   Columns: 29
+2025-12-25 02:07:09 | INFO | vix_forecasting_pipeline |   Date range: 2023-01-04 00:00:00 to 2025-12-10 00:00:00
+2025-12-25 02:07:09 | INFO | vix_forecasting_pipeline | Summary report saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\summary_report_20251225_020709.txt
+2025-12-25 02:07:09 | INFO | main | Step 4: Generating visualizations
+2025-12-25 02:07:09 | INFO | visualizations | Generating visualizations...
+2025-12-25 02:07:17 | INFO | visualizations | All plots saved to C:\Users\mahi2\Downloads\Auto_job_applier_linkedIn-main\results\plots
+2025-12-25 02:07:17 | INFO | main | Pipeline completed successfully
+2025-12-25 02:07:17 | INFO | main | Pipeline execution completed
