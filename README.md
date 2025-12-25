@@ -137,7 +137,7 @@ Displays data coverage, last update timestamp, and model availability.
 
 ---
 
-## Model Specifications (Summary)
+## Model Specifications
 
 The system employs a **parsimonious and interpretable set of well-established models**, selected based on empirical relevance and robustness rather than model complexity.
 
